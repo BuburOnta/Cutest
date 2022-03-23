@@ -1,0 +1,85 @@
+@import url(font.css);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+
+/* HEADER */
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #415F9D;
+
+    box-sizing: border-box;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 39px;
+    letter-spacing: 0.1rem;
+}
+
+.right {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+.profile img {
+    width: 45px;
+    margin-right: 10px;
+}
+
+
+/* NAVIGASI */
+.nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+    /* width: ; */
+
+    background: rgb(126, 126, 126);
+    color: #fff;
+}
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    
+    background: rgb(109, 109, 109);
+    padding: 20px 0;
+}
+.nav h1 {
+    font-size: 24px;
+    align-self: center;    
+    margin-bottom: 27px;
+    letter-spacing: 0.2rem;
+}
+
+
+.menu {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background: #526b9c;
+    padding: 10px 0;
+    padding-left: 15px;
+}
+.iconify {
+    font-size: 35px;
+    margin-right: 5px;
+}
