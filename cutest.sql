@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2022 at 11:17 AM
+-- Generation Time: Mar 24, 2022 at 03:13 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `cutest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daftar_ujian`
+--
+
+CREATE TABLE `daftar_ujian` (
+  `id_ujian` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `keterangan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -165,6 +177,12 @@ CREATE TABLE `verifikasi_otp` (
 --
 
 --
+-- Indexes for table `daftar_ujian`
+--
+ALTER TABLE `daftar_ujian`
+  ADD PRIMARY KEY (`id_ujian`);
+
+--
 -- Indexes for table `guru`
 --
 ALTER TABLE `guru`
@@ -206,6 +224,12 @@ ALTER TABLE `verifikasi_otp`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `daftar_ujian`
+--
+ALTER TABLE `daftar_ujian`
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `temp_users`
