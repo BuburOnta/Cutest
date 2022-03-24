@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+// Cek session
+if (!$_SESSION['sesiLogin']) {
+    header("Location: ?page=login");
+}
+
+// MAPEL
+// var_dump(query("SELECT * FROM daftar_ujian"));
+// foreach(query("SELECT * FROM daftar_ujian") as $f){
+//     var_dump($f);
+// }
+$result = query("SELECT * FROM daftar_ujian");
+if (count($result) == 0) {
+    $mapels = [];
+    $error = true;
+} else {
+    $mapels = $result;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Ujian</title>
     <link rel="stylesheet" href="assets/css/pilih_ujian.css">
+    <link rel="stylesheet" href="assets/css/select.css">
 </head>
 
 <body>
@@ -22,16 +44,37 @@
 
         <form method="POST" action="">
             <h3>Kategori ujian</h3>
-            <img src="assets/img/ujian_vector.svg">
-            <select name="pilih_ujian" id="pilih_ujian">
-                <option selected hidden class="p">Pilih ujian</option>
-                <option value="">Matematika</option>
-                <option value="">Pemrograman Dasar</option>
-            </select>
+            <!-- SELECT DROPDOWN -->
+            <div class="select-container">
+                <div class="select-box">
+                    <div class="options-container">
+                        <?php foreach ($mapels as $mapel) { ?>
+                            <div class="option">
+                                <input type="radio" class="radio" id="automobiles" name="category" value="$mapel[nama]" />
+                                <label for="automobiles"><?= $mapel['nama'] ?></label>
+                            </div>
+                        <?php }; ?>
+                    </div>
+
+                    <?php if ($error) { ?>
+                        <div class="selected">
+                            <img src="assets/img/ujian_vector.svg">
+                            Saat ini tidak ada ujian
+                        </div>
+                    <?php } else { ?>
+                        <div class="selected">
+                            <img src="assets/img/ujian_vector.svg">
+                            Pilih ujian
+                        </div>
+                    <?php }; ?>
+                </div>
+                <!-- end select -->
+            </div>
 
             <button type="submit" name="next">Next</button>
         </form>
     </div>
 </body>
+<script src="assets/js/select.js"></script>
 
 </html>

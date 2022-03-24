@@ -12,4 +12,4 @@ $login_verification = 'page/login_verification.php';
 $login_ubah_password = 'page/login_ubah_password.php';
 
 // UJIAN
-$ujian_pilih = 'page/ujian/pilih_ujian.php';
+$pilih_ujian = 'page/ujian/pilih_ujian.php';

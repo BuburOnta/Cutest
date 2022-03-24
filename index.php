@@ -46,7 +46,7 @@ $page = $_GET['page'];
 
         // Page Ujian
         case 'pilih_ujian':
-            include_once $ujian_pilih;
+            include_once $pilih_ujian;
             break;
 
 
