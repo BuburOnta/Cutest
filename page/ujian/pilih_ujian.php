@@ -7,17 +7,19 @@ if (!$_SESSION['sesiLogin']) {
 }
 
 
-
-$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];  //ambil user
+// QUERY 1 -> Mengambil data user berdasarkan `sesiLogin`
+$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];
 // echo $users['kelas'];
-$ujian = query("SELECT * FROM akses_ujian WHERE kelas='$users[kelas]'"); // cek ujian berdasarkan kelas
+// QUERY 2 -> Mengambil data `id_ujian` dari tabel `akses_ujian` dengan ketentuan kelas dari `user`
+    // -> Output dari id_ujian bisa saja lebih dari 1
+$ujian = query("SELECT * FROM akses_ujian WHERE kelas='$users[kelas]'"); 
 // var_dump($ujian);
 
-// $mapels = query("SELECT * FROM daftar_ujian WHERE id_ujian='$ujian[id_ujian]'");
-// var_dump($mapels);
-
+// -> Pengulangan dari data `id_ujian` jika lebih dari 1
 foreach ($ujian as $uji) {
     // var_dump($uji);
+    // QUERY 3 -> Mengambil `judul` dari `daftar_ujian` Berdasarkan `id_ujian` yang sudah diambil diatas
+        // -> Lalu memasukan kedalam array $mapels yang akan digunakan untuk menampilkan data nantinya
     $mapels[] = query("SELECT * FROM daftar_ujian WHERE id_ujian='$uji[id_ujian]'");
     // var_dump($mapels);
 }
@@ -66,8 +68,8 @@ foreach ($ujian as $uji) {
                     <div class="options-container">
                         <?php foreach ($mapels as $mapel) { ?>
                             <div class="option">
-                                <input type="radio" class="radio" id="automobiles" name="category" value="$mapel[nama]" />
-                                <label for="automobiles"><?= $mapel[0]['judul'] ?></label>
+                                <input type="radio" class="radio" id="category" name="category" value="$mapel[nama]" />
+                                <label for="category"><?= $mapel[0]['judul'] ?></label>
                             </div>
                         <?php }; ?>
                     </div>

@@ -1,16 +1,48 @@
 <?php 
 require 'function.php';
-$pw = password_hash("raffie", PASSWORD_DEFAULT);
+// $pw = password_hash("raffie", PASSWORD_DEFAULT);
 
 $us = ['1', '2', '3'];
 // mysqli_query($con, "INSERT INTO tes SET jeson='$us' ");
 
-mysqli_query($con, "INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas`, `jurusan`) VALUES (NULL, '9', '2', 'RPL')");
+// mysqli_query($con, "INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas`, `jurusan`) VALUES (NULL, '9', '2', 'RPL')");
 
+// MASUKIN DATA USER
 // mysqli_query($con, "UPDATE users SET password='$pw' WHERE email='klsterbuka@gmail.com'");
-// mysqli_query($con, "INSERT INTO users (nama,email,password,password_debug,role) VALUE ('admin','admin@admin','$pw','admin12345',3)");
+// mysqli_query($con, "INSERT INTO users (nama,email,password,role) VALUE ('admin','admin@admin','$pw', 3)");
 // mysqli_query($con, "INSERT INTO guru (NIP,nama,email,password,role) VALUE (123123, 'Susanto', 'susanto@gmail.com','$pw', 2)");
+$nama = $_POST['nama'];
+$email = $_POST['email'];
+// $pw = $_POST['pw'];
+// $role = $_POST['role'];
+$kelas = $_POST['kelas'];
+$jurusan = $_POST['jurusan'];
+// $nama = "";
+// $email = "";
+// $pw = "";
+// $kelas = ;
+// $jurusan = "";
+$pw = password_hash($nama, PASSWORD_DEFAULT);
+mysqli_query($con, "INSERT iNTO users (nama,email,password,role,kelas,jurusan) 
+                        VALUES ('$nama', 
+                                '$email', 
+                                '$pw', 
+                                '1',
+                                '$kelas',
+                                '$jurusan'
+                                )");
+?>
+<form method="POST" action="">
+    <input type="text" name="nama" id="nama" placeholder="nama" autofocus>
+    <input type="email" name="email" id="email" placeholder="email" value="@gmail.com">
+    <!-- <input type="password" name="pw" id="pw" placeholder="pass"> -->
+    <input type="text" name="kelas" id="kelas" placeholder="kelas" value="3">
+    <input type="text" name="jurusan" id="jurusan" placeholder="jurusan">
+    <button type="submit" name="submit">Submit</button>
+</form>
 
+<?php
+// MASUKIN DATA JURUSAN
 /* mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='rpl', jurusan='Rekayasa Perangkat Lunak'");
 mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='pplg', jurusan='Pemrograman Perangkat Lunak Gim'");
 mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='mm', jurusan='MultiMedia'");
@@ -19,71 +51,4 @@ mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='tbsm', jurusan='Teknik Bi
 mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='tkro', jurusan='Teknik Kendaraan Ringan Otomotif'");
 mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='aph', jurusan='Akomodasi Perhotelan'");
 mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='akl', jurusan='Akutansi Keuangan Lembaga'"); */
-
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=1, kelas_jurusan='x rpl'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=2, kelas_jurusan='xi rpl'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=3, kelas_jurusan='xii rpl'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=4, kelas_jurusan='x pplg'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=5, kelas_jurusan='xi pplg'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=6, kelas_jurusan='xii pplg'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=7, kelas_jurusan='x mm'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=8, kelas_jurusan='xi mm'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=9, kelas_jurusan='xii mm'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=10, kelas_jurusan='x dkv'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=11, kelas_jurusan='xi dkv'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=12, kelas_jurusan='xii dkv'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=13, kelas_jurusan='x tbsm'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=14, kelas_jurusan='xi tbsm'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=15, kelas_jurusan='xii tbsm'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=16, kelas_jurusan='x tkro'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=17, kelas_jurusan='xi tkro'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=18, kelas_jurusan='xii tkro'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=19, kelas_jurusan='x aph'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=20, kelas_jurusan='xi aph'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=21, kelas_jurusan='xii aph'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=22, kelas_jurusan='x akl'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=23, kelas_jurusan='xi akl'");
-// mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=24, kelas_jurusan='xii akl'");
-// $email = 'admin@gmail.com';
-// $result = mysqli_query($con, "SELECT * FROM guru INNER JOIN users WHERE guru.email='$email' OR users.email='$email' ");
-// var_dump($result);
-// // var_dump($result);
-// $rows = [];
-// while($row = mysqli_fetch_assoc($result)){
-//     $rows = $row;
-//     var_dump($row);
-
-// }
-if( $user = query("SELECT role.role FROM guru INNER JOIN role ON guru.role=role.id_role WHERE email='$email' ")){
-    $user = $user['role'];
-} else if($user = query("SELECT role.role FROM users INNER JOIN role ON users.role=role.id_role WHERE email='$email' ")){
-    $user = $user['role'];
-} else {
-    echo "AGGAGAL!";
-}
-switch ($user) { 
-    case 'admin':
-        // header("Location: ?page=admin");
-        echo "admin";
-        break;
-    case 'guru':
-        // header("Location: ?page=guru");
-        echo "guru";
-        break;
-    case 'murid':
-        // header("Location: ?page=home");
-        echo "murid";
-        break;
-}
-die;
-
-// $us = query("SELECT email, role.role FROM guru INNER JOIN role WHERE guru.role=role.role");
-// var_dump($us);
 ?>
-<table border="1">
-    <td><?= $rows['NIP'] ?></td>
-    <td><?= $rows['nama'] ?></td>
-    <td><?= $rows['email'] ?></td>
-    <td><?= $rows['role'] ?></td>
-    <td><?= $rows['password'] ?></td>
-</table>

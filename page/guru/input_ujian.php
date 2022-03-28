@@ -5,23 +5,29 @@ session_start();
 // echo $_POST['jurusan'];
 
 if(isset($_POST['submit'])){
-$nama = $_POST['judul'];
-// $jurusan = json_encode($_POST['jurusan']);
-// $kelas = json_encode($_POST['kelas']);
-$jurusan = 1;
-$kelas = 1;
-if( !mysqli_query($con, "INSERT INTO daftar_ujian SET judul='$nama' ")){
-    echo "GGL";
+    // QUERY 1 -> Memasukan topik ke tabel daftar_ujian hanya dengan judul
+    $judul = $_POST['judul'];
+    if( !mysqli_query($con, "INSERT INTO daftar_ujian SET judul='$judul' ")){
+        echo "GGL";
+    }
+
+    // QUERY 2 -> Mengambil id_ujian dari tabel daftar_ujian
+    $result = query("SELECT * FROM daftar_ujian WHERE judul='$judul' ");
+    $id_ujian = $result[0]['id_ujian'];
+    
+    // -> Pengulangan untuk array `kelas`
+    foreach ($_POST['kelas'] as $key => $value) {
+        // echo gettype($value);
+        $value = $value;
+        // echo gettype($value);
+        // QUERY 3 -> Sorting akses ujian berdasarkan `kelas` dengan `id_ujian` yang sudah diambil
+        if(!mysqli_query($con, "INSERT INTO akses_ujian SET kelas='$value', id_ujian='$id_ujian'")){
+            echo "GGL";
+        }
+    }
+    // $_SESSION['id_ujian'] = $result[0]['id_ujian'];
 }
 
-$result = query("SELECT * FROM daftar_ujian WHERE judul='$nama' ");
-$_SESSION['id_ujian'] = $result[0]['id_ujian'];
-// if( !mysqli_query($con, "UPDATE daftar_ujian SET kelas='$kelas', jurusan='$jurusan' WHERE id_ujian=1")){
-//     echo "GGL";
-// }
-}
-
-var_dump($_SESSION);
 
 if(isset($_POST['akses'])){
     $id_ujian = $_SESSION['id_ujian'];
@@ -63,7 +69,7 @@ if(isset($_POST['akses'])){
         <button type="submit" name="submit">Submit</button>
     </form>
 
-    <?php //if(isset($_SESSION['tambah'])): ?>
+    <!-- <?php //if(isset($_SESSION['tambah'])): ?>
     <h3>SIAPA SAJA YANG DAPAT MENGAKSES</h3>
     <form method="POST" action="">
     X<input type="checkbox" name="kelas[]" id="kelas" value="1">
@@ -75,25 +81,7 @@ if(isset($_POST['akses'])){
 <br>
         <button type="submit" name="akses">Submit</button>
     </form>
-    <?php //endif; ?>
-
-
-
-    <h3>YANG DAPAT MELIHAT UJIAN</h3>
-    <?php 
-    // decode
-    $ujian = query("SELECT * FROM daftar_ujian");
-    foreach ($ujian as $uji) {
-        $kelas = json_decode($uji['kelas']);
-        foreach ($kelas as $kls => $val) {
-            $soal = query("SELECT judul FROM daftar_ujian WHERE kelas=$val");
-            var_dump($soal);
-        }
-    }
-    // echo $soal;
-    // var_dump($soal);
-    
-    ?>
+    <?php //endif; ?> -->
 
 </body>
 <style>
