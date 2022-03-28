@@ -51,6 +51,13 @@ $page = $_GET['page'];
 
 
 
+
+        // GURU
+        // -> Input Ujian
+        case 'input_ujian':
+            include_once $input_ujian;
+            break;
+            
         default:
             include_once $dashboard_page; // jika isi page tidak diisi
             break;

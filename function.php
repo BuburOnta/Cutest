@@ -41,14 +41,14 @@ function register($data)
     // Variabel
     global $con;
     // memfilter sql injection
-    $nama = mysqli_real_escape_string($con, $data['nama']); 
-    $email = mysqli_real_escape_string($con, $data['email']); 
+    $nama = mysqli_real_escape_string($con, $data['nama']);
+    $email = mysqli_real_escape_string($con, $data['email']);
     $password = mysqli_real_escape_string($con, $data['password']);
     $confirm_password = mysqli_real_escape_string($con, $data['confirm_password']);
     $kelas_jurusan = mysqli_real_escape_string($con, $data['kelas_jurusan']);
     // memfilter html
-    $nama = htmlspecialchars($nama); 
-    $email = htmlspecialchars($email); 
+    $nama = htmlspecialchars($nama);
+    $email = htmlspecialchars($email);
     $password = htmlspecialchars($password);
     $confirm_password = htmlspecialchars($confirm_password);
 
@@ -146,7 +146,7 @@ function login($data)
     $password = $data['password'];
 
     // QUERY 1 - Mengecek email didalam database
-    if (!mysqli_num_rows($result = mysqli_query($con, "SELECT * FROM users WHERE email='$email'")) && !mysqli_num_rows($result = mysqli_query($con, "SELECT * FROM guru WHERE email='$email'")) ) {
+    if (!mysqli_num_rows($result = mysqli_query($con, "SELECT * FROM users WHERE email='$email'")) && !mysqli_num_rows($result = mysqli_query($con, "SELECT * FROM guru WHERE email='$email'"))) {
         $_POST['error'] = "Invalid Email";
         return false;
     }
@@ -250,4 +250,81 @@ function ubahPassword($data)
     mysqli_query($con, "UPDATE users SET password='$password', password_debug='$confirm_password' WHERE email='$email' ");
     $_SESSION['email'] = '';
     return mysqli_affected_rows($con);
+}
+
+
+
+
+
+
+
+// --- Guru -> Ujian
+// ---Tambah Data---
+function tambah($data)
+{
+    global $con;
+    // membuat variabel
+    // mencegah adanya element html
+    $judul = htmlspecialchars($data['judul']);
+    $kelas = htmlspecialchars($data['kelas']);
+    $jurusan = htmlspecialchars($data['jurusan']);
+
+    // Upload gambar terlebih dahulu
+    // Jika upload berhasil maka menghasilkan gambar diupload dan mengirimkan nama gambar ke variabel $gambar
+    $gambar = upload();
+    if (!$gambar) {
+        return false;
+    }
+
+    // query insert data
+    $query = "INSERT INTO hewan VALUES ('', '$nama', '$jenis_makanan', '$habitat', '$rentang_usia', '$gambar')";
+    mysqli_query($con, $query);
+
+    // mengembalikan nilai angka dari query
+    // kalo berhasil maka '1' klo gagal maka '-1'
+    return mysqli_affected_rows($con);
+}
+
+// --- Guru -> Ujian --> Upload File
+// --- Upload ---
+function upload()
+{
+    $namaFile = $_FILES['gambar']['name']; // $_FILES['gambar'] diambil dari input name gambar di tambah.php 
+    $ukuranFile = $_FILES['gambar']['size']; // karna $_FILES menghasilkan array multi dimensi
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    // Kondisi 1 - Apakah gambar diupload atau tidak
+    if ($error === 4) {
+        $_POST['error'] = "Input file!";
+        return false;
+    }
+
+    // Kondisi 2 - Apakah file yang diupload berekstensi gambar / tidak
+    $validType = ['pdf'];
+    $ekstensiGambar = explode('.', $namaFile); // mengubah $namaFile menjadi array terpisah saat terdapat titik
+    $ekstensiGambar = strtolower(end($ekstensiGambar)); // mengubah semua ke lowercase // mengambil array paling akhir
+
+    // in_array($string, $array) = mengecek apakah ada string didalam array | menghasilkan nilai true / false
+    if (!in_array($ekstensiGambar, $validType)) {
+        $_POST['error'] = "Harap input pdf!";
+        return false;
+    }
+
+    // Kondisi 3 - Membatasi ukuran gambar
+    /*     if( $ukuranFile > 2000000 ) {
+        echo "
+        <script>
+            alert('ukuran gambar terlalu besar!');
+        </script>
+        ";
+    } */
+
+    // Kondisi 4 - Kondisi sebelumnya berhasil maka upload file ke tempat tujuan
+    // generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+    move_uploaded_file($tmpName, 'assets/pdf/' . $namaFileBaru);
+    return $namaFileBaru;
 }

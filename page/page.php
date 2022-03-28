@@ -13,3 +13,9 @@ $login_ubah_password = 'page/login_ubah_password.php';
 
 // UJIAN
 $pilih_ujian = 'page/ujian/pilih_ujian.php';
+
+
+
+
+// GURU
+$input_ujian = 'page/guru/input_ujian.php';

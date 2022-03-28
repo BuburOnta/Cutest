@@ -6,34 +6,18 @@ if (!$_SESSION['sesiLogin']) {
     header("Location: ?page=login");
 }
 
-
-
-$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];  //ambil user
-// echo $users['kelas'];
-$ujian = query("SELECT * FROM akses_ujian WHERE kelas='$users[kelas]'"); // cek ujian berdasarkan kelas
-// var_dump($ujian);
-
-// $mapels = query("SELECT * FROM daftar_ujian WHERE id_ujian='$ujian[id_ujian]'");
-// var_dump($mapels);
-
-foreach ($ujian as $uji) {
-    // var_dump($uji);
-    $mapels[] = query("SELECT * FROM daftar_ujian WHERE id_ujian='$uji[id_ujian]'");
-    // var_dump($mapels);
+// MAPEL
+// var_dump(query("SELECT * FROM daftar_ujian"));
+// foreach(query("SELECT * FROM daftar_ujian") as $f){
+//     var_dump($f);
+// }
+$result = query("SELECT * FROM daftar_ujian");
+if (count($result) == 0) {
+    $mapels = [];
+    $error = true;
+} else {
+    $mapels = $result;
 }
-
-// foreach ($mapels as $mapel) {
-//     var_dump($mapel);
-//     // echo $mapel[0]['judul'];
-// }
-
-// $result = query("SELECT * FROM daftar_ujian");
-// if (count($result) == 0) {
-//     $mapels = [];
-//     $error = true;
-// } else {
-//     $mapels = $result;
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +51,7 @@ foreach ($ujian as $uji) {
                         <?php foreach ($mapels as $mapel) { ?>
                             <div class="option">
                                 <input type="radio" class="radio" id="automobiles" name="category" value="$mapel[nama]" />
-                                <label for="automobiles"><?= $mapel[0]['judul'] ?></label>
+                                <label for="automobiles"><?= $mapel['judul'] ?></label>
                             </div>
                         <?php }; ?>
                     </div>

@@ -1,9 +1,24 @@
 <?php 
 require 'function.php';
-$pw = password_hash("admin12345", PASSWORD_DEFAULT);
-mysqli_query($con, "INSERT INTO users (nama,email,password,password_debug,role) VALUE ('admin','admin@admin','$pw','admin12345',3)");
+$pw = password_hash("raffie", PASSWORD_DEFAULT);
+
+$us = ['1', '2', '3'];
+// mysqli_query($con, "INSERT INTO tes SET jeson='$us' ");
+
+mysqli_query($con, "INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas`, `jurusan`) VALUES (NULL, '9', '2', 'RPL')");
+
+// mysqli_query($con, "UPDATE users SET password='$pw' WHERE email='klsterbuka@gmail.com'");
+// mysqli_query($con, "INSERT INTO users (nama,email,password,password_debug,role) VALUE ('admin','admin@admin','$pw','admin12345',3)");
 // mysqli_query($con, "INSERT INTO guru (NIP,nama,email,password,role) VALUE (123123, 'Susanto', 'susanto@gmail.com','$pw', 2)");
 
+/* mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='rpl', jurusan='Rekayasa Perangkat Lunak'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='pplg', jurusan='Pemrograman Perangkat Lunak Gim'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='mm', jurusan='MultiMedia'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='dkv', jurusan='Desain Komunikasi Visual'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='tbsm', jurusan='Teknik Bisnis Sepeda Motor'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='tkro', jurusan='Teknik Kendaraan Ringan Otomotif'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='aph', jurusan='Akomodasi Perhotelan'");
+mysqli_query($con,"INSERT INTO jurusan SET id_jurusan='akl', jurusan='Akutansi Keuangan Lembaga'"); */
 
 // mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=1, kelas_jurusan='x rpl'");
 // mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=2, kelas_jurusan='xi rpl'");
@@ -29,7 +44,7 @@ mysqli_query($con, "INSERT INTO users (nama,email,password,password_debug,role) 
 // mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=22, kelas_jurusan='x akl'");
 // mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=23, kelas_jurusan='xi akl'");
 // mysqli_query($con, "INSERT INTO kelas_jurusan SET id_kelas_jurusan=24, kelas_jurusan='xii akl'");
-$email = 'admin@gmail.com';
+// $email = 'admin@gmail.com';
 // $result = mysqli_query($con, "SELECT * FROM guru INNER JOIN users WHERE guru.email='$email' OR users.email='$email' ");
 // var_dump($result);
 // // var_dump($result);
