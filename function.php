@@ -21,17 +21,32 @@ $con = mysqli_connect('localhost', 'root', '', 'cutest') or die("Koneksi ke data
 $error = "";
 $succes = "";
 
-
-// --- Function Ambil Data
+// --- PUBLIC FUNCTION
+// --- PF -> Ambil Data
 function query($query)
 {
     global $con;
-    $result = mysqli_query($con, $query) or die('Gagal menampilkan data');;
+    $result = mysqli_query($con, $query);
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     }
     return $rows;
+}
+
+// --- PF -> Token Generator
+function token($panjang)
+{
+    $token = "";
+    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+    $codeAlphabet .= "0123456789";
+    $max = strlen($codeAlphabet); // edited
+
+    for ($i = 0; $i < $panjang; $i++) {
+        $token .= $codeAlphabet[random_int(0, $max - 1)];
+    }
+    return $token;
 }
 
 
@@ -265,49 +280,62 @@ function tambah($data)
     global $con;
     // membuat variabel
     // mencegah adanya element html
-    $judul = htmlspecialchars($data['judul']);
-    $kelas = htmlspecialchars($data['kelas']);
-    $jurusan = htmlspecialchars($data['jurusan']);
+    $judul = $data['judul'];
+    $kelas = $data['kelas'];
+    $token = token(6);
 
-    // Upload gambar terlebih dahulu
-    // Jika upload berhasil maka menghasilkan gambar diupload dan mengirimkan nama gambar ke variabel $gambar
-    $gambar = upload();
-    if (!$gambar) {
+    // QUERY 1 -> Upload File terlebih dahulu
+    $files = upload(); // mengisi `files` dengan return dari func `upload`
+    if (!$files) {
+        // $_POST['error'] = "Gagal mengupload file";
+        return false;
+    }
+    // $files = "TEST.pdf";
+
+    // QUERY 2 -> Memasukan topik ke tabel daftar_ujian hanya dengan judul
+    if (!mysqli_query($con, "INSERT INTO daftar_ujian SET judul='$judul', file='$files', token='$token' ")) {
+        $_POST['error'] = "Gagal memasukan soal ujian";
         return false;
     }
 
-    // query insert data
-    $query = "INSERT INTO hewan VALUES ('', '$nama', '$jenis_makanan', '$habitat', '$rentang_usia', '$gambar')";
-    mysqli_query($con, $query);
+    // QUERY 3 -> Mengambil id_ujian dari tabel daftar_ujian
+    $result = query("SELECT * FROM daftar_ujian WHERE judul='$judul' ");
+    $id_ujian = $result[0]['id_ujian'];
 
-    // mengembalikan nilai angka dari query
-    // kalo berhasil maka '1' klo gagal maka '-1'
+    // -> Pengulangan untuk array `kelas`
+    foreach ($kelas as $key => $value) {
+        // QUERY 4 -> Sorting akses ujian berdasarkan `kelas` dengan `id_ujian` yang sudah diambil
+        if (!mysqli_query($con, "INSERT INTO akses_ujian SET kelas_jurusan='$value', id_ujian='$id_ujian'")) {
+            $_POST['error'] = "Gagal mengatur akses ujian";
+            return false;
+        }
+    }
+
     return mysqli_affected_rows($con);
 }
 
 // --- Guru -> Ujian --> Upload File
-// --- Upload ---
 function upload()
 {
-    $namaFile = $_FILES['gambar']['name']; // $_FILES['gambar'] diambil dari input name gambar di tambah.php 
-    $ukuranFile = $_FILES['gambar']['size']; // karna $_FILES menghasilkan array multi dimensi
-    $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['tmp_name'];
+    $namaFile = $_FILES['files']['name'];
+    $ukuranFile = $_FILES['files']['size']; // karna $_FILES menghasilkan array multi dimensi
+    $error = $_FILES['files']['error'];
+    $tmpName = $_FILES['files']['tmp_name'];
 
     // Kondisi 1 - Apakah gambar diupload atau tidak
     if ($error === 4) {
-        $_POST['error'] = "Input file!";
+        // $_POST['error'] = "Upload File";
         return false;
     }
 
-    // Kondisi 2 - Apakah file yang diupload berekstensi gambar / tidak
+    // Kondisi 2 - Apakah file yang diupload berekstensi pdf / tidak
     $validType = ['pdf'];
     $ekstensiGambar = explode('.', $namaFile); // mengubah $namaFile menjadi array terpisah saat terdapat titik
     $ekstensiGambar = strtolower(end($ekstensiGambar)); // mengubah semua ke lowercase // mengambil array paling akhir
 
     // in_array($string, $array) = mengecek apakah ada string didalam array | menghasilkan nilai true / false
     if (!in_array($ekstensiGambar, $validType)) {
-        $_POST['error'] = "Harap input pdf!";
+        // $_POST['error'] = "Harap input file pdf";
         return false;
     }
 
