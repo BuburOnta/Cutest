@@ -1,7 +1,7 @@
 <?php
 session_start();
-// $_SESSION['sesiLogin'] = 'seno@gmail.com';
-echo $_SESSION['sesiLogin'];
+$_SESSION['sesiLogin'] = 'a1@gmail.com';
+// echo $_SESSION['sesiLogin'];
 // Cek session
 if (!$_SESSION['sesiLogin']) {
     header("Location: ?page=login");

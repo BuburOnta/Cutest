@@ -335,7 +335,7 @@ function upload()
 
     // in_array($string, $array) = mengecek apakah ada string didalam array | menghasilkan nilai true / false
     if (!in_array($ekstensiGambar, $validType)) {
-        // $_POST['error'] = "Harap input file pdf";
+        $_POST['error'] = "Harap input file pdf";
         return false;
     }
 

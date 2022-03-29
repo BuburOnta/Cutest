@@ -20,11 +20,12 @@ $error = [];
 $values = [];
 $errorKeys = ['judul'];
 if (isset($_POST['submit'])) {
-    // VIRTUAL KEY KELAS
+    var_dump($_POST['kelas']);
+    /*     // VIRTUAL KEY KELAS
     if (!isset($_POST['kelas'])) {
         $errorKeys[] = 'kelaz';
         $_POST['kelaz'] = "";
-    } else {
+    }else {
         $errorKeys[] = "kelaz";
         $_POST['kelaz'] = "f";
     }
@@ -36,17 +37,17 @@ if (isset($_POST['submit'])) {
         }
     }
     // KEYS FILES
-    if (empty(trim($_FILES['files']['name']))) {
+    if(empty(trim($_FILES['files']['name']))){
         $error[] = "files";
     }
-
+    
     if (count($error) == 0) {
         if (tambah($_POST) > 0) {
             echo "SUKSES";
         } else {
             echo mysqli_error($con);
         }
-    }
+    } */
 }
 ?>
 <!DOCTYPE html>
@@ -56,15 +57,9 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Ujian</title>
+    <title>Document</title>
     <link rel="stylesheet" href="assets/css/input_ujian.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        span.error {
-            color: red;
-            font-style: italic;
-        }
-    </style>
 </head>
 
 <body>
@@ -86,12 +81,6 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <form method="POST" action="" class="container" enctype="multipart/form-data">
             <label class="left" for="files">
-                <?php if (in_array('files', $error)) : ?>
-                    <span class="error" style="font-weight: normal;">File dibutuhkan!</span>
-                <?php endif; ?>
-                <?php if (isset($_POST['error'])) : ?>
-                    <span class="error"'><?= $_POST['error'] ?></span>
-                <?php endif; ?>
                 <img src="assets/img/input_ujian_paper.svg">
                 <img src="assets/img/input_ujian_plus.svg">
                 <span class="tambah">Tambah soal</span>
@@ -102,21 +91,13 @@ if (isset($_POST['submit'])) {
 
             <div class="right">
                 <div class="right_left">
-                    <?php if (in_array('judul', $error)) : ?>
-                        <span class="error">Masukan judul</span>
-                    <?php endif; ?>
-                    <div class="form_group judul">
+                    <div class="form_group">
                         <label for="judul">Judul Ujian</label>
                         <input type="text" name="judul" id="judul" autofocus>
                     </div>
                     <button type="submit" name="submit">submit</button>
                 </div>
-
-
                 <div class="right_right">
-                    <?php if (in_array('kelaz', $error)) : ?>
-                        <span class="error">Pilih Kelas & Jurusan</span>
-                    <?php endif; ?>
                     <h3>Kelas Dan jurusan</h3>
                     <div class="select_all">
                         <input type="checkbox" id="select_all" onclick="toggle(this)">
