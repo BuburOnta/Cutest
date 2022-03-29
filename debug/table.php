@@ -1,5 +1,5 @@
 <?php
-require "function.php";
+require "../function.php";
 
 // $users = query("SELECT * FROM users");
 // $users = query("SELECT * FROM users INNER JOIN role ON users.role=role.id_role");

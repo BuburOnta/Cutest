@@ -6,13 +6,17 @@ if (!$_SESSION['sesiLogin']) {
     header("Location: ?page=login");
 }
 
-
+// $mapels = [];
 // QUERY 1 -> Mengambil data user berdasarkan `sesiLogin`
 $users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];
 // echo $users['kelas'];
+
 // QUERY 2 -> Mengambil data `id_ujian` dari tabel `akses_ujian` dengan ketentuan kelas dari `user`
     // -> Output dari id_ujian bisa saja lebih dari 1
-$ujian = query("SELECT * FROM akses_ujian WHERE kelas='$users[kelas]'"); 
+if(count($ujian = query("SELECT * FROM akses_ujian WHERE kelas='$users[kelas]'")) == 0){
+    $mapels = [];
+    $error = true;
+}
 // var_dump($ujian);
 
 // -> Pengulangan dari data `id_ujian` jika lebih dari 1
@@ -21,7 +25,7 @@ foreach ($ujian as $uji) {
     // QUERY 3 -> Mengambil `judul` dari `daftar_ujian` Berdasarkan `id_ujian` yang sudah diambil diatas
         // -> Lalu memasukan kedalam array $mapels yang akan digunakan untuk menampilkan data nantinya
     $mapels[] = query("SELECT * FROM daftar_ujian WHERE id_ujian='$uji[id_ujian]'");
-    // var_dump($mapels);
+    var_dump($mapels);
 }
 
 // foreach ($mapels as $mapel) {
@@ -30,7 +34,7 @@ foreach ($ujian as $uji) {
 // }
 
 // $result = query("SELECT * FROM daftar_ujian");
-// if (count($result) == 0) {
+// if (count($mapels) == 0) {
 //     $mapels = [];
 //     $error = true;
 // } else {
