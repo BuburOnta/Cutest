@@ -1,10 +1,13 @@
 <?php
 session_start();
-$_SESSION['sesiLogin'] = 'a1@gmail.com';
+// $_SESSION['sesiLogin'] = 'a1@gmail.com';
 // echo $_SESSION['sesiLogin'];
 // Cek session
-if (!$_SESSION['sesiLogin']) {
+if (!isset($_SESSION['sesiLogin'])) {
     header("Location: ?page=login");
+}
+if(!isset($_SESSION['pilih_ujian'])){
+    header("Location: ?page=murid");
 }
 
 // $mapels = [];
@@ -29,6 +32,7 @@ foreach ($ujian as $uji) {
     // var_dump($mapels);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +47,7 @@ foreach ($ujian as $uji) {
 
 <body>
     <div class="logo">
-        <img src="assets/img/cutest_logo_text.svg">
+        <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
     </div>
 
     <div class="container">
@@ -85,6 +89,7 @@ foreach ($ujian as $uji) {
         </form>
     </div>
 </body>
-<script src="assets/js/select.js"></script>
+<script src="assets/js/select.js">
+</script>
 
 </html>

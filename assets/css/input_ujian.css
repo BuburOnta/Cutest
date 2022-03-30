@@ -85,6 +85,15 @@ div.container .left {
     font-size: 22px;
     line-height: 35px;
     color: #fff;
+    cursor: pointer;
+}
+div.container .left a.keluar {
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    transform: rotate(180deg);
 }
 div.container .left img:first-child {
     margin-bottom: 35px;

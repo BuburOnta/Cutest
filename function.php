@@ -356,3 +356,10 @@ function upload()
     move_uploaded_file($tmpName, 'assets/pdf/' . $namaFileBaru);
     return $namaFileBaru;
 }
+
+
+
+function direct($data){
+    $_SESSION[$data] = "$data";
+    return true;
+}

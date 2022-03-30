@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (!$_SESSION['sesiLogin']) {
+    header("Location: ?page=login");
+}
+if(!isset($_SESSION['guru_page_ujian'])){
+    header("Location: ?page=guru");
+}
 
 // RESET AUTO INCREMENT
 $result = mysqli_query($con, "SELECT * FROM `akses_ujian`");
@@ -58,7 +64,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Ujian</title>
     <link rel="stylesheet" href="assets/css/input_ujian.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <style>
         span.error {
             color: red;
@@ -68,24 +74,13 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <nav class="head">
-        <div class="left">
-            <img src="assets/img/cutest_logo_text.svg">
-            <div class="left_right">
-                <a href="#">Beranda</a>
-                <a href="#">Fitur</a>
-                <a href="#">Kontak</a>
-            </div>
-        </div>
-        <div class="right">
-            <span>anjingah@cute.com</span>
-            <img src="assets/img/profile_icon.png">
-        </div>
-    </nav>
-
+    <?php include_once "page/guru/nav.php"; ?>
     <div class="container">
         <form method="POST" action="" class="container" enctype="multipart/form-data">
             <label class="left" for="files">
+                <a href="?page=guru" class="keluar">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
                 <?php if (in_array('files', $error)) : ?>
                     <span class="error" style="font-weight: normal;">File dibutuhkan!</span>
                 <?php endif; ?>

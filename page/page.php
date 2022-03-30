@@ -2,7 +2,7 @@
 $login_page = 'page/login_page.php';
 $register_page = 'page/register_page.php';
 $dashboard_page = 'page/dashboard_page.php';
-$guru_page = 'page/guru_page.php';
+$guru_page = 'page/guru/guru_dashboard.php';
 $admin_page = 'page/admin_page.php';
 
 $profile_page = 'page/profile_page.php';

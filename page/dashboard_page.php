@@ -2,13 +2,17 @@
 session_start();
 
 // Cek session
-if (!$_SESSION['sesiLogin']) {
+if (!isset($_SESSION['sesiLogin'])) {
     header("Location: ?page=login");
 } else if ($_GET['page'] != $_SESSION['role']) {
     header("Location: ?page=".$_SESSION['role']);
+} else {
+    $_SESSION['pilih_ujian'] = "f";
+    $_SESSION['presensi'] = "f";
+    $_SESSION['rapor'] = "f";
 }
 
-// var_dump($_SESSION);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +53,7 @@ if (!$_SESSION['sesiLogin']) {
             <img src="assets/img/sitting man_right_dashboard.svg">
         </div>
     </div>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>

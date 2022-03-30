@@ -50,6 +50,10 @@ $page = $_GET['page'];
             break;
 
 
+    // RANDOM
+    case 'random':
+        include_once "debug/random.php";
+        break;
 
 
         // GURU
@@ -65,3 +69,5 @@ $page = $_GET['page'];
 } else {
     include $dashboard_page; // jika tidak ada url page
 }
+
+// var_dump($_SESSION);
