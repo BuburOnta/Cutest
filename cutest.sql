@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Mar 2022 pada 12.09
+-- Waktu pembuatan: 30 Mar 2022 pada 10.24
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.24
 
@@ -38,27 +38,10 @@ CREATE TABLE `akses_ujian` (
 --
 
 INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas_jurusan`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 5),
-(6, 1, 6),
-(7, 1, 7),
-(8, 1, 8),
-(9, 1, 9),
-(10, 2, 2),
-(11, 2, 5),
-(12, 2, 8),
-(13, 3, 2),
-(14, 4, 8),
-(15, 5, 1),
-(16, 5, 4),
-(17, 5, 7),
-(18, 6, 3),
-(19, 6, 6),
-(20, 6, 9),
-(21, 7, 9);
+(1, 2, 1),
+(2, 2, 2),
+(3, 2, 3),
+(4, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -78,13 +61,9 @@ CREATE TABLE `daftar_ujian` (
 --
 
 INSERT INTO `daftar_ujian` (`id_ujian`, `judul`, `file`, `token`) VALUES
-(1, 'Matematika', '', ''),
-(2, 'Kelas 2 all', '', ''),
-(3, 'kelas 2 rpl', '', ''),
-(4, 'kelas 2 mm', '', ''),
-(5, 'kelas 1 semua', '', ''),
-(6, 'kelas 3 all', '', ''),
-(7, 'kelas 3 mm', '', '');
+(1, 'MTK', '6242ffaad613f.pdf', 'ZcWhb8'),
+(2, 'TES', '624300d86c8b9.pdf', 'RcjjCf'),
+(3, 'vaksin', '624342bb4f4c3.pdf', 'iyEBws');
 
 -- --------------------------------------------------------
 
@@ -293,7 +272,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `jurusan`, `code_otp`) VALUES
 (1, 'admin', 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL, NULL, NULL),
-(4, 'Raffi', 'klsterbuka@gmail.com', '$2y$10$4QV3uLy1OAgDt8tQEt/PMOuS.qe9kA3AlC5YAXU2GR8MBasyQAD4m', '1', 2, 'rpl', NULL),
+(4, 'Raffi', 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', 2, 'rpl', NULL),
 (5, 'Rama', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', 2, 'pplg', NULL),
 (6, 'seno', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', 2, 'mm', NULL),
 (7, 'magfiroh', 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', 2, 'dkv', NULL),
@@ -428,13 +407,13 @@ ALTER TABLE `verifikasi_otp`
 -- AUTO_INCREMENT untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
