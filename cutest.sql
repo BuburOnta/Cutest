@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Mar 2022 pada 10.24
+-- Waktu pembuatan: 31 Mar 2022 pada 16.21
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.24
 
@@ -41,7 +41,58 @@ INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas_jurusan`) VALUES
 (1, 2, 1),
 (2, 2, 2),
 (3, 2, 3),
-(4, 3, 2);
+(4, 3, 2),
+(5, 4, 1),
+(6, 4, 2),
+(7, 4, 3),
+(8, 4, 4),
+(9, 4, 5),
+(10, 4, 6),
+(11, 4, 7),
+(12, 4, 8),
+(13, 4, 9),
+(14, 4, 10),
+(15, 4, 11),
+(16, 4, 12),
+(17, 4, 13),
+(18, 4, 14),
+(19, 4, 15),
+(20, 4, 16),
+(21, 4, 17),
+(22, 4, 18),
+(23, 4, 19),
+(24, 4, 20),
+(25, 4, 21),
+(26, 4, 22),
+(27, 4, 23),
+(28, 4, 24),
+(29, 5, 1),
+(30, 5, 2),
+(31, 5, 3),
+(32, 5, 4),
+(33, 5, 5),
+(34, 5, 6),
+(35, 5, 7),
+(36, 5, 8),
+(37, 5, 9),
+(38, 5, 10),
+(39, 5, 11),
+(40, 5, 12),
+(41, 5, 13),
+(42, 5, 14),
+(43, 5, 15),
+(44, 5, 16),
+(45, 5, 17),
+(46, 5, 18),
+(47, 5, 19),
+(48, 5, 20),
+(49, 5, 21),
+(50, 5, 22),
+(51, 5, 23),
+(52, 5, 24),
+(53, 6, 1),
+(54, 6, 2),
+(55, 6, 3);
 
 -- --------------------------------------------------------
 
@@ -63,7 +114,10 @@ CREATE TABLE `daftar_ujian` (
 INSERT INTO `daftar_ujian` (`id_ujian`, `judul`, `file`, `token`) VALUES
 (1, 'MTK', '6242ffaad613f.pdf', 'ZcWhb8'),
 (2, 'TES', '624300d86c8b9.pdf', 'RcjjCf'),
-(3, 'vaksin', '624342bb4f4c3.pdf', 'iyEBws');
+(3, 'vaksin', '624342bb4f4c3.pdf', 'iyEBws'),
+(4, 'Tes Jawaban', '6245acf4aeca8.pdf', 'xNZpaa'),
+(5, 'Tes Jawaban 2', '6245ad712087a.pdf', 'iINAsC'),
+(6, 'Tes Jawaban 3', '6245b64951e33.pdf', 'duWGAM');
 
 -- --------------------------------------------------------
 
@@ -207,6 +261,35 @@ INSERT INTO `role` (`id_role`, `role`) VALUES
 ('3', 'admin'),
 ('2', 'guru'),
 ('1', 'murid');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `soal_ujian`
+--
+
+CREATE TABLE `soal_ujian` (
+  `id_soal` int(11) NOT NULL,
+  `id_ujian` int(11) NOT NULL,
+  `nomor_soal` varchar(5) DEFAULT NULL,
+  `jawaban` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `soal_ujian`
+--
+
+INSERT INTO `soal_ujian` (`id_soal`, `id_ujian`, `nomor_soal`, `jawaban`) VALUES
+(1, 6, '1', 'a'),
+(2, 6, '2', 'b'),
+(3, 6, '3', 'c'),
+(4, 6, '4', 'd'),
+(5, 6, '5', 'a'),
+(6, 6, '6', 'c'),
+(7, 6, '7', 'c'),
+(8, 6, '8', 'c'),
+(9, 6, '9', 'd'),
+(10, 6, '10', 'd');
 
 -- --------------------------------------------------------
 
@@ -373,6 +456,13 @@ ALTER TABLE `role`
   ADD KEY `role` (`role`);
 
 --
+-- Indeks untuk tabel `soal_ujian`
+--
+ALTER TABLE `soal_ujian`
+  ADD PRIMARY KEY (`id_soal`),
+  ADD KEY `id_ujian` (`id_ujian`);
+
+--
 -- Indeks untuk tabel `temp_users`
 --
 ALTER TABLE `temp_users`
@@ -407,13 +497,13 @@ ALTER TABLE `verifikasi_otp`
 -- AUTO_INCREMENT untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
@@ -426,6 +516,12 @@ ALTER TABLE `kelas`
 --
 ALTER TABLE `kelas_jurusan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT untuk tabel `soal_ujian`
+--
+ALTER TABLE `soal_ujian`
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `tes`
@@ -462,6 +558,12 @@ ALTER TABLE `guru`
 ALTER TABLE `kelas_jurusan`
   ADD CONSTRAINT `kelas_jurusan_ibfk_1` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`),
   ADD CONSTRAINT `kelas_jurusan_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`);
+
+--
+-- Ketidakleluasaan untuk tabel `soal_ujian`
+--
+ALTER TABLE `soal_ujian`
+  ADD CONSTRAINT `soal_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`);
 
 --
 -- Ketidakleluasaan untuk tabel `users`
