@@ -274,7 +274,7 @@ function ubahPassword($data)
 
 
 // --- Guru -> Ujian
-// ---Tambah Data---
+// ---Tambah Ujian---
 function tambah($data)
 {
     global $con;
@@ -311,6 +311,7 @@ function tambah($data)
         }
     }
 
+    $_SESSION['id_ujian'] = $id_ujian;
     return mysqli_affected_rows($con);
 }
 
@@ -357,9 +358,52 @@ function upload()
     return $namaFileBaru;
 }
 
+// --- Guru -> Ujian --> Input Jawaban
+function tambahJawaban($data)
+{
+    global $con;
+    $jumlahSoal = $data['jumlahSoal'];
+    $id_ujian = $_SESSION['id_ujian'];
+
+    // Pengulangan untuk memanggil semua input name jawaban dengan indeks i
+    for ($i = 1; $i <= $jumlahSoal; $i++) {
+        // echo $data['jawaban'.$i];
+        
+        // KONDISI 1 - Jika ada salah satu jawaban yang kosong maka mengembalikan false
+        if (!isset($data['jawaban' . $i])) {
+            $_POST['jumlah'] = true;
+            $_POST['jumlahSoal'] = $jumlahSoal;
+            $_POST['error'] = "Jawaban tidak boleh kosong";
+            return false;
+        }
+
+        $jawaban = $data['jawaban' . $i];
+
+        // RESET AUTO INCREMENT
+        $result = mysqli_query($con, "SELECT * FROM `soal_ujian`");
+        if (mysqli_num_rows($result) == 0) {
+            if (!mysqli_query($con, "ALTER TABLE `soal_ujian` AUTO_INCREMENT = 1")) {
+                echo "Gagal reset auto_increment";
+            }
+        }
+        // QUERY 1 - Insert jawaban ke database
+        if (!mysqli_query($con, "INSERT INTO soal_ujian SET id_ujian='$id_ujian', nomor_soal='$i', jawaban='$jawaban' ")) {
+            $_POST['error'] = "Gagal input ujian";
+            return false;
+        }
+    }
+
+    // $_POST['jumlah'] = true;
+    // $_POST['jumlahSoal'] = $jumlahSoal;
+    return true;
+}
 
 
-function direct($data){
+
+
+
+function direct($data)
+{
     $_SESSION[$data] = "$data";
     return true;
 }

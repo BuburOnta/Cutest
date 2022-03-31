@@ -1,6 +1,27 @@
 <?php
-require "page/page.php";
+// require "page/page.php";
 require "function.php";
+
+$login_page = 'page/login_page.php';
+$register_page = 'page/register_page.php';
+$dashboard_page = 'page/dashboard_page.php';
+$guru_page = 'page/guru/guru_dashboard.php';
+$admin_page = 'page/admin_page.php';
+
+$profile_page = 'page/profile_page.php';
+$register_verification = 'page/register_verification.php';
+$login_lupa_pass = 'page/login_lupa_password.php';
+$login_verification = 'page/login_verification.php';
+$login_ubah_password = 'page/login_ubah_password.php';
+
+// UJIAN
+$pilih_ujian = 'page/ujian/pilih_ujian.php';
+
+// GURU
+$nav = "page/guru/nav.php";
+$input_ujian = 'page/guru/input_ujian.php';
+$input_jawaban = 'page/guru/input_jawaban.php';
+
 
 if( isset($_GET['page']) ){
 $page = $_GET['page'];
@@ -60,6 +81,9 @@ $page = $_GET['page'];
         // -> Input Ujian
         case 'input_ujian':
             include_once $input_ujian;
+            break;
+        case 'input_jawaban':
+            include_once $input_jawaban;
             break;
             
         default:

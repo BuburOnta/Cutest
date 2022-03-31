@@ -5,6 +5,8 @@ if (!$_SESSION['sesiLogin']) {
 }
 if(!isset($_SESSION['guru_page_ujian'])){
     header("Location: ?page=guru");
+} else {
+    $_SESSION['guru_input_jawaban'] = "F";
 }
 
 // RESET AUTO INCREMENT
@@ -48,7 +50,7 @@ if (isset($_POST['submit'])) {
 
     if (count($error) == 0) {
         if (tambah($_POST) > 0) {
-            echo "SUKSES";
+            header("Location: ?page=input_jawaban");
         } else {
             echo mysqli_error($con);
         }
