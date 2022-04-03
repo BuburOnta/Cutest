@@ -3,16 +3,13 @@ session_start();
 // $_SESSION['sesiLogin'] = 'a1@gmail.com';
 // echo $_SESSION['sesiLogin'];
 // Cek session
-if (!isset($_SESSION['sesiLogin'])) {
-    header("Location: ?page=login");
-}
 if(!isset($_SESSION['pilih_ujian'])){
     header("Location: ?page=murid");
 }
 
 // $mapels = [];
 // QUERY 1 -> Mengambil data user berdasarkan `sesiLogin`
-$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];
+$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLoginmurid]' ")[0];
 // echo $users['kelas'];
 
 // QUERY 2 -> Mengambil data `id_ujian` dari tabel `akses_ujian` dengan ketentuan kelas dari `user`
@@ -30,6 +27,13 @@ foreach ($ujian as $uji) {
         // -> Lalu memasukan kedalam array $mapels yang akan digunakan untuk menampilkan data nantinya
     $mapels[] = query("SELECT * FROM daftar_ujian WHERE id_ujian='$uji[id_ujian]'");
     // var_dump($mapels);
+}
+
+// NEXT
+if(isset($_POST['next'])){
+    $ujian = $_POST['ujian'];
+    $id_ujian = $_POST['id_ujian'];
+    echo $_SESSION['id_ujian'] = $id_ujian;
 }
 ?>
 
@@ -64,8 +68,9 @@ foreach ($ujian as $uji) {
                     <div class="options-container">
                         <?php foreach ($mapels as $mapel) { ?>
                             <div class="option">
-                                <input type="radio" class="radio" id="category" name="category" value="$mapel[nama]" />
-                                <label for="category"><?= $mapel[0]['judul'] ?></label>
+                                <input type="hidden" name="id_ujian" value="<?=$mapel[0]['id_ujian']?>">
+                                <input type="text" class="radio" id="ujian" name="ujian" value="<?=$mapel[0]['judul']?>" />
+                                <label for="ujian"><?= $mapel[0]['judul'] ?></label>
                             </div>
                         <?php }; ?>
                     </div>

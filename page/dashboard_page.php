@@ -2,7 +2,7 @@
 session_start();
 
 // Cek session
-if (!isset($_SESSION['sesiLogin'])) {
+if (!isset($_SESSION['sesiLoginmurid'])) {
     header("Location: ?page=login");
 } else if ($_GET['page'] != $_SESSION['role']) {
     header("Location: ?page=".$_SESSION['role']);

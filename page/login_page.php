@@ -6,34 +6,44 @@ if (isset($_COOKIE['cookieLogin'])) {
     // var_dump($_COOKIE);die;
     $email = $_COOKIE['cookieLogin'];
     $cookieDefault = mysqli_query($con, "SELECT * FROM users WHERE email='$email' ");
-    if (mysqli_fetch_assoc($cookieDefault)) {
+    if ($row = mysqli_fetch_assoc($cookieDefault)) {
         $_SESSION['sesiLogin'] = $row['email'];
+        $_SESSION['role'] = $row['role'];
         $_SESSION['sesiId'] = $row['id_user'];
     }
 }
 // Mengecek SESSION sudah terbuat atau belum
-if (isset($_SESSION['sesiLogin'])) {
-    header("Location: ?page=".$_SESSION['role']);
-}
+// if (isset($_SESSION['sesiLoginmurid'])) {
+//     header("Location: ?page=murid");
+// } else if (isset($_SESSION['sesiLoginguru'])) {
+//     header("Location: ?page=guru");
+// } else if (isset($_SESSION['sesiLoginadmin'])) {
+//     header("Location: ?page=admin");
+// }
 
 // Mengecek tombol login
 if (isset($_POST['login'])) {
 
     if (login($_POST) > 0) {
         // KONDISI 1 - Cek role
-        if( $user = query("SELECT role.role FROM guru INNER JOIN role ON guru.role=role.id_role WHERE email='$_POST[email]' ")){
+        if( $user = query("SELECT guru.email,role.role FROM guru INNER JOIN role ON guru.role=role.id_role WHERE email='$_POST[email]' ")){
             $user = $user[0]['role'];
-        } else if($user = query("SELECT role.role FROM users INNER JOIN role ON users.role=role.id_role WHERE email='$_POST[email]' ")){
+            // var_dump($user);
+        } else if($user = query("SELECT users.email,role.role  FROM users INNER JOIN role ON users.role=role.id_role WHERE email='$_POST[email]' ")){
             $user = $user[0]['role'];
+            // var_dump($user);
         } else {
             $_POST['error'] = "error page";
         }
 
         switch ($user) {
             case $user:
-                header("Location: ?page=".$user);
+                $_SESSION['sesiLogin'.$user] = $_POST['email'];
                 $_SESSION['role'] = $user;
+                // echo $_POST['email'];
+                header("Location: ?page=".$user);
                 break;
+
         }
     } else {
         echo mysqli_error($con);

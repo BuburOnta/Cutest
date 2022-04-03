@@ -10,8 +10,10 @@ function toggle(source) {
 // Input Files Effect
 const fil = document.getElementById("files");
 const teks = document.querySelector(".tambah");
+const plus = document.getElementById("plus");
 fil.addEventListener("change", function (e) {
   let newText = fil.value.replace("C:\\fakepath\\", "");
   teks.innerHTML = newText;
   teks.style.textDecoration = "underline";
+  plus.style.display = 'none';
 });

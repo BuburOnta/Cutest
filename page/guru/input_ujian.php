@@ -1,8 +1,5 @@
 <?php
 session_start();
-if (!$_SESSION['sesiLogin']) {
-    header("Location: ?page=login");
-}
 if(!isset($_SESSION['guru_page_ujian'])){
     header("Location: ?page=guru");
 } else {
@@ -90,7 +87,7 @@ if (isset($_POST['submit'])) {
                     <span class="error"'><?= $_POST['error'] ?></span>
                 <?php endif; ?>
                 <img src="assets/img/input_ujian_paper.svg">
-                <img src="assets/img/input_ujian_plus.svg">
+                <img src="assets/img/input_ujian_plus.svg"  id="plus">
                 <span class="tambah">Tambah soal</span>
                 <span class="note">Note: File soal harus berbentuk PDF!</span>
             </label>

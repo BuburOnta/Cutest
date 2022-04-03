@@ -16,6 +16,7 @@ $login_ubah_password = 'page/login_ubah_password.php';
 
 // UJIAN
 $pilih_ujian = 'page/ujian/pilih_ujian.php';
+$tampilan_ujian = 'page/ujian/tampilan_ujian.php';
 
 // GURU
 $nav = "page/guru/nav.php";
@@ -69,6 +70,9 @@ $page = $_GET['page'];
         case 'pilih_ujian':
             include_once $pilih_ujian;
             break;
+        case 'ujian':
+            include_once $tampilan_ujian;
+            break;
 
 
     // RANDOM
@@ -93,5 +97,5 @@ $page = $_GET['page'];
 } else {
     include $dashboard_page; // jika tidak ada url page
 }
-
 // var_dump($_SESSION);
+// echo '<br>';

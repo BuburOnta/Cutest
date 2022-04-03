@@ -1,0 +1,112 @@
+@import url(font.css);
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+/* CONTENT */
+div.container {
+  width: 1087px;
+  height: 490px;
+  background: #ffffff;
+  border-radius: 25px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #233B6E;
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+div.container .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 35px;
+  color: #fff;
+}
+
+
+/* RIGHT */
+div.container div.right-side {
+    width: 50%;
+  /* height: 360px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-evenly; */
+    border: 2px solid #17617c;
+    overflow: auto;
+}
+
+div.container form.bawah {
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: space-evenly; */
+
+    padding: 20px;
+}
+
+div.container div.right-side div.group {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* Group input */
+div.container div.input_group {
+    /* background: #ddd; */
+    width: 150px;
+    /* height: 50px; */
+    /* height: 100%; */
+    display: flex;
+    justify-content: space-between;
+
+    /* Centering Nomor */
+    align-items: center;
+    text-align: center;
+}
+
+/* Misahin nomor dengan input */
+div.container div.input_group div.input_right {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+/* INput */
+div.container div.input_group div.input {
+    display: flex;
+    flex-direction: column;
+}
+
+/* CUSTOM RADIO */
+div.container div.input_group div.input input[type=radio] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #C4C4C4;
+    border-radius: 50%;
+}
+div.container div.input_group div.input input[type=radio]:checked {
+    background: #17617c;
+}

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Mar 2022 pada 16.21
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.4.24
+-- Generation Time: Apr 01, 2022 at 11:18 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `akses_ujian`
+-- Table structure for table `akses_ujian`
 --
 
 CREATE TABLE `akses_ujian` (
@@ -34,70 +34,27 @@ CREATE TABLE `akses_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `akses_ujian`
+-- Dumping data for table `akses_ujian`
 --
 
 INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas_jurusan`) VALUES
-(1, 2, 1),
-(2, 2, 2),
-(3, 2, 3),
-(4, 3, 2),
-(5, 4, 1),
-(6, 4, 2),
-(7, 4, 3),
-(8, 4, 4),
-(9, 4, 5),
-(10, 4, 6),
-(11, 4, 7),
-(12, 4, 8),
-(13, 4, 9),
-(14, 4, 10),
-(15, 4, 11),
-(16, 4, 12),
-(17, 4, 13),
-(18, 4, 14),
-(19, 4, 15),
-(20, 4, 16),
-(21, 4, 17),
-(22, 4, 18),
-(23, 4, 19),
-(24, 4, 20),
-(25, 4, 21),
-(26, 4, 22),
-(27, 4, 23),
-(28, 4, 24),
-(29, 5, 1),
-(30, 5, 2),
-(31, 5, 3),
-(32, 5, 4),
-(33, 5, 5),
-(34, 5, 6),
-(35, 5, 7),
-(36, 5, 8),
-(37, 5, 9),
-(38, 5, 10),
-(39, 5, 11),
-(40, 5, 12),
-(41, 5, 13),
-(42, 5, 14),
-(43, 5, 15),
-(44, 5, 16),
-(45, 5, 17),
-(46, 5, 18),
-(47, 5, 19),
-(48, 5, 20),
-(49, 5, 21),
-(50, 5, 22),
-(51, 5, 23),
-(52, 5, 24),
-(53, 6, 1),
-(54, 6, 2),
-(55, 6, 3);
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 1),
+(5, 2, 2),
+(6, 2, 3),
+(7, 2, 4),
+(8, 2, 5),
+(9, 2, 6),
+(10, 3, 1),
+(11, 3, 2),
+(12, 3, 3);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `daftar_ujian`
+-- Table structure for table `daftar_ujian`
 --
 
 CREATE TABLE `daftar_ujian` (
@@ -108,21 +65,18 @@ CREATE TABLE `daftar_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `daftar_ujian`
+-- Dumping data for table `daftar_ujian`
 --
 
 INSERT INTO `daftar_ujian` (`id_ujian`, `judul`, `file`, `token`) VALUES
-(1, 'MTK', '6242ffaad613f.pdf', 'ZcWhb8'),
-(2, 'TES', '624300d86c8b9.pdf', 'RcjjCf'),
-(3, 'vaksin', '624342bb4f4c3.pdf', 'iyEBws'),
-(4, 'Tes Jawaban', '6245acf4aeca8.pdf', 'xNZpaa'),
-(5, 'Tes Jawaban 2', '6245ad712087a.pdf', 'iINAsC'),
-(6, 'Tes Jawaban 3', '6245b64951e33.pdf', 'duWGAM');
+(1, 'Matematika', '6246ab996bb68.pdf', 'E5fzIN'),
+(2, 'Penjas', '6246abccc7403.pdf', 'jMzPCa'),
+(3, 'Ips', '6246ae57bf01c.pdf', 'd6NJPz');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `guru`
+-- Table structure for table `guru`
 --
 
 CREATE TABLE `guru` (
@@ -134,7 +88,7 @@ CREATE TABLE `guru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `guru`
+-- Dumping data for table `guru`
 --
 
 INSERT INTO `guru` (`NIP`, `nama`, `email`, `password`, `role`) VALUES
@@ -145,7 +99,7 @@ INSERT INTO `guru` (`NIP`, `nama`, `email`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Table structure for table `jurusan`
 --
 
 CREATE TABLE `jurusan` (
@@ -154,7 +108,7 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data for table `jurusan`
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
@@ -170,7 +124,7 @@ INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -179,7 +133,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kelas`
+-- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
@@ -190,7 +144,7 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas_jurusan`
+-- Table structure for table `kelas_jurusan`
 --
 
 CREATE TABLE `kelas_jurusan` (
@@ -200,7 +154,7 @@ CREATE TABLE `kelas_jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kelas_jurusan`
+-- Dumping data for table `kelas_jurusan`
 --
 
 INSERT INTO `kelas_jurusan` (`id`, `kelas`, `jurusan`) VALUES
@@ -232,7 +186,7 @@ INSERT INTO `kelas_jurusan` (`id`, `kelas`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mapel`
+-- Table structure for table `mapel`
 --
 
 CREATE TABLE `mapel` (
@@ -245,7 +199,7 @@ CREATE TABLE `mapel` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -254,7 +208,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
@@ -265,7 +219,7 @@ INSERT INTO `role` (`id_role`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `soal_ujian`
+-- Table structure for table `soal_ujian`
 --
 
 CREATE TABLE `soal_ujian` (
@@ -276,25 +230,40 @@ CREATE TABLE `soal_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `soal_ujian`
+-- Dumping data for table `soal_ujian`
 --
 
 INSERT INTO `soal_ujian` (`id_soal`, `id_ujian`, `nomor_soal`, `jawaban`) VALUES
-(1, 6, '1', 'a'),
-(2, 6, '2', 'b'),
-(3, 6, '3', 'c'),
-(4, 6, '4', 'd'),
-(5, 6, '5', 'a'),
-(6, 6, '6', 'c'),
-(7, 6, '7', 'c'),
-(8, 6, '8', 'c'),
-(9, 6, '9', 'd'),
-(10, 6, '10', 'd');
+(1, 1, '1', 'd'),
+(2, 1, '2', 'c'),
+(3, 1, '3', 'c'),
+(4, 1, '4', 'b'),
+(5, 1, '5', 'c'),
+(6, 1, '6', 'b'),
+(7, 1, '7', 'a'),
+(8, 1, '8', 'c'),
+(9, 1, '9', 'd'),
+(10, 1, '10', 'b'),
+(11, 2, '1', 'a'),
+(12, 2, '2', 'a'),
+(13, 2, '3', 'b'),
+(14, 2, '4', 'c'),
+(15, 2, '5', 'd'),
+(16, 2, '6', 'a'),
+(17, 2, '7', 'b'),
+(18, 2, '8', 'a'),
+(19, 2, '9', 'b'),
+(20, 2, '10', 'a'),
+(21, 2, '11', 'a'),
+(22, 2, '12', 'a'),
+(23, 2, '13', 'a'),
+(24, 2, '14', 'c'),
+(25, 2, '15', 'b');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `temp_users`
+-- Table structure for table `temp_users`
 --
 
 CREATE TABLE `temp_users` (
@@ -306,7 +275,7 @@ CREATE TABLE `temp_users` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tes`
+-- Table structure for table `tes`
 --
 
 CREATE TABLE `tes` (
@@ -315,7 +284,7 @@ CREATE TABLE `tes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tes`
+-- Dumping data for table `tes`
 --
 
 INSERT INTO `tes` (`id`, `jeson`) VALUES
@@ -335,7 +304,7 @@ INSERT INTO `tes` (`id`, `jeson`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -350,7 +319,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `jurusan`, `code_otp`) VALUES
@@ -383,7 +352,7 @@ INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `j
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `verifikasi_otp`
+-- Table structure for table `verifikasi_otp`
 --
 
 CREATE TABLE `verifikasi_otp` (
@@ -391,7 +360,7 @@ CREATE TABLE `verifikasi_otp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `verifikasi_otp`
+-- Dumping data for table `verifikasi_otp`
 --
 
 INSERT INTO `verifikasi_otp` (`kode_otp`) VALUES
@@ -402,7 +371,7 @@ INSERT INTO `verifikasi_otp` (`kode_otp`) VALUES
 --
 
 --
--- Indeks untuk tabel `akses_ujian`
+-- Indexes for table `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
   ADD PRIMARY KEY (`id_akses`),
@@ -410,32 +379,32 @@ ALTER TABLE `akses_ujian`
   ADD KEY `kelas` (`kelas_jurusan`);
 
 --
--- Indeks untuk tabel `daftar_ujian`
+-- Indexes for table `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
   ADD PRIMARY KEY (`id_ujian`);
 
 --
--- Indeks untuk tabel `guru`
+-- Indexes for table `guru`
 --
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`NIP`),
   ADD KEY `role` (`role`);
 
 --
--- Indeks untuk tabel `jurusan`
+-- Indexes for table `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id_jurusan`);
 
 --
--- Indeks untuk tabel `kelas`
+-- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id_kelas`);
 
 --
--- Indeks untuk tabel `kelas_jurusan`
+-- Indexes for table `kelas_jurusan`
 --
 ALTER TABLE `kelas_jurusan`
   ADD PRIMARY KEY (`id`),
@@ -443,39 +412,39 @@ ALTER TABLE `kelas_jurusan`
   ADD KEY `kelas` (`kelas`);
 
 --
--- Indeks untuk tabel `mapel`
+-- Indexes for table `mapel`
 --
 ALTER TABLE `mapel`
   ADD PRIMARY KEY (`id_mapel`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`),
   ADD KEY `role` (`role`);
 
 --
--- Indeks untuk tabel `soal_ujian`
+-- Indexes for table `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
   ADD PRIMARY KEY (`id_soal`),
   ADD KEY `id_ujian` (`id_ujian`);
 
 --
--- Indeks untuk tabel `temp_users`
+-- Indexes for table `temp_users`
 --
 ALTER TABLE `temp_users`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `tes`
+-- Indexes for table `tes`
 --
 ALTER TABLE `tes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
@@ -484,89 +453,89 @@ ALTER TABLE `users`
   ADD KEY `users_ibfk_1` (`kelas`);
 
 --
--- Indeks untuk tabel `verifikasi_otp`
+-- Indexes for table `verifikasi_otp`
 --
 ALTER TABLE `verifikasi_otp`
   ADD PRIMARY KEY (`kode_otp`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `akses_ujian`
+-- AUTO_INCREMENT for table `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `daftar_ujian`
+-- AUTO_INCREMENT for table `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `kelas`
+-- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
   MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `kelas_jurusan`
+-- AUTO_INCREMENT for table `kelas_jurusan`
 --
 ALTER TABLE `kelas_jurusan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `soal_ujian`
+-- AUTO_INCREMENT for table `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT untuk tabel `tes`
+-- AUTO_INCREMENT for table `tes`
 --
 ALTER TABLE `tes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `akses_ujian`
+-- Constraints for table `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
   ADD CONSTRAINT `akses_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`),
   ADD CONSTRAINT `akses_ujian_ibfk_2` FOREIGN KEY (`kelas_jurusan`) REFERENCES `kelas_jurusan` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `guru`
+-- Constraints for table `guru`
 --
 ALTER TABLE `guru`
   ADD CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`role`) REFERENCES `role` (`id_role`);
 
 --
--- Ketidakleluasaan untuk tabel `kelas_jurusan`
+-- Constraints for table `kelas_jurusan`
 --
 ALTER TABLE `kelas_jurusan`
   ADD CONSTRAINT `kelas_jurusan_ibfk_1` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`),
   ADD CONSTRAINT `kelas_jurusan_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`);
 
 --
--- Ketidakleluasaan untuk tabel `soal_ujian`
+-- Constraints for table `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
   ADD CONSTRAINT `soal_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`);
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`),

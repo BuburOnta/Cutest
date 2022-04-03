@@ -170,7 +170,7 @@ function login($data)
     $row = mysqli_fetch_assoc($result);
     if (password_verify($password, $row['password'])) {
         // SESSION - Membuat Session dengan key sesiLogin
-        $_SESSION['sesiLogin'] = $email;
+        // $_SESSION['sesiLogin'] = $email;
         $_SESSION['sesiId'] = $row['id_user'];
 
         // COOKIE - Jika user menyimpan info login
@@ -265,6 +265,13 @@ function ubahPassword($data)
     mysqli_query($con, "UPDATE users SET password='$password', password_debug='$confirm_password' WHERE email='$email' ");
     $_SESSION['email'] = '';
     return mysqli_affected_rows($con);
+}
+
+
+
+// --- Murid -> Ujian
+function ujian($data){
+    global $con;
 }
 
 
@@ -364,6 +371,7 @@ function tambahJawaban($data)
     global $con;
     $jumlahSoal = $data['jumlahSoal'];
     $id_ujian = $_SESSION['id_ujian'];
+    // $id_ujian = 1;
 
     // Pengulangan untuk memanggil semua input name jawaban dengan indeks i
     for ($i = 1; $i <= $jumlahSoal; $i++) {

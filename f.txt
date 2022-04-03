@@ -1,0 +1,12 @@
+- fitur yang udah ada
+- Login
+- Register (blm fix)
+
+// Murid
+- menampilkan ujian yang tersedia berdasarkan kelas dan jurusan
+- menampilkan soal dari ujian (otw ngerjain)
+
+// Guru
+- Menambah ujian dan akses murid berdasarkan kejur
+- Menambahkan jawaban yang benar
+- Query token custom (otw)
