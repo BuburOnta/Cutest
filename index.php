@@ -17,6 +17,7 @@ $login_ubah_password = 'page/login_ubah_password.php';
 // UJIAN
 $pilih_ujian = 'page/ujian/pilih_ujian.php';
 $tampilan_ujian = 'page/ujian/tampilan_ujian.php';
+$nilai = 'page/ujian/nilai_ujian.php';
 $nav_ujian = 'page/template/nav_ujian.php';
 
 // GURU
@@ -73,6 +74,9 @@ $page = $_GET['page'];
             break;
         case 'ujian':
             include_once $tampilan_ujian;
+            break;
+        case 'nilai':
+            include_once $nilai;
             break;
 
 

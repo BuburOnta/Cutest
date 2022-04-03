@@ -308,9 +308,11 @@ function submitJawaban($data)
 
     // --- Algoritma penghitungan nilai berdasarkan jumlah soal
     if ($nilai > 0) {
-        $nilai = round($nilai / 15 * 100);
+        $nilai = round($nilai / $data['jumlahSoal'] * 100);
     }
 
+    $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLoginmurid]' ")[0];
+    mysqli_query($con, "UPDATE murid_ujian SET keterangan='selesai', nilai='$nilai' WHERE id_murid='$user[id_user]' ");
     $_POST['nilai'] = $nilai;
     return true;
 }

@@ -31,8 +31,8 @@ if (!$soal = query("SELECT * FROM soal_ujian WHERE id_ujian='$id_ujian' ORDER BY
 if (isset($_POST['submitJawaban'])) {
     // echo $_POST['jawaban']
     if (submitJawaban($_POST) > 0) {
-        echo $_POST['nilai'];
-        // header("Location: ?page=nilai");
+        $_SESSION['nilai'] = $_POST['nilai'];
+        header("Location: ?page=nilai");
     } else {
     }
 }
@@ -75,9 +75,6 @@ if (isset($_POST["errorJawaban"])) {
         </div>
 
         <div class="right-side">
-            <?php if (isset($nilai)) : ?>
-                <span style='color:red;font-style:italic;'><?= $nilai ?></span>
-            <?php endif; ?>
             <span class="note">Urutan pilihan: A | B | C | D</span>
 
             <form method="POST" action="" class="bawah">
