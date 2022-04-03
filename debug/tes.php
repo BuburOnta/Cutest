@@ -1,6 +1,7 @@
 <?php 
 require '../function.php';
 // $pw = password_hash("raffie", PASSWORD_DEFAULT);
+$sql = "SELECT id, daftar_ujian.judul, kelas.kelas, jurusan.jurusan, users.nama FROM `murid_ujian` INNER JOIN daftar_ujian ON murid_ujian.id_ujian=daftar_ujian.id_ujian INNER JOIN kelas ON murid_ujian.kelas=kelas.id_kelas INNER JOIN jurusan ON murid_ujian.jurusan=jurusan.id_jurusan INNER JOIN users ON murid_ujian.id_murid=users.id_user;";
 
 $us = ['1', '2', '3'];
 // mysqli_query($con, "INSERT INTO tes SET jeson='$us' ");

@@ -357,6 +357,24 @@ function tambah($data)
             $_POST['error'] = "Gagal mengatur akses ujian";
             return false;
         }
+
+    }
+    // QUERY 5 -> Mengambil kelas_jurusan dari tabel akses_ujian
+    $result = query("SELECT * FROM `akses_ujian` INNER JOIN kelas_jurusan ON akses_ujian.kelas_jurusan=kelas_jurusan.id WHERE akses_ujian.id_ujian='$id_ujian' ");
+    // -> Pengulangan untuk mengambil kelas dan jurusan dari relasi tabel kelas_jurusan dengan kelas, jurusan
+    foreach($result as $res){
+        // QUERY 5 -> Mengambil semua data users berdasarkan kelas dan jurusan diatas
+        $result1 = query("SELECT * FROM users WHERE kelas='$res[kelas]' AND jurusan='$res[jurusan]' ");
+        // --- Memasukkan data ke database
+        foreach($result1 as $res){
+        var_dump($res);
+
+            if (!mysqli_query($con, "INSERT INTO murid_ujian (id_ujian,kelas,jurusan,id_murid) VALUES ('$id_ujian','$res[kelas]','$res[jurusan]','$res[id_user]') ")) {
+                // if(!mysqli_query($con, "INSERT INTO murid_ujian SET id_ujian='$id"))
+                $_POST['error'] = "Gagal mengatur murid ujian";
+                return false;
+            }
+        }
     }
 
     $_SESSION['id_ujian'] = $id_ujian;

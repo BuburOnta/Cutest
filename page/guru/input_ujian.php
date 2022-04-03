@@ -19,6 +19,12 @@ if (mysqli_num_rows($result) == 0) {
         echo "GAGAL";
     }
 }
+$result = mysqli_query($con, "SELECT * FROM `murid_ujian`");
+if (mysqli_num_rows($result) == 0) {
+    if (!mysqli_query($con, "ALTER TABLE `murid_ujian` AUTO_INCREMENT = 1")) {
+        echo "GAGAL";
+    }
+}
 
 // ERROR
 $error = [];
