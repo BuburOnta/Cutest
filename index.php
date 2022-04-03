@@ -17,9 +17,10 @@ $login_ubah_password = 'page/login_ubah_password.php';
 // UJIAN
 $pilih_ujian = 'page/ujian/pilih_ujian.php';
 $tampilan_ujian = 'page/ujian/tampilan_ujian.php';
+$nav_ujian = 'page/template/nav_ujian.php';
 
 // GURU
-$nav = "page/guru/nav.php";
+$nav = "page/template/nav.php";
 $input_ujian = 'page/guru/input_ujian.php';
 $input_jawaban = 'page/guru/input_jawaban.php';
 

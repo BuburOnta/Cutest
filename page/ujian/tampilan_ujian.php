@@ -6,22 +6,53 @@ session_start();
 
 
 $group = 0; // nilai default jumlahSoal
-$input = 0;
 
-// var_dump($_SESSION);
 
 // --- Mengambil soal
 $id_ujian = $_SESSION['id_ujian'];
-if( !$soal = query("SELECT * FROM soal_ujian WHERE id_ujian='2' ORDER BY id_soal DESC LIMIT 1  ")[0]){
+if (!$soal = query("SELECT * FROM soal_ujian WHERE id_ujian='$id_ujian' ORDER BY id_soal DESC LIMIT 1  ")[0]) {
     $_POST['error'] = "Gagal menampilkan soal ujian";
 } else {
-    $group = $soal['nomor_soal'] / 5;
-    if($group % 2 == 0){
-        $input = 10;
-    } else if($group % 2 == 1){
-        $input = 5;
+    $group = $soal['nomor_soal'];
+}
+
+
+// --- Submit Jawaban 
+// $no = 1;
+// for ($i = 1; $i <= $_POST['jumlahSoal']; $i++) {
+//     if(!isset($_POST['jawaban'.$i])){
+//         $errorJawaban[] = $_POST['jawaban'.$i] = "f".$i;
+//     }
+//     $no++;
+// }
+// var_dump($errorJawaban);
+
+
+if (isset($_POST['submitJawaban'])) {
+    // echo $_POST['jawaban']
+    if (submitJawaban($_POST) > 0) {
+        echo $_POST['nilai'];
+        // header("Location: ?page=nilai");
+    } else {
     }
 }
+
+// --- Mengecek jawaban yang kosong
+// if (isset($errorJawaban)) {
+//     for ($i = 0; $i < count($errorJawaban); $i++) {
+//         $errorJawaban[] = $errorJawaban[$i];
+//     }
+// } else {
+//     $errorJawaban = [];
+// }
+if (isset($_POST["errorJawaban"])) {
+    for ($i = 0; $i < count($_POST["errorJawaban"]); $i++) {
+        $errorJawaban[] = $_POST['errorJawaban'][$i];
+    }
+} else {
+    $errorJawaban = [];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,49 +66,57 @@ if( !$soal = query("SELECT * FROM soal_ujian WHERE id_ujian='2' ORDER BY id_soal
 </head>
 
 <body>
-    <?php include_once $nav ?>
+    <?php include_once $nav_ujian ?>
 
     <div class="container">
         <!-- <div class="center"> -->
         <div class="left">
-            <iframe src="oiii.pdf" frameborder="0" width="100%" height="450px" style="zoom:1.5;"></iframe>
+            <iframe src="oiii.pdf" frameborder="0" width="100%" height="100%" style="zoom:1.5;"></iframe>
         </div>
 
         <div class="right-side">
-            <form method="POST" action="" class="bawah">
-                <!-- <div class="bawah"> -->
+            <?php if (isset($nilai)) : ?>
+                <span style='color:red;font-style:italic;'><?= $nilai ?></span>
+            <?php endif; ?>
+            <span class="note">Urutan pilihan: A | B | C | D</span>
 
-                <?php $no = 1;  ?>
-                <?php for ($a = 1; $a <= $group; $a++) { ?>
-                    <div class="group">
-                        <?php for ($i = 1; $i <= $input; $i++) : ?>
-                            <div class="input_group">
-                                <?php echo "<label for=" . $no . ">$no</label>" ?>
-                                <div class="input_right">
-                                    <div class="input">
-                                        <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="a">
-                                    </div>
-                                    <div class="input">
-                                        <!-- <span>B</span> -->
-                                        <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="b">
-                                    </div>
-                                    <div class="input">
-                                        <!-- <span>C</span> -->
-                                        <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="c">
-                                    </div>
-                                    <div class="input">
-                                        <!-- <span>D</span> -->
-                                        <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="d">
-                                    </div>
+            <form method="POST" action="" class="bawah">
+                <input type="hidden" name="jumlahSoal" value="<?= $group ?>">
+
+                <div class="bawah">
+                    <?php $no = 1; $o = 0;?>
+                    <?php for ($i = 1; $i <= $group; $i++) : ?>
+                        <div class="input_group">
+
+                            <!-- Menandai Label dari Jawaban Yang Kosong -->
+                            <?php if (in_array("f".$i, $errorJawaban)) { ?>
+                                <label for="jawaban<?= $no ?>" style=color:red;><?= $i ?>*</label>
+                            <?php } else { ?>
+                                <label for="jawaban<?= $no ?>"><?= $no ?></label>
+                            <?php } ?>
+
+                            <div class="right">
+                                <div class="input">
+                                    <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="a">
+                                </div>
+                                <div class="input">
+                                    <!-- <span>B</span> -->
+                                    <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="b">
+                                </div>
+                                <div class="input">
+                                    <!-- <span>C</span> -->
+                                    <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="c">
+                                </div>
+                                <div class="input">
+                                    <!-- <span>D</span> -->
+                                    <input type="radio" <?= "name=jawaban" . $no ?> <?= "id=jawaban" . $no ?> value="d">
                                 </div>
                             </div>
-                            <?php $no++; ?>
-                        <?php endfor; ?>
-                        <!-- end div group -->
-                    </div>
-                <?php }; ?>
-                <!-- <button type="submit" name="submitJawaban" class="submit_jawaban">submit</button> -->
-                <!-- </div> -->
+                        </div>
+                        <?php $no++;$o++; ?>
+                    <?php endfor; ?>
+                </div>
+                <button type="submit" name="submitJawaban" class="submit_jawaban">submit</button>
             </form>
         </div>
         <!-- </div> -->

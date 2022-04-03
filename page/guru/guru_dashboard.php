@@ -25,7 +25,7 @@ if (!$_SESSION['sesiLoginguru']) {
 </head>
 
 <body>
-    <?php include "page/guru/nav.php" ?>
+    <?php include $nav ?>
 
     <div class="container">
         <form method="POST" action="" class="container" enctype="multipart/form-data">

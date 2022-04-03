@@ -270,8 +270,49 @@ function ubahPassword($data)
 
 
 // --- Murid -> Ujian
-function ujian($data){
+function submitJawaban($data)
+{
     global $con;
+    $id_ujian = $_SESSION['id_ujian'];
+    $no = 1;
+    $nilai = 0;
+
+    // QUERY 1 -> Memanggil soal_ujian
+    $result = query("SELECT * FROM soal_ujian WHERE id_ujian='$id_ujian'");
+
+    // --- Mengecek semua jawaban terisi atau tidak
+
+    for ($i = 0; $i < $data['jumlahSoal']; $i++) {
+        if(!isset($data['jawaban'.$no])){
+            $errorJawaban[] = $data['jawaban'.$no] = "f".$no;
+        }
+
+        // var_dump($jawaban);
+        // --- Mengambil jawaban yang ada di database
+        $jawabanDatabase = $result[$i]['jawaban'];
+
+        // --- Mengecek jawaban database dengan jawaban dari user
+        $jawaban = $data['jawaban' . $no];
+        if ($jawabanDatabase == $jawaban) {
+            $nilai++;
+        } else {
+            // $nilai--;
+        }
+
+        $no++;
+    }
+    if(@count($errorJawaban) > 0){
+    $_POST['errorJawaban'] = $errorJawaban;
+        return false;
+    }
+
+    // --- Algoritma penghitungan nilai berdasarkan jumlah soal
+    if ($nilai > 0) {
+        $nilai = round($nilai / 15 * 100);
+    }
+
+    $_POST['nilai'] = $nilai;
+    return true;
 }
 
 
@@ -376,7 +417,7 @@ function tambahJawaban($data)
     // Pengulangan untuk memanggil semua input name jawaban dengan indeks i
     for ($i = 1; $i <= $jumlahSoal; $i++) {
         // echo $data['jawaban'.$i];
-        
+
         // KONDISI 1 - Jika ada salah satu jawaban yang kosong maka mengembalikan false
         if (!isset($data['jawaban' . $i])) {
             $_POST['jumlah'] = true;

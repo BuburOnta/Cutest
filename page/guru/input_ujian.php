@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <?php include_once "page/guru/nav.php"; ?>
+    <?php include_once $nav; ?>
     <div class="container">
         <form method="POST" action="" class="container" enctype="multipart/form-data">
             <label class="left" for="files">

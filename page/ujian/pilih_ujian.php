@@ -31,9 +31,8 @@ foreach ($ujian as $uji) {
 
 // NEXT
 if(isset($_POST['next'])){
-    $ujian = $_POST['ujian'];
-    $id_ujian = $_POST['id_ujian'];
-    echo $_SESSION['id_ujian'] = $id_ujian;
+    $_SESSION['id_ujian'] = $_POST['id_ujian'];
+    header("Location: ?page=ujian");
 }
 ?>
 
