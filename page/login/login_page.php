@@ -13,13 +13,9 @@ if (isset($_COOKIE['cookieLogin'])) {
     }
 }
 // Mengecek SESSION sudah terbuat atau belum
-// if (isset($_SESSION['sesiLoginmurid'])) {
-//     header("Location: ?page=murid");
-// } else if (isset($_SESSION['sesiLoginguru'])) {
-//     header("Location: ?page=guru");
-// } else if (isset($_SESSION['sesiLoginadmin'])) {
-//     header("Location: ?page=admin");
-// }
+if (isset($_SESSION['sesiLogin'])) {
+    header("Location: ?page=".$_SESSION['role']);
+}
 
 // Mengecek tombol login
 if (isset($_POST['login'])) {
@@ -38,7 +34,7 @@ if (isset($_POST['login'])) {
 
         switch ($user) {
             case $user:
-                $_SESSION['sesiLogin'.$user] = $_POST['email'];
+                $_SESSION['sesiLogin'] = $_POST['email'];
                 $_SESSION['role'] = $user;
                 // echo $_POST['email'];
                 header("Location: ?page=".$user);

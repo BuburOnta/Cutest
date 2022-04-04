@@ -1,15 +1,15 @@
-<?php 
+<?php
 session_start();
 
 // Cek session
-if (!$_SESSION['sesiLoginguru']) {
+if (!$_SESSION['sesiLogin']) {
     header("Location: ?page=login");
 } else if ($_GET['page'] != $_SESSION['role']) {
-    header("Location: ?page=".$_SESSION['role']);
+    header("Location: ?page=" . $_SESSION['role']);
 } else {
-    $_SESSION['guru_page_ujian'] = "F";
-    $_SESSION['guru_page_nilai'] = "F";
-    $_SESSION['guru_page_presensi'] = "F";
+    // $_SESSION['guru_page_ujian'] = "F";
+    // $_SESSION['guru_page_nilai'] = "F";
+    // $_SESSION['guru_page_presensi'] = "F";
 }
 // unset($_SESSION['guru_page_ujian']);
 ?>
@@ -30,6 +30,23 @@ if (!$_SESSION['sesiLoginguru']) {
     <div class="container">
         <form method="POST" action="" class="container" enctype="multipart/form-data">
             <div class="left">
+                <a href="?page=logout" class="keluar">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
+                <style>
+                    div.container a.keluar {
+                        font-size: 30px;
+                        color: #fff;
+                        position: absolute;
+                        left: 30px;
+                        top: 20px;
+                        transform: rotate(180deg);
+                    }
+
+                    div.container a.keluar:hover {
+                        color: #121e39;
+                    }
+                </style>
                 <h1>Halaman Mrs. Adul</h1>
                 <img src="assets/img/guru_dashboard_left.svg">
             </div>

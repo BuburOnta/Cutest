@@ -1,4 +1,6 @@
 <?php
+// Set Default TimeZone
+date_default_timezone_set('Asia/Jakarta');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -310,9 +312,22 @@ function submitJawaban($data)
     if ($nilai > 0) {
         $nilai = round($nilai / $data['jumlahSoal'] * 100);
     }
+    // --- Algoritma predikat
+    if($nilai < 60){
+        $predikat = "D";
+    } else if($nilai > 59) {
+        $predikat = "C";
+    } else if($nilai > 79){
+        $predikat = "B";
+    } else if($nilai > 89){
+        $predikat = "A";
+    } else {
+        $predikat="";
+    }
 
-    $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLoginmurid]' ")[0];
-    mysqli_query($con, "UPDATE murid_ujian SET keterangan='selesai', nilai='$nilai' WHERE id_murid='$user[id_user]' ");
+    $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];
+    $waktuSelesai = date('Y-d-m H:i:s');
+    mysqli_query($con, "UPDATE murid_ujian SET keterangan='selesai', waktu_selesai='$waktuSelesai', nilai='$nilai', predikat='$predikat' WHERE id_murid='$user[id_user]' AND id_ujian='$id_ujian' ");
     $_POST['nilai'] = $nilai;
     return true;
 }
@@ -333,6 +348,10 @@ function tambah($data)
     $judul = $data['judul'];
     $kelas = $data['kelas'];
     $token = token(6);
+    $email = $_SESSION['sesiLogin'];
+
+    // --- Mengambil data guru
+    $guru = query("SELECT * FROM guru WHERE email='$email' ")[0];
 
     // QUERY 1 -> Upload File terlebih dahulu
     $files = upload(); // mengisi `files` dengan return dari func `upload`
@@ -343,7 +362,7 @@ function tambah($data)
     // $files = "TEST.pdf";
 
     // QUERY 2 -> Memasukan topik ke tabel daftar_ujian hanya dengan judul
-    if (!mysqli_query($con, "INSERT INTO daftar_ujian SET judul='$judul', file='$files', token='$token' ")) {
+    if (!mysqli_query($con, "INSERT INTO daftar_ujian SET id_guru='$guru[NIP]', judul='$judul', file='$files', token='$token' ")) {
         $_POST['error'] = "Gagal memasukan soal ujian";
         return false;
     }
@@ -369,7 +388,6 @@ function tambah($data)
         $result1 = query("SELECT * FROM users WHERE kelas='$res[kelas]' AND jurusan='$res[jurusan]' ");
         // --- Memasukkan data ke database
         foreach($result1 as $res){
-        var_dump($res);
 
             if (!mysqli_query($con, "INSERT INTO murid_ujian (id_ujian,kelas,jurusan,id_murid) VALUES ('$id_ujian','$res[kelas]','$res[jurusan]','$res[id_user]') ")) {
                 // if(!mysqli_query($con, "INSERT INTO murid_ujian SET id_ujian='$id"))

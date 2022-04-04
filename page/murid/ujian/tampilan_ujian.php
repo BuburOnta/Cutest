@@ -1,8 +1,8 @@
 <?php
 session_start();
-// if(!isset($_SESSION['guru_input_jawaban'])){
-//     header("Location: ?page=guru");
-// }
+if(!isset($_SESSION['sesiLogin'])){
+    header("Location: ?page=login");
+}
 
 
 $group = 0; // nilai default jumlahSoal
@@ -15,6 +15,14 @@ if (!$soal = query("SELECT * FROM soal_ujian WHERE id_ujian='$id_ujian' ORDER BY
 } else {
     $group = $soal['nomor_soal'];
 }
+
+// --- Mengambil daftar ujian
+if (!$daftar = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian' ")[0]) {
+    $_POST['error'] = "Gagal menampilkan soal ujian";
+} else {
+
+}
+// var_dump($daftar);
 
 
 // --- Submit Jawaban 
@@ -32,7 +40,7 @@ if (isset($_POST['submitJawaban'])) {
     // echo $_POST['jawaban']
     if (submitJawaban($_POST) > 0) {
         $_SESSION['nilai'] = $_POST['nilai'];
-        header("Location: ?page=nilai");
+        header("Location: ?page=murid");
     } else {
     }
 }
@@ -71,7 +79,7 @@ if (isset($_POST["errorJawaban"])) {
     <div class="container">
         <!-- <div class="center"> -->
         <div class="left">
-            <iframe src="oiii.pdf" frameborder="0" width="100%" height="100%" style="zoom:1.5;"></iframe>
+            <iframe src="assets/pdf/<?= $daftar['file'] ?>" frameborder="0" width="100%" height="100%" style="zoom:1.5;"></iframe>
         </div>
 
         <div class="right-side">

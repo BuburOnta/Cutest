@@ -2,14 +2,14 @@
 session_start();
 
 // Cek session
-if (!isset($_SESSION['sesiLoginmurid'])) {
-    // header("Location: ?page=login");
+if (!isset($_SESSION['sesiLogin'])) {
+    header("Location: ?page=login");
 } else if ($_GET['page'] != $_SESSION['role']) {
-    // header("Location: ?page=".$_SESSION['role']);
+    header("Location: ?page=" . $_SESSION['role']);
 } else {
-    $_SESSION['pilih_ujian'] = "f";
-    $_SESSION['presensi'] = "f";
-    $_SESSION['rapor'] = "f";
+    // $_SESSION['pilih_ujian'] = "f";
+    // $_SESSION['presensi'] = "f";
+    // $_SESSION['rapor'] = "f";
 }
 
 
@@ -27,7 +27,24 @@ if (!isset($_SESSION['sesiLoginmurid'])) {
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="position: relative;">
+        <a href="?page=logout" class="keluar">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
+        <style>
+            div.container a.keluar {
+                font-size: 30px;
+                color: #fff;
+                position: absolute;
+                left: 30px;
+                top: 20px;
+                transform: rotate(180deg);
+            }
+
+            div.container a.keluar:hover {
+                color: #121e39;
+            }
+        </style>
         <div class="left">
             <a href="?page=pilih_ujian">
                 <div class="card">
@@ -41,7 +58,7 @@ if (!isset($_SESSION['sesiLoginmurid'])) {
                     <span>presensi</span>
                 </div>
             </a>
-            <a href="">
+            <a href="?page=raport">
                 <div class="card">
                     <img src="assets/img/dashboard_raport.svg">
                     <span>rapor</span>
@@ -53,7 +70,7 @@ if (!isset($_SESSION['sesiLoginmurid'])) {
             <img src="assets/img/sitting man_right_dashboard.svg">
         </div>
     </div>
-<script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

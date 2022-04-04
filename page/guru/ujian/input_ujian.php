@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['guru_page_ujian'])){
-    header("Location: ?page=guru");
+if(!isset($_SESSION['sesiLogin'])){
+    header("Location: ?page=login");
 } else {
-    $_SESSION['guru_input_jawaban'] = "F";
+    // $_SESSION['guru_input_jawaban'] = "F";
 }
 
 // RESET AUTO INCREMENT

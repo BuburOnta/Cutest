@@ -3,19 +3,20 @@ session_start();
 // $_SESSION['sesiLogin'] = 'a1@gmail.com';
 // echo $_SESSION['sesiLogin'];
 // Cek session
-if(!isset($_SESSION['pilih_ujian'])){
+if (!isset($_SESSION['sesiLogin'])) {
     header("Location: ?page=murid");
 }
 
 // $mapels = [];
 // QUERY 1 -> Mengambil data user berdasarkan `sesiLogin`
-$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLoginmurid]' ")[0];
+$users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];
 // echo $users['kelas'];
 
 // QUERY 2 -> Mengambil data `id_ujian` dari tabel `akses_ujian` dengan ketentuan kelas dari `user`
-    // -> Output dari id_ujian bisa saja lebih dari 1
-$ujian = query("SELECT id_ujian FROM akses_ujian INNER JOIN kelas_jurusan ON akses_ujian.kelas_jurusan=kelas_jurusan.id WHERE kelas_jurusan.kelas='$users[kelas]'  AND kelas_jurusan.jurusan='$users[jurusan]'");
-if(count($ujian) == 0){
+// -> Output dari id_ujian bisa saja lebih dari 1
+// $ujian = query("SELECT * FROM murid_ujian INNER JOIN kelas_jurusan ON akses_ujian.kelas_jurusan=kelas_jurusan.id WHERE kelas_jurusan.kelas='$users[kelas]'  AND kelas_jurusan.jurusan='$users[jurusan]'");
+$ujian = query("SELECT * FROM murid_ujian WHERE kelas='$users[kelas]' AND jurusan='$users[jurusan]' AND keterangan='belum submit' ");
+if (count($ujian) == 0) {
     $mapels = [];
     $error = true;
 }
@@ -24,14 +25,16 @@ if(count($ujian) == 0){
 foreach ($ujian as $uji) {
     // var_dump($uji);
     // QUERY 3 -> Mengambil `judul` dari `daftar_ujian` Berdasarkan `id_ujian` yang sudah diambil diatas
-        // -> Lalu memasukan kedalam array $mapels yang akan digunakan untuk menampilkan data nantinya
+    // -> Lalu memasukan kedalam array $mapels yang akan digunakan untuk menampilkan data nantinya
     $mapels[] = query("SELECT * FROM daftar_ujian WHERE id_ujian='$uji[id_ujian]'");
     // var_dump($mapels);
 }
 
 // NEXT
-if(isset($_POST['next'])){
+if (isset($_POST['next'])) {
     $_SESSION['id_ujian'] = $_POST['id_ujian'];
+    $waktuMulai = date('Y-d-m H:i:s');
+    mysqli_query($con, "UPDATE murid_ujian SET waktu_mulai='$waktuMulai' WHERE id_murid='$users[id_user]' AND id_ujian='$_POST[id_ujian]' ");
     header("Location: ?page=ujian");
 }
 ?>
@@ -55,6 +58,23 @@ if(isset($_POST['next'])){
 
     <div class="container">
         <div class="card">
+            <a href="?page=murid" class="keluar">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+            <style>
+                div.container a.keluar {
+                    font-size: 30px;
+                    color: #233B6E;
+                    position: absolute;
+                    left: 25px;
+                    top: 10px;
+                    transform: rotate(180deg);
+                }
+
+                div.container a.keluar:hover {
+                    color: #121e39;
+                }
+            </style>
             <img src="assets/img/dashboard_ujian.svg">
             <span>ujian</span>
         </div>
@@ -67,8 +87,8 @@ if(isset($_POST['next'])){
                     <div class="options-container">
                         <?php foreach ($mapels as $mapel) { ?>
                             <div class="option">
-                                <input type="hidden" name="id_ujian" value="<?=$mapel[0]['id_ujian']?>">
-                                <input type="text" class="radio" id="ujian" name="ujian" value="<?=$mapel[0]['judul']?>" />
+                                <input type="hidden" name="id_ujian" value="<?= $mapel[0]['id_ujian'] ?>">
+                                <input type="text" class="radio" id="ujian" name="ujian" value="<?= $mapel[0]['judul'] ?>" />
                                 <label for="ujian"><?= $mapel[0]['judul'] ?></label>
                             </div>
                         <?php }; ?>
@@ -89,7 +109,10 @@ if(isset($_POST['next'])){
                 <!-- end select -->
             </div>
 
-            <button type="submit" name="next">Next</button>
+            <?php if ($error) { ?>
+            <?php } else { ?>
+                <button type="submit" name="next">Next</button>
+            <?php }; ?>
         </form>
     </div>
 </body>

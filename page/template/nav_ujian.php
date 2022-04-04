@@ -68,8 +68,7 @@
     }
 </style>
 <?php 
-    $id_ujian = $_SESSION['id_ujian'];
-    $ujian = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian'")[0];
+
 ?>
 <nav class="head">
     <div class="left">
@@ -81,9 +80,24 @@
         </div>
     </div>
 
-    <div class="center">
-        <h1><?= $ujian['judul'] ?></h1>
-    </div>
+    <?php if(isset($_GET['page'])){
+        if($_GET['page'] == 'raport'){
+            echo "
+            <div class='center'>
+                <h1>". $_GET['page'] ."</h1>
+            </div>
+            ";
+            // echo $_GET['page'];
+        }
+    }else{ ?>
+        <?php 
+            $id_ujian = $_SESSION['id_ujian'];
+            $ujian = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian'")[0];
+        ?>
+        <div class="center">
+            <h1><?= $ujian['judul'] ?></h1>
+        </div>
+    <?php } ?>
 
     <div class="right">
         <span>anjingah@cute.com</span>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['guru_input_jawaban'])) {
-    header("Location: ?page=guru");
+if (!isset($_SESSION['sesiLogin'])) {
+    header("Location: ?page=login");
 }
 
 $group = 0; // nilai default jumlahSoal
