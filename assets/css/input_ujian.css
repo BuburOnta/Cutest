@@ -10,13 +10,12 @@ body {
 }
 
 /* CONTENT */
-form.container {
+div.container {
     width: 1087px;
     height: 490px;
     background: #FFFFFF;
     border-radius: 25px;
     box-sizing: border-box;
-    overflow: hidden;
 
     display: flex;
 
@@ -24,7 +23,26 @@ form.container {
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
     /* border: 5px solid #233B6E; */
+
 }
+form.container {
+    position: relative;
+    display: flex;
+    height: 100%;
+    /* width: 1087px;
+    height: 490px;
+    background: #FFFFFF;
+    border-radius: 25px;
+    box-sizing: border-box;
+
+    display: flex;
+
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    border: 5px solid #233B6E; */
+}
+
 
 div.container .left {
     display: flex;
@@ -34,6 +52,7 @@ div.container .left {
     width: 50%;
     background: #233B6E;
     position: relative;
+    border-radius: 25px 0 0 25px;
 
     font-weight: 600;
     font-size: 22px;
@@ -89,14 +108,17 @@ div.right_left button {
     margin-top: 20px;
 }
 div.right_left .judul {
+    margin-bottom: 20px;
+}
+div.right_left .form_group {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
-div.right_left .judul label {
+div.right_left .form_group label {
     margin-left: 35px;
 }
-div.right_left .judul [type=text]{
+div.right_left .form_group [type=text]{
     align-self: center;
     font-family: inherit;
     font-style: normal;
@@ -120,7 +142,7 @@ div.right_left .judul [type=text]{
     border-radius: 10px;
     transition: 130ms;
 }
-div.right_left div.judul input:focus {
+div.right_left div.form_group input:focus {
     border: 3px solid #415F9D;
 }
 
@@ -219,4 +241,16 @@ div.container .right button {
 }
 div.container .right button:hover {
     background: #4a67a1;
+}
+
+
+/* SELECT CSS ALTERNATE */
+.select-container {
+    margin-bottom: 0;
+    width: 80%;
+    position: relative;
+}
+
+.select-box .options-container {
+    top: 60px;
 }

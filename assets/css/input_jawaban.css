@@ -118,7 +118,8 @@ div.container div.bawah {
   height: 100%;
   width: 100%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
   /* margin-top: 20px; */

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['sesiLogin'])){
+if (!isset($_SESSION['sesiLogin'])) {
     header("Location: ?page=login");
 } else {
     // $_SESSION['guru_input_jawaban'] = "F";
@@ -26,10 +26,12 @@ if (mysqli_num_rows($result) == 0) {
     }
 }
 
+
+
 // ERROR
 $error = [];
 $values = [];
-$errorKeys = ['judul'];
+$errorKeys = ['judul', 'tipeUjian'];
 if (isset($_POST['submit'])) {
     // VIRTUAL KEY KELAS
     if (!isset($_POST['kelas'])) {
@@ -53,13 +55,21 @@ if (isset($_POST['submit'])) {
 
     if (count($error) == 0) {
         if (tambah($_POST) > 0) {
-            header("Location: ?page=input_jawaban");
+            header("Location: ?page=input_ujian");
         } else {
             echo mysqli_error($con);
         }
     }
 }
+
+$tipeUjian = [
+    ["tipeUjian" => "UH", "keterangan" => "Ulangan Harian"],
+    ["tipeUjian" => "UP", "keterangan" => "Ujian Praktek"],
+    ["tipeUjian" => "PTS", "keterangan" => "Penilaian Tengah Semester"],
+    ["tipeUjian" => "PAS", "keterangan" => "Penilaian Akhir Semester"]
+];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +78,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Ujian</title>
+    <link rel="stylesheet" href="assets/css/select.css">
     <link rel="stylesheet" href="assets/css/input_ujian.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <style>
@@ -81,81 +92,108 @@ if (isset($_POST['submit'])) {
 <body>
     <?php include_once $nav; ?>
     <div class="container">
-        <form method="POST" action="" class="container" enctype="multipart/form-data">
-            <label class="left" for="files">
-                <a href="?page=guru" class="keluar">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                </a>
-                <?php if (in_array('files', $error)) : ?>
+        <div class="overflow">
+            <form method="POST" action="" class="container" enctype="multipart/form-data">
+                <label class="left" for="files">
+                    <a href="?page=guru" class="keluar">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </a>
+                    <?php if (in_array('files', $error)) : ?>
                     <span class="error" style="font-weight: normal;">File dibutuhkan!</span>
-                <?php endif; ?>
-                <?php if (isset($_POST['error'])) : ?>
+                    <?php endif; ?>
+                    <?php if (isset($_POST['error'])) : ?>
                     <span class="error"'><?= $_POST['error'] ?></span>
-                <?php endif; ?>
-                <img src="assets/img/input_ujian_paper.svg">
-                <img src="assets/img/input_ujian_plus.svg"  id="plus">
-                <span class="tambah">Tambah soal</span>
-                <span class="note">Note: File soal harus berbentuk PDF!</span>
-            </label>
-            <input type="file" name="files" id="files" style="display: none;">
-
-
-            <div class="right">
-                <div class="right_left">
-                    <?php if (in_array('judul', $error)) : ?>
-                        <span class="error">Masukan judul</span>
                     <?php endif; ?>
-                    <div class="form_group judul">
-                        <label for="judul">Judul Ujian</label>
-                        <input type="text" name="judul" id="judul" autofocus>
+                    <img src="assets/img/input_ujian_paper.svg">
+                    <img src="assets/img/input_ujian_plus.svg"  id="plus">
+                    <span class="tambah">Tambah soal</span>
+                    <span class="note">Note: File soal harus berbentuk PDF!</span>
+                </label>
+                <input type="file" name="files" id="files" style="display: none;">
+
+
+                <div class="right">
+                    <div class="right_left">
+                        <?php if (in_array('judul', $error)) : ?>
+                            <span class="error">Masukan judul</span>
+                        <?php endif; ?>
+                        <div class="form_group judul">
+                            <label for="judul">Judul Ujian</label>
+                            <input type="text" name="judul" id="judul" autofocus>
+                        </div>
+                        <!-- SELECT DROPDOWN -->
+                        <div class="select-container">
+                            <div class="select-box">
+                                <?php if (in_array('tipeUjian', $error)) : ?>
+                                    <span class="error">Masukan judul</span>
+                                <?php endif; ?>
+                                <div class="options-container">
+                                    <?php foreach($tipeUjian as $tipe): ?>
+                                        <div class="option">
+                                            <input type="text" class="radio" id="tipeUjian" name="tipeUjian" value="<?= $tipe['tipeUjian'] ?>" />
+                                            <label for="tipeUjian"><?= $tipe['keterangan'] ?></label>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+
+                                <div class="selected">
+                                    <img src="assets/img/ujian_vector.svg">
+                                    Tipe Ujian
+                                </div>
+                            </div>
+                            <!-- end select -->
+                        </div>
+                        <button type="submit" name="submit" class="submit">submit</button>
                     </div>
-                    <button type="submit" name="submit">submit</button>
+
+
+                    <div class="right_right">
+                        <?php if (in_array('kelaz', $error)) : ?>
+                            <span class="error">Pilih Kelas & Jurusan</span>
+                        <?php endif; ?>
+                        <h3>Kelas Dan jurusan</h3>
+                        <div class="select_all">
+                            <input type="checkbox" id="select_all" onclick="toggle(this)">
+                            <label for="select_all">Select All</label>
+                        </div>
+                        <!-- <div>P</div> -->
+                        <div class="form_group checkbox">
+                            <div class="input">X RPL<input type="checkbox" name="kelas[]" id="kelas" value="1"></div>
+                            <div class="input">XI RPL<input type="checkbox" name="kelas[]" id="kelas" value="2"></div>
+                            <div class="input">XII RPL<input type="checkbox" name="kelas[]" id="kelas" value="3"></div>
+                            <div class="input">X PPLG<input type="checkbox" name="kelas[]" id="kelas" value="4"></div>
+                            <div class="input">XI PPLG<input type="checkbox" name="kelas[]" id="kelas" value="5"></div>
+                            <div class="input">XII PPLG<input type="checkbox" name="kelas[]" id="kelas" value="6"></div>
+                            <div class="input">X MM<input type="checkbox" name="kelas[]" id="kelas" value="7"></div>
+                            <div class="input">XI MM<input type="checkbox" name="kelas[]" id="kelas" value="8"></div>
+                            <div class="input">XII MM<input type="checkbox" name="kelas[]" id="kelas" value="9"></div>
+                            <div class="input">X DKV<input type="checkbox" name="kelas[]" id="kelas" value="10"></div>
+                            <div class="input">XI DKV<input type="checkbox" name="kelas[]" id="kelas" value="11"></div>
+                            <div class="input">XII DKV<input type="checkbox" name="kelas[]" id="kelas" value="12"></div>
+                            <div class="input">X TBSM<input type="checkbox" name="kelas[]" id="kelas" value="13"></div>
+                            <div class="input">XI TBSM<input type="checkbox" name="kelas[]" id="kelas" value="14"></div>
+                            <div class="input">XII TBSM<input type="checkbox" name="kelas[]" id="kelas" value="15"></div>
+                            <div class="input">X TKRO<input type="checkbox" name="kelas[]" id="kelas" value="16"></div>
+                            <div class="input">XI TKRO<input type="checkbox" name="kelas[]" id="kelas" value="17"></div>
+                            <div class="input">XII TKRO<input type="checkbox" name="kelas[]" id="kelas" value="18"></div>
+                            <div class="input">X APH<input type="checkbox" name="kelas[]" id="kelas" value="19"></div>
+                            <div class="input">XI APH<input type="checkbox" name="kelas[]" id="kelas" value="20"></div>
+                            <div class="input">XII APH<input type="checkbox" name="kelas[]" id="kelas" value="21"></div>
+                            <div class="input">X AKL<input type="checkbox" name="kelas[]" id="kelas" value="22"></div>
+                            <div class="input">XI AKL<input type="checkbox" name="kelas[]" id="kelas" value="23"></div>
+                            <div class="input">XII AKL<input type="checkbox" name="kelas[]" id="kelas" value="24"></div>
+                        </div>
+                    </div>
+
                 </div>
-
-
-                <div class="right_right">
-                    <?php if (in_array('kelaz', $error)) : ?>
-                        <span class="error">Pilih Kelas & Jurusan</span>
-                    <?php endif; ?>
-                    <h3>Kelas Dan jurusan</h3>
-                    <div class="select_all">
-                        <input type="checkbox" id="select_all" onclick="toggle(this)">
-                        <label for="select_all">Select All</label>
-                    </div>
-                    <!-- <div>P</div> -->
-                    <div class="form_group checkbox">
-                        <div class="input">X RPL<input type="checkbox" name="kelas[]" id="kelas" value="1"></div>
-                        <div class="input">XI RPL<input type="checkbox" name="kelas[]" id="kelas" value="2"></div>
-                        <div class="input">XII RPL<input type="checkbox" name="kelas[]" id="kelas" value="3"></div>
-                        <div class="input">X PPLG<input type="checkbox" name="kelas[]" id="kelas" value="4"></div>
-                        <div class="input">XI PPLG<input type="checkbox" name="kelas[]" id="kelas" value="5"></div>
-                        <div class="input">XII PPLG<input type="checkbox" name="kelas[]" id="kelas" value="6"></div>
-                        <div class="input">X MM<input type="checkbox" name="kelas[]" id="kelas" value="7"></div>
-                        <div class="input">XI MM<input type="checkbox" name="kelas[]" id="kelas" value="8"></div>
-                        <div class="input">XII MM<input type="checkbox" name="kelas[]" id="kelas" value="9"></div>
-                        <div class="input">X DKV<input type="checkbox" name="kelas[]" id="kelas" value="10"></div>
-                        <div class="input">XI DKV<input type="checkbox" name="kelas[]" id="kelas" value="11"></div>
-                        <div class="input">XII DKV<input type="checkbox" name="kelas[]" id="kelas" value="12"></div>
-                        <div class="input">X TBSM<input type="checkbox" name="kelas[]" id="kelas" value="13"></div>
-                        <div class="input">XI TBSM<input type="checkbox" name="kelas[]" id="kelas" value="14"></div>
-                        <div class="input">XII TBSM<input type="checkbox" name="kelas[]" id="kelas" value="15"></div>
-                        <div class="input">X TKRO<input type="checkbox" name="kelas[]" id="kelas" value="16"></div>
-                        <div class="input">XI TKRO<input type="checkbox" name="kelas[]" id="kelas" value="17"></div>
-                        <div class="input">XII TKRO<input type="checkbox" name="kelas[]" id="kelas" value="18"></div>
-                        <div class="input">X APH<input type="checkbox" name="kelas[]" id="kelas" value="19"></div>
-                        <div class="input">XI APH<input type="checkbox" name="kelas[]" id="kelas" value="20"></div>
-                        <div class="input">XII APH<input type="checkbox" name="kelas[]" id="kelas" value="21"></div>
-                        <div class="input">X AKL<input type="checkbox" name="kelas[]" id="kelas" value="22"></div>
-                        <div class="input">XI AKL<input type="checkbox" name="kelas[]" id="kelas" value="23"></div>
-                        <div class="input">XII AKL<input type="checkbox" name="kelas[]" id="kelas" value="24"></div>
-                    </div>
-                </div>
-
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
+    
     <script src="assets/js/input.js"></script>
+    <script src="assets/js/select2.js"></script>
+    
 </body>
 
 </html>

@@ -347,6 +347,7 @@ function tambah($data)
     // mencegah adanya element html
     $judul = $data['judul'];
     $kelas = $data['kelas'];
+    $tipeUjian = $data['tipeUjian'];
     $token = token(6);
     $email = $_SESSION['sesiLogin'];
 
@@ -362,7 +363,7 @@ function tambah($data)
     // $files = "TEST.pdf";
 
     // QUERY 2 -> Memasukan topik ke tabel daftar_ujian hanya dengan judul
-    if (!mysqli_query($con, "INSERT INTO daftar_ujian SET id_guru='$guru[NIP]', judul='$judul', file='$files', token='$token' ")) {
+    if (!mysqli_query($con, "INSERT INTO daftar_ujian SET id_guru='$guru[NIP]', judul='$judul', keterangan='$tipeUjian', file='$files', token='$token' ")) {
         $_POST['error'] = "Gagal memasukan soal ujian";
         return false;
     }
