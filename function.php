@@ -118,7 +118,7 @@ function register($data)
 
     // KONDISI 5 - Jika pertama kali daftar
     // $password = password_hash($password, PASSWORD_DEFAULT);
-    mysqli_query($con, "INSERT INTO temp_users SET password_debug='$password', email='$email', code_otp=$code_otp, status='not verified' ");
+    mysqli_query($con, "INSERT INTO temp_users SET email='$email', code_otp=$code_otp, status='not verified' ");
     $_SESSION['tempPass'] = $password;
     $_SESSION['tempNama'] = $nama;
     $_SESSION['tempKelas_jurusan'] = $kelas_jurusan;
@@ -313,14 +313,14 @@ function submitJawaban($data)
         $nilai = round($nilai / $data['jumlahSoal'] * 100);
     }
     // --- Algoritma predikat
-    if($nilai < 60){
-        $predikat = "D";
-    } else if($nilai > 59) {
-        $predikat = "C";
-    } else if($nilai > 79){
-        $predikat = "B";
-    } else if($nilai > 89){
+    if($nilai > 89){
         $predikat = "A";
+    } else if($nilai > 79) {
+        $predikat = "B";
+    } else if($nilai > 59){
+        $predikat = "C";
+    } else if($nilai < 59){
+        $predikat = "D";
     } else {
         $predikat="";
     }

@@ -64,7 +64,7 @@
 }
 
 /* SELECT BOX */
-.select-box .options-container.active {
+.select-box .options-container.active , .select{
   max-height: 240px;
   opacity: 1;
 }
@@ -84,7 +84,9 @@
 
 .select-box .option,
 .selected {
-  padding: 12px 24px;
+  /* padding: 12px 24px; */
+  box-sizing: border-box;
+  height: 50px;
   cursor: pointer;
 }
 .select-box .option {
@@ -101,4 +103,25 @@
 
 .select-box .option .radio {
   display: none;
+}
+
+.selected {
+  padding: 12px 20px;
+}
+.select {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0 10px;
+
+  display: block;
+  width: 100%;
+  /* background-color: #000; */
+  position: relative;
+}
+.select span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* box-shadow: 0 0 10px rgba(197, 197, 197, 0.5); */
+  /* background-color: rgb(197, 197, 197); */
 }

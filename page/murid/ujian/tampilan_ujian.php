@@ -4,7 +4,6 @@ if(!isset($_SESSION['sesiLogin'])){
     header("Location: ?page=login");
 }
 
-
 $group = 0; // nilai default jumlahSoal
 
 

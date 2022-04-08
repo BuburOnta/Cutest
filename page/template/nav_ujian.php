@@ -88,16 +88,15 @@
             </div>
             ";
             // echo $_GET['page'];
-        }
-    }else{ ?>
-        <?php 
-            $id_ujian = $_SESSION['id_ujian'];
-            $ujian = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian'")[0];
-        ?>
-        <div class="center">
-            <h1><?= $ujian['judul'] ?></h1>
-        </div>
-    <?php } ?>
+        } else  { ?>
+            <?php 
+                $id_ujian = $_SESSION['id_ujian'];
+                $ujian = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian'")[0];
+            ?>
+            <div class="center">
+                <h1><?= $ujian['judul'] ?></h1>
+            </div>
+        <?php }} ?>
 
     <div class="right">
         <span>anjingah@cute.com</span>

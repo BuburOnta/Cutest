@@ -9,9 +9,9 @@ $login_verification = 'page/login_verification.php';
 $login_ubah_password = 'page/login_ubah_password.php';
 
 // Register
-$register_page = 'page/register_page.php';
-$profile_page = 'page/profile_page.php';
-$register_verification = 'page/register_verification.php';
+$register_page = 'page/register/register_page.php';
+$profile_page = 'page/register/profile_page.php';
+$register_verification = 'page/register/register_verification.php';
 
 // Murid
 $dashboard_page = 'page/murid/dashboard_page.php';

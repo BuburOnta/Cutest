@@ -32,10 +32,14 @@ foreach ($ujian as $uji) {
 
 // NEXT
 if (isset($_POST['next'])) {
-    $_SESSION['id_ujian'] = $_POST['id_ujian'];
-    $waktuMulai = date('Y-d-m H:i:s');
-    mysqli_query($con, "UPDATE murid_ujian SET waktu_mulai='$waktuMulai' WHERE id_murid='$users[id_user]' AND id_ujian='$_POST[id_ujian]' ");
-    header("Location: ?page=ujian");
+    if(!isset($_POST['id_ujian'])) {
+        $_POST['error'] = "Pilih salah satu ujian terlebih dahulu goblok!!";
+    } else {
+        $_SESSION['id_ujian'] = $_POST['id_ujian'];
+        $waktuMulai = date('Y-d-m H:i:s');
+        mysqli_query($con, "UPDATE murid_ujian SET waktu_mulai='$waktuMulai' WHERE id_murid='$users[id_user]' AND id_ujian='$_POST[id_ujian]' ");
+        header("Location: ?page=ujian");
+    }
 }
 ?>
 
@@ -49,12 +53,56 @@ if (isset($_POST['next'])) {
     <title>Pilih Ujian</title>
     <link rel="stylesheet" href="assets/css/pilih_ujian.css">
     <link rel="stylesheet" href="assets/css/select.css">
+    <style>
+        @keyframes slideDown {
+            0% {
+                top: -100%;
+                opacity: 0;
+                
+            }
+            100% {
+                top: 20px;
+                opacity: 0.7;
+            }
+        }
+        .error {
+            animation: slideDown 500ms;
+
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            word-wrap: break-word;
+            /* height: 150px; */
+            padding: 20px;
+
+            color: #ff0000;
+            background-color: #c5c5c5;
+            opacity: 0.7;
+            box-shadow: 0 0 10px rgba(197, 197, 197, 0.5);
+            border-radius: 10px;
+
+            z-index: 999;
+            text-align: center;
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+            font-size: 17px;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 
 <body>
     <div class="logo">
         <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
     </div>
+
+    <?php if (isset($_POST['error'])) { ?>
+    <div class="error">
+        <span><?= $_POST['error'] ?></span>
+    </div>
+    <?php } ?>
 
     <div class="container">
         <div class="card">
@@ -86,24 +134,32 @@ if (isset($_POST['next'])) {
                 <div class="select-box">
                     <div class="options-container">
                         <?php foreach ($mapels as $mapel) { ?>
-                            <div class="option">
-                                <input type="hidden" name="id_ujian" value="<?= $mapel[0]['id_ujian'] ?>">
-                                <input type="text" class="radio" id="ujian" name="ujian" value="<?= $mapel[0]['judul'] ?>" />
-                                <label for="ujian"><?= $mapel[0]['judul'] ?></label>
-                            </div>
+                        <div class="option">
+                            <!-- <input type="hidden" name="id_ujian" value="//$mapel[0]['id_ujian'] "> -->
+                            <input type="radio" class="radio"
+                                id="<?=$mapel[0]['id_ujian']?>"
+                                name="id_ujian"
+                                value="<?= $mapel[0]['id_ujian'] ?>" />
+                            <label
+                                for="<?=$mapel[0]['id_ujian']?>"
+                                class="select"><span><?= $mapel[0]['judul'] ?></span></label>
+                        </div>
                         <?php }; ?>
                     </div>
 
+                    <!-- <label for="<?=$mapel[0]['id_ujian']?>"
+                    class="selected"><?= $mapel[0]['judul'] ?></label>
+                    -->
                     <?php if ($error) { ?>
-                        <div class="selected">
-                            <img src="assets/img/ujian_vector.svg">
-                            Saat ini tidak ada ujian
-                        </div>
+                    <label class="selected">
+                        <img src="assets/img/ujian_vector.svg">
+                        <span>Saat ini tidak ada ujian</span>
+                    </label>
                     <?php } else { ?>
-                        <div class="selected">
-                            <img src="assets/img/ujian_vector.svg">
-                            Pilih ujian
-                        </div>
+                    <label class="selected">
+                        <img src="assets/img/ujian_vector.svg">
+                        <span>Pilih ujian</span>
+                    </label>
                     <?php }; ?>
                 </div>
                 <!-- end select -->
@@ -111,7 +167,7 @@ if (isset($_POST['next'])) {
 
             <?php if ($error) { ?>
             <?php } else { ?>
-                <button type="submit" name="next">Next</button>
+            <button type="submit" name="next">Next</button>
             <?php }; ?>
         </form>
     </div>
