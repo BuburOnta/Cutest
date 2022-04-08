@@ -2,11 +2,13 @@
 session_start();
 $error = [];
 $values = [];
-$errorKeys = ['nama','email', 'password', 'kelas_jurusan']; // membuat error key
+$errorKeys = ['nama','email', 'password', 'kelas', 'jurusan']; // membuat error key
 //$optional = ['confirm_password']; // optional untuk confirm pass
 
 // Mengecek tombol regist
 if (isset($_POST['register'])) {
+    // var_dump($_POST);
+    // die;
     // validasi form
     foreach ($errorKeys as $errorKey) { // mengeluarkan semua array
         // menggunakan error key dengan post untuk mengecek apakah input kosong atau tidak, jika kosong maka variabel error diisi dengan masing masing error key
@@ -27,6 +29,22 @@ if (isset($_POST['register'])) {
         }
     }
 }
+$kelas = [
+    ["id_kelas"=>'1',"kelas"=>'X'],
+    ["id_kelas"=>'2',"kelas"=>'XI'],
+    ["id_kelas"=>'3',"kelas"=>'XII'],
+];
+    $jurusan = [
+        ["id_jurusan"=>'rpl', "jurusan"=>'Rekayasa Perangkat Lunak'],
+        ["id_jurusan"=>'pplg', "jurusan"=>'Pemrograman Perangkat Lunak Gim'],
+        ["id_jurusan"=>'mm', "jurusan"=>'Multi Media'],
+        ["id_jurusan"=>'dkv', "jurusan"=>'Desain Komunikasi Visual'],
+        ["id_jurusan"=>'akl', "jurusan"=>'Akutansi Keuangan Lembaga'],
+        ["id_jurusan"=>'aph', "jurusan"=>'Akomodasi Perhotelan'],
+        ["id_jurusan"=>'tkro', "jurusan"=>'Teknik Kendaraan Roda Empat'],
+        ["id_jurusan"=>'tbsm', "jurusan"=>'Teknik Bisnis Sepeda Motor']
+    ];
+    // var_dump($kelas);
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,6 +54,7 @@ if (isset($_POST['register'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
+    <link rel="stylesheet" href="assets/css/select.css">
     <link rel="stylesheet" href="assets/css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <style>
@@ -45,6 +64,73 @@ if (isset($_POST['register'])) {
             margin-bottom: 3px;
             color: red;
             font-style: italic;
+        }
+
+        .select-container {
+            margin: 0;
+        }
+        .select span,
+        .selected span,
+        .selected2 span {
+            color: #5E5E5E;
+        }
+        .select span {
+            font-weight: 600;
+            text-align: left;
+        }
+        .selected span,
+        .selected2 span {
+            font-style: italic;
+            text-align: left;
+        }
+
+        .select-box {
+            position: relative;
+        }
+
+        .select-box .options-container,
+        .select-box .options-container2 {
+            top: 0;
+            right: -270px;
+            background: transparent;
+        }
+
+        .select-box .option:hover .select span,
+        .select-box .option2:hover .select span {
+            color: #000;
+        }
+        .select-box .option:hover,
+        .select-box .option2:hover {
+            background: transparent;
+        }
+        .select-box .option:hover .select,
+        .select-box .option2:hover .select {
+            background: #ddd;
+        }
+        .select-box .option,
+        .select-box .option2 {
+            margin-bottom: 3px;
+        }
+
+        
+        .select-box .option, .select-box .option2 {
+            background: transparent;
+        }
+        .selected, .selected2, .select {
+            background: #FAFAFA;
+            border: 1px solid #D5D5D5;
+            outline: none;
+            box-sizing: border-box;
+            border-radius: 10px;
+            transition: 130ms;
+        }
+
+        /* ANIMASI */
+        .select-box .options-container.active + .selected::after, .select-box .options-container2.active  + .selected2::after {
+            transform: rotateX(360deg);
+        }
+        .selected::after, .selected2::after {
+            transform: rotate(270deg);
         }
     </style>
 
@@ -56,72 +142,78 @@ if (isset($_POST['register'])) {
             <form action="" method="post" autocomplete="off">
                 <img src="assets/img/qtest_logo_login.svg">
                 <?php if (isset($_POST['error'])) : ?>
-                    <span style="color: red; font-style: italic;margin-bottom: 3px;"><?= $_POST['error'] ?></span>
+                <span style="color: red; font-style: italic;margin-bottom: 3px;"><?= $_POST['error'] ?></span>
                 <?php endif; ?>
 
-                <?php if (in_array('nama', $error)) : // jika ada 'nama' didalam error ?>
-                    <span class="error">nama tidak boleh kosong</span>
+                <?php if (in_array('nama', $error)) : // jika ada 'nama' didalam error?>
+                <span class="error">nama tidak boleh kosong</span>
                 <?php endif; ?>
-                <input type="text" name="nama" id="nama" placeholder="Masukkan nama" value="Raffi Ramadhan">
+                <input type="text" name="nama" id="nama" placeholder="Masukkan nama">
 
-                <?php if (in_array('email', $error)) : // jika ada 'email' didalam error ?>
-                    <span class="error">Email tidak boleh kosong</span>
+                <?php if (in_array('email', $error)) : // jika ada 'email' didalam error?>
+                <span class="error">Email tidak boleh kosong</span>
                 <?php endif; ?>
-                <input type="email" name="email" id="email" placeholder="Masukkan email" value="klsterbuka@gmail.com">
+                <input type="email" name="email" id="email" placeholder="Masukkan email">
 
                 <?php if (in_array('password', $error)) : ?>
-                    <span class="error">Password tidak boleh kosong</span>
+                <span class="error">Password tidak boleh kosong</span>
                 <?php endif; ?>
-                <input type="password" name="password" id="password" placeholder="Masukkan password" value="raffie">
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="Konfirmasi password" value="raffie">
+                <input type="password" name="password" id="password" placeholder="Masukkan password" >
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Konfirmasi password">
                 <?php if (in_array('kelas_jurusan', $error)) : ?>
-                    <span class="error">Silahkan pilih kelas dan jurusan</span>
+                <span class="error">Silahkan pilih kelas dan jurusan</span>
                 <?php endif; ?>
-                <select name="kelas_jurusan" id="kelas_jurusan">
-                    <option value="" selected hidden>Pilih kelas dan jurusan</option>
-                    <optgroup label="Rekayasa Perangkat Lunak">
-                    <option value="1">X RPL</option>
-                    <option value="2">XI RPL</option>
-                    <option value="3">XII RPL</option>
-                    </optgroup>
-                    <optgroup label="Pemrograman Perangkat Lunak & Gim">
-                    <option value="4">X PPLG</option>
-                    <option value="5">XI PPLG</option>
-                    <option value="6">XII PPLG</option>
-                    </optgroup>
-                    <optgroup label="Multimedia">
-                    <option value="7">X MM</option>
-                    <option value="8">XI MM</option>
-                    <option value="9">XII MM</option>
-                    </optgroup>
-                    <optgroup label="Desain Komunikasi Visual">
-                    <option value="10">X DKV</option>
-                    <option value="11">XI DKV</option>
-                    <option value="12">XII DKV</option>
-                    </optgroup>
-                    <optgroup label="Teknik Bisnis Sepeda Motor">
-                    <option value="13">X TBSM</option>
-                    <option value="14">XI TBSM</option>
-                    <option value="15">XII TBSM</option>
-                    </optgroup>
-                    <optgroup label="Teknik Kendaraan Ringan Otomotif">
-                    <option value="16">X TKRO</option>
-                    <option value="17">XI TKRO</option>
-                    <option value="18">XII TKRO</option>
-                    </optgroup>
-                    <optgroup label="Akomodasi Perhotelan">
-                    <option value="19">X APH</option>
-                    <option value="20">XI APH</option>
-                    <option value="21">XII APH</option>
-                    </optgroup>
-                    <optgroup label="Akutansi Keuangan Lembaga">
-                    <option value="22">X AKL</option>
-                    <option value="23">XI AKL</option>
-                    <option value="24">XII AKL</option>
-                    </optgroup>
 
-                </select>
-                <span class="reminder">Pastikan kamu mendaftar sesuai dengan data yang diberikan oleh sekolah.</span>
+                <!-- SELECT DROPDOWN -->
+                <div class="select-container">
+                    <div class="select-box">
+                        <div class="options-container">
+                            <?php foreach ($kelas as $kel) { ?>
+                            <div class="option">
+                                <input type="radio" class="radio"
+                                    id="<?=$kel['id_kelas']?>"
+                                    name="kelas"
+                                    value="<?= $kel['id_kelas'] ?>" />
+                                <label
+                                    for="<?=$kel['id_kelas']?>"
+                                    class="select"><span><?= $kel['kelas'] ?></span></label>
+                            </div>
+                            <?php }; ?>
+                        </div>
+
+                        <label class="selected">
+                            <span>Pilih kelas</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- end select -->
+
+                <!-- JURUSAN -->
+                <div class="select-container">
+                    <div class="select-box">
+                        <div class="options-container2">
+                            <?php foreach ($jurusan as $jurus) { ?>
+                            <div class="option2">
+                                <input type="radio" class="radio"
+                                    id="<?=$jurus['id_jurusan']?>"
+                                    name="jurusan"
+                                    value="<?= $jurus['id_jurusan'] ?>" />
+                                <label
+                                    for="<?=$jurus['id_jurusan']?>"
+                                    class="select"><span><?= $jurus['jurusan'] ?></span></label>
+                            </div>
+                            <?php }; ?>
+                        </div>
+
+                        <label class="selected2">
+                            <span>Pilih jurusan</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- end select -->
+
+                <span class="reminder">Pastikan kamu mendaftar sesuai dengan data yang diberikan oleh
+                    sekolah.</span>
                 <button type="submit" name="register">Registrasi</button>
                 <span class="link">Sudah punya akun? <a href="?page=login">masuk</a></span>
             </form>
@@ -131,6 +223,8 @@ if (isset($_POST['register'])) {
             <img src="assets/img/female_icon_register.svg">
         </div>
     </div>
+
+    <script src="assets/js/select.js"></script>
 </body>
 
 </html>

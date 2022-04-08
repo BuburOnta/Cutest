@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
 
     if (count($error) == 0) {
         if (tambah($_POST) > 0) {
-            header("Location: ?page=input_ujian");
+            header("Location: ?page=input_jawaban");
         } else {
             echo mysqli_error($con);
         }
@@ -124,22 +124,25 @@ $tipeUjian = [
                         <!-- SELECT DROPDOWN -->
                         <div class="select-container">
                             <div class="select-box">
-                                <?php if (in_array('tipeUjian', $error)) : ?>
-                                    <span class="error">Masukan judul</span>
-                                <?php endif; ?>
                                 <div class="options-container">
-                                    <?php foreach($tipeUjian as $tipe): ?>
+                                    <?php foreach ($tipeUjian as $tipe) { ?>
                                         <div class="option">
-                                            <input type="text" class="radio" id="tipeUjian" name="tipeUjian" value="<?= $tipe['tipeUjian'] ?>" />
-                                            <label for="tipeUjian"><?= $tipe['keterangan'] ?></label>
+                                            <!-- <input type="hidden" name="id_ujian" value="//$tipe[0]['id_ujian'] "> -->
+                                            <input type="radio" class="radio"
+                                                id="<?=$tipe['tipeUjian']?>"
+                                                name="tipeUjian"
+                                                value="<?= $tipe['tipeUjian'] ?>" />
+                                            <label
+                                                for="<?=$tipe['tipeUjian']?>"
+                                                class="select"><span><?= $tipe['keterangan'] ?></span></label>
                                         </div>
-                                    <?php endforeach; ?>
+                                    <?php }; ?>
                                 </div>
 
-                                <div class="selected">
+                                <label class="selected">
                                     <img src="assets/img/ujian_vector.svg">
-                                    Tipe Ujian
-                                </div>
+                                    <span>Tipe Ujian</span>
+                                </label>
                             </div>
                             <!-- end select -->
                         </div>

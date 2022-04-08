@@ -62,12 +62,14 @@ function register($data)
     $email = mysqli_real_escape_string($con, $data['email']);
     $password = mysqli_real_escape_string($con, $data['password']);
     $confirm_password = mysqli_real_escape_string($con, $data['confirm_password']);
-    $kelas_jurusan = mysqli_real_escape_string($con, $data['kelas_jurusan']);
     // memfilter html
     $nama = htmlspecialchars($nama);
     $email = htmlspecialchars($email);
     $password = htmlspecialchars($password);
     $confirm_password = htmlspecialchars($confirm_password);
+    // FFF
+    $kelas = $data['kelas'];
+    $jurusan = $data['jurusan'];
 
     // KONDISI 1 - cek ketersediaan email
     $result = mysqli_query($con, "SELECT email FROM users WHERE email='$email'");
@@ -111,8 +113,9 @@ function register($data)
         mysqli_query($con, "UPDATE temp_users SET code_otp=$code_otp WHERE email='$email'");
         $_SESSION['tempPass'] = $password;
         $_SESSION['tempNama'] = $nama;
-        $_SESSION['tempKelas_jurusan'] = $kelas_jurusan;
         $_SESSION['tempEmail'] = $email;
+        $_SESSION['tempJurusan'] = $jurusan;
+        $_SESSION['tempKelas'] = $kelas;
         return mysqli_affected_rows($con);
     }
 
@@ -121,8 +124,9 @@ function register($data)
     mysqli_query($con, "INSERT INTO temp_users SET email='$email', code_otp=$code_otp, status='not verified' ");
     $_SESSION['tempPass'] = $password;
     $_SESSION['tempNama'] = $nama;
-    $_SESSION['tempKelas_jurusan'] = $kelas_jurusan;
     $_SESSION['tempEmail'] = $email;
+    $_SESSION['tempJurusan'] = $jurusan;
+    $_SESSION['tempKelas'] = $kelas;
 
     return mysqli_affected_rows($con);
 }
@@ -135,7 +139,8 @@ function verification($data)
     $code_otp = $data['verifCode'];
     $email = $_SESSION['tempEmail'];
     $nama = $_SESSION['tempNama'];
-    $kelas_jurusan = $_SESSION['tempKelas_jurusan'];
+    $jurusan = $_SESSION['tempJurusan'];
+    $kelas = $_SESSION['tempKelas'];
     $password = password_hash($_SESSION['tempPass'], PASSWORD_DEFAULT);
 
     $result = mysqli_query($con, "SELECT * FROM temp_users WHERE email='$email'");
@@ -145,7 +150,7 @@ function verification($data)
     if ($code_otp == $rows['code_otp']) {
         //mysqli_query($con, "UPDATE temp_users SET code_otp='', status='verified' WHERE username='$username'"); // mengembalikan nilai code otp menjadi kosong kembali
         mysqli_query($con, "DELETE FROM temp_users WHERE email='$email'");
-        mysqli_query($con, "INSERT INTO users SET nama='$nama', email='$email', password='$password', kelas_jurusan=$kelas_jurusan, role=1, password_debug='$_SESSION[tempPass]' ");
+        mysqli_query($con, "INSERT INTO users SET nama='$nama', email='$email', password='$password', role=1, kelas='$kelas', jurusan='$jurusan' ");
         $_SESSION = [];
         return mysqli_affected_rows($con);
     } else {
