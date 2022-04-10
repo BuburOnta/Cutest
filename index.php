@@ -33,7 +33,7 @@ $admin_page = 'page/admin_page.php';
 
 
 // Template
-$nav = "page/template/nav.php";
+$nav = "page/template/nav_guru.php";
 $nav_ujian = 'page/template/nav_ujian.php';
 $logout = 'page/template/logout.php';
 

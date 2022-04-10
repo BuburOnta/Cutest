@@ -10,6 +10,8 @@ if (!$_SESSION['sesiLogin']) {
     // $_SESSION['guru_page_ujian'] = "F";
     // $_SESSION['guru_page_nilai'] = "F";
     // $_SESSION['guru_page_presensi'] = "F";
+    $email = $_SESSION['sesiLogin'];
+    $users = query("SELECT * FROM guru WHERE email='$email'")[0];
 }
 // unset($_SESSION['guru_page_ujian']);
 ?>
@@ -47,7 +49,7 @@ if (!$_SESSION['sesiLogin']) {
                         color: #121e39;
                     }
                 </style>
-                <h1>Halaman Mrs. Adul</h1>
+                <h1>Halaman Mr. <?= $users['nama'] ?></h1>
                 <img src="assets/img/guru_dashboard_left.svg">
             </div>
 

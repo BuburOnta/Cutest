@@ -59,6 +59,10 @@
         width: 60px;
     }
 </style>
+<?php 
+    $email = $_SESSION['sesiLogin'];
+    $users = query("SELECT * FROM guru WHERE email='$email'")[0];
+?>
 <nav class="head">
     <div class="left">
         <img src="assets/img/cutest_logo_text.svg">
@@ -69,7 +73,7 @@
         </div>
     </div>
     <div class="right">
-        <span>anjingah@cute.com</span>
+        <span><?= $users['email'] ?></span>
         <img src="assets/img/profile_icon.png">
     </div>
 </nav>

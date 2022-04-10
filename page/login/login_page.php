@@ -58,7 +58,19 @@ if (isset($_POST['login'])) {
     <title>Login Page</title>
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
+    <style>
+        div.input__group {
+            position: relative;
+        }
+        .togglePassword {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,7 +83,10 @@ if (isset($_POST['login'])) {
                     <p style="color: red;font-style:italic;font-size:15px;"><?= $_POST['error'] ?></p>
                 <?php endif; ?>
                 <input type="email" name="email" id="email" placeholder="Masukkan email">
-                <input type="password" name="password" id="password" placeholder="Masukkan password">
+                <div class="input__group">
+                    <input type="password" name="password" id="password" placeholder="Masukkan password">
+                    <img src="assets/icon/eye.svg" class="togglePassword" id="togglePassword">
+                </div>
                 <div class="info-login">
                     <input type="checkbox" name="info_login" id="info_login">
                     <span>Simpan info login</span>
@@ -86,6 +101,20 @@ if (isset($_POST['login'])) {
             <span>Belum punya akun? <a href="?page=register">Daftar disini</a></span>
         </div>
     </div>
+
+    <script>
+        const togglePass = document.getElementById("togglePassword");
+        const password = document.getElementById("password");
+        togglePass.addEventListener('click', () => {
+            if(password.type === 'password'){
+                password.type = 'text';
+                togglePass.src = 'assets/icon/eye-slash.svg';
+            } else {
+                password.type = 'password';
+                togglePass.src = 'assets/icon/eye.svg';
+            }
+        })
+    </script>
 </body>
 
 </html>

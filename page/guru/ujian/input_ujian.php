@@ -33,13 +33,9 @@ $error = [];
 $values = [];
 $errorKeys = ['judul', 'tipeUjian'];
 if (isset($_POST['submit'])) {
-    // VIRTUAL KEY KELAS
-    if (!isset($_POST['kelas'])) {
-        $errorKeys[] = 'kelaz';
-        $_POST['kelaz'] = "";
-    } else {
-        $errorKeys[] = "kelaz";
-        $_POST['kelaz'] = "f";
+    // VIRTUAL KEY tipeUjian
+    if (!isset($_POST['tipeUjian'])) {
+        $_POST['tipeUjian'] = "";
     }
     // var_dump($_POST);
     // KELUARIN KEYS
@@ -86,6 +82,43 @@ $tipeUjian = [
             color: red;
             font-style: italic;
         }
+        .select-box .options-container,
+        .select-box .options-container2 {
+            background: transparent;
+        }
+        .select-box .select span,
+        .select-box .select span {
+            color: #000;
+        }
+        .select-box .option:hover,
+        .select-box .option2:hover {
+            background: transparent;
+        }
+        .select-box .option:hover .select,
+        .select-box .option2:hover .select {
+            background: #ddd;
+        }
+        .select-box .option,
+        .select-box .option2 {
+            margin-bottom: 3px;
+        }
+        .select-box .option, .select-box .option2 {
+            background: transparent;
+        }
+        .selected, .selected2, .select {
+            background: #FAFAFA;
+            border: 1px solid #D5D5D5;
+            outline: none;
+            box-sizing: border-box;
+            border-radius: 10px;
+            transition: 130ms;
+        }
+        .selected span {
+            width: 150px;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis; 
+        }
     </style>
 </head>
 
@@ -121,6 +154,9 @@ $tipeUjian = [
                             <label for="judul">Judul Ujian</label>
                             <input type="text" name="judul" id="judul" autofocus>
                         </div>
+                        <?php if (in_array('tipeUjian', $error)) : ?>
+                            <span class="error">Pilih salah satu tipe ujian...</span>
+                        <?php endif; ?>
                         <!-- SELECT DROPDOWN -->
                         <div class="select-container">
                             <div class="select-box">

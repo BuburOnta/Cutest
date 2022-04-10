@@ -15,7 +15,7 @@ $users = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]' ")[0];
 // QUERY 2 -> Mengambil data `id_ujian` dari tabel `akses_ujian` dengan ketentuan kelas dari `user`
 // -> Output dari id_ujian bisa saja lebih dari 1
 // $ujian = query("SELECT * FROM murid_ujian INNER JOIN kelas_jurusan ON akses_ujian.kelas_jurusan=kelas_jurusan.id WHERE kelas_jurusan.kelas='$users[kelas]'  AND kelas_jurusan.jurusan='$users[jurusan]'");
-$ujian = query("SELECT * FROM murid_ujian WHERE kelas='$users[kelas]' AND jurusan='$users[jurusan]' AND keterangan='belum submit' ");
+$ujian = query("SELECT * FROM murid_ujian WHERE kelas='$users[kelas]' AND jurusan='$users[jurusan]' AND keterangan='belum submit' AND id_murid='$users[id_user]' ");
 if (count($ujian) == 0) {
     $mapels = [];
     $error = true;
@@ -23,7 +23,6 @@ if (count($ujian) == 0) {
 
 // -> Pengulangan dari data `id_ujian` jika lebih dari 1
 foreach ($ujian as $uji) {
-    // var_dump($uji);
     // QUERY 3 -> Mengambil `judul` dari `daftar_ujian` Berdasarkan `id_ujian` yang sudah diambil diatas
     // -> Lalu memasukan kedalam array $mapels yang akan digunakan untuk menampilkan data nantinya
     $mapels[] = query("SELECT * FROM daftar_ujian WHERE id_ujian='$uji[id_ujian]'");

@@ -7,9 +7,12 @@ $errorKeys = ['nama','email', 'password', 'kelas', 'jurusan']; // membuat error 
 
 // Mengecek tombol regist
 if (isset($_POST['register'])) {
-    // var_dump($_POST);
-    // die;
-    // validasi form
+    if (!isset($_POST['kelas'])) {
+        $_POST['kelas'] = "";
+    }
+    if (!isset($_POST['jurusan'])) {
+        $_POST['jurusan'] = "";
+    }
     foreach ($errorKeys as $errorKey) { // mengeluarkan semua array
         // menggunakan error key dengan post untuk mengecek apakah input kosong atau tidak, jika kosong maka variabel error diisi dengan masing masing error key
         if (empty(trim($_POST[$errorKey]))) {
@@ -124,6 +127,12 @@ $kelas = [
             border-radius: 10px;
             transition: 130ms;
         }
+        .selected span, .selected2 span {
+            width: 150px;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis; 
+        }
 
         /* ANIMASI */
         .select-box .options-container.active + .selected::after, .select-box .options-container2.active  + .selected2::after {
@@ -160,10 +169,10 @@ $kelas = [
                 <?php endif; ?>
                 <input type="password" name="password" id="password" placeholder="Masukkan password" >
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Konfirmasi password">
-                <?php if (in_array('kelas_jurusan', $error)) : ?>
-                <span class="error">Silahkan pilih kelas dan jurusan</span>
-                <?php endif; ?>
 
+                <?php if (in_array('kelas', $error)) : ?>
+                <span class="error">Pilih salah satu kelas..</span>
+                <?php endif; ?>
                 <!-- SELECT DROPDOWN -->
                 <div class="select-container">
                     <div class="select-box">
@@ -188,6 +197,9 @@ $kelas = [
                 </div>
                 <!-- end select -->
 
+                <?php if (in_array('jurusan', $error)) : ?>
+                <span class="error">Pilih salah satu jurusan..</span>
+                <?php endif; ?>
                 <!-- JURUSAN -->
                 <div class="select-container">
                     <div class="select-box">
