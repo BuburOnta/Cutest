@@ -4,9 +4,9 @@ require "function.php";
 
 // Login
 $login_page = 'page/login/login_page.php';
-$login_lupa_pass = 'page/login_lupa_password.php';
-$login_verification = 'page/login_verification.php';
-$login_ubah_password = 'page/login_ubah_password.php';
+$login_lupa_pass = 'page/login/login_lupa_password.php';
+$login_verification = 'page/login/login_verification.php';
+$login_ubah_password = 'page/login/login_ubah_password.php';
 
 // Register
 $register_page = 'page/register/register_page.php';
@@ -88,6 +88,11 @@ $page = $_GET['page'];
         case 'admin':
             include_once $admin_page;
             break;
+
+        // Operator
+        case 'operator':
+            include_once "debug/random.php";
+            break;
         
         // Register
         case 'register':
@@ -119,6 +124,9 @@ $page = $_GET['page'];
         // RANDOM
         case 'random':
             include_once "debug/random.php";
+            break;
+        case 'debug':
+            include_once "debug/debug.php";
             break;
 
         default:

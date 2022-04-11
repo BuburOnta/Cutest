@@ -51,6 +51,73 @@ function token($panjang)
     return $token;
 }
 
+// ---PF -> Ubah hari indonesia
+function hari()
+{ 
+$tgl = date('D');
+    switch ($tgl) {
+        case 'Sun':
+            $hari = "Minggu";
+        break;
+ 
+        case 'Mon':
+            $hari = "Senin";
+        break;
+ 
+        case 'Tue':
+            $hari = "Selasa";
+        break;
+ 
+        case 'Wed':
+            $hari = "Rabu";
+        break;
+ 
+        case 'Thu':
+            $hari = "Kamis";
+        break;
+ 
+        case 'Fri':
+            $hari = "Jumat";
+        break;
+ 
+        case 'Sat':
+            $hari = "Sabtu";
+        break;
+        
+        default:
+            $hari = "Tidak di ketahui";
+        break;
+    }
+ 
+    return $hari;
+}
+
+// --- PF -> Ubah bulan Indonesia
+function bulan($tanggal){
+    $bulan = array (
+    1 =>   'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+    );
+
+    $pecahkan = explode('-', $tanggal);
+    // var_dump($pecahkan);
+
+    // variabel pecahkan 0 = tanggal
+    // variabel pecahkan 1 = bulan
+    // variabel pecahkan 2 = tahun
+        
+    return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+}
 
 // --- Function Register
 function register($data)
@@ -491,6 +558,28 @@ function tambahJawaban($data)
     return true;
 }
 
+
+
+// --- Operator ---
+// --- OP -> Input absensi
+function tambahAbsensi($data){
+    global $con;
+    $email = $_SESSION['sesiLogins'];
+    $user = query("SELECT * FROM users WHERE email='$email'")[0];
+    if($user['role'] != '4'){ // operator role
+        return false;
+    }
+    $keterangan = htmlspecialchars($data['keterangan']);
+    $tgl = $data['tanggal'];
+
+    $tanggal = hari();
+    $tanggal .= ", " . bulan($tgl);
+
+    if(!mysqli_query($con, "INSERT INTO absensi SET keterangan='$keterangan', tanggal='$tanggal'")){
+        return false;
+    }
+    return true;
+}
 
 
 

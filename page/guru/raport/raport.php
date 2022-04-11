@@ -76,15 +76,16 @@ if(isset($_POST['filter'])) {
             padding-top: 60px;
             overflow-x: hidden;
         }
-        div.container a.keluar {
+        div.center a.keluar {
             font-size: 30px;
             color: #fff;
             position: absolute;
-            left: 25px;
+            left: 20px;
             top: 15px;
             transform: rotate(180deg);
+            z-index: 99;
         }
-        div.container a.keluar:hover {
+        div.center a.keluar:hover {
             color: #ddd;
         }
         .sorter {
