@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2022 at 06:53 AM
+-- Generation Time: Apr 11, 2022 at 11:20 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `cutest`
 --
+CREATE DATABASE IF NOT EXISTS `cutest` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `cutest`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absensi`
+--
+
+DROP TABLE IF EXISTS `absensi`;
+CREATE TABLE `absensi` (
+  `id_absen` int(11) NOT NULL,
+  `keterangan` varchar(11) NOT NULL,
+  `tanggal` varchar(40) DEFAULT NULL,
+  `id_murid` int(11) DEFAULT NULL,
+  `waktu_absen` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `absensi`
+--
+
+INSERT INTO `absensi` (`id_absen`, `keterangan`, `tanggal`, `id_murid`, `waktu_absen`) VALUES
+(1, '0', 'Senin, 29 Maret 2022', NULL, NULL),
+(2, '0', 'Senin, 05 April 2022', NULL, NULL),
+(3, 'UH', 'Senin, 13 April 2022', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -27,6 +53,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `akses_ujian`
 --
 
+DROP TABLE IF EXISTS `akses_ujian`;
 CREATE TABLE `akses_ujian` (
   `id_akses` int(11) NOT NULL,
   `id_ujian` int(11) NOT NULL,
@@ -84,6 +111,7 @@ INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas_jurusan`) VALUES
 -- Table structure for table `daftar_ujian`
 --
 
+DROP TABLE IF EXISTS `daftar_ujian`;
 CREATE TABLE `daftar_ujian` (
   `id_ujian` int(11) NOT NULL,
   `id_guru` int(11) DEFAULT NULL,
@@ -111,6 +139,7 @@ INSERT INTO `daftar_ujian` (`id_ujian`, `id_guru`, `judul`, `tipe_ujian`, `file`
 -- Table structure for table `guru`
 --
 
+DROP TABLE IF EXISTS `guru`;
 CREATE TABLE `guru` (
   `NIP` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,
@@ -135,6 +164,7 @@ INSERT INTO `guru` (`NIP`, `nama`, `jk`, `email`, `password`, `role`) VALUES
 -- Table structure for table `jurusan`
 --
 
+DROP TABLE IF EXISTS `jurusan`;
 CREATE TABLE `jurusan` (
   `id_jurusan` varchar(10) NOT NULL,
   `jurusan` varchar(80) NOT NULL
@@ -160,6 +190,7 @@ INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
 -- Table structure for table `kelas`
 --
 
+DROP TABLE IF EXISTS `kelas`;
 CREATE TABLE `kelas` (
   `id_kelas` int(11) NOT NULL,
   `kelas` varchar(10) DEFAULT NULL
@@ -180,6 +211,7 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
 -- Table structure for table `kelas_jurusan`
 --
 
+DROP TABLE IF EXISTS `kelas_jurusan`;
 CREATE TABLE `kelas_jurusan` (
   `id` int(11) NOT NULL,
   `kelas` int(10) DEFAULT NULL,
@@ -222,6 +254,7 @@ INSERT INTO `kelas_jurusan` (`id`, `kelas`, `jurusan`) VALUES
 -- Table structure for table `mapel`
 --
 
+DROP TABLE IF EXISTS `mapel`;
 CREATE TABLE `mapel` (
   `id_mapel` int(11) NOT NULL,
   `id_kelas_jurusan` int(11) NOT NULL,
@@ -235,6 +268,7 @@ CREATE TABLE `mapel` (
 -- Table structure for table `murid_ujian`
 --
 
+DROP TABLE IF EXISTS `murid_ujian`;
 CREATE TABLE `murid_ujian` (
   `id` int(11) NOT NULL,
   `id_ujian` int(11) DEFAULT NULL,
@@ -300,6 +334,7 @@ INSERT INTO `murid_ujian` (`id`, `id_ujian`, `kelas`, `jurusan`, `id_murid`, `ke
 -- Table structure for table `role`
 --
 
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id_role` varchar(11) NOT NULL,
   `role` varchar(10) NOT NULL
@@ -312,7 +347,8 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`id_role`, `role`) VALUES
 ('3', 'admin'),
 ('2', 'guru'),
-('1', 'murid');
+('1', 'murid'),
+('4', 'operator');
 
 -- --------------------------------------------------------
 
@@ -320,6 +356,7 @@ INSERT INTO `role` (`id_role`, `role`) VALUES
 -- Table structure for table `soal_ujian`
 --
 
+DROP TABLE IF EXISTS `soal_ujian`;
 CREATE TABLE `soal_ujian` (
   `id_soal` int(11) NOT NULL,
   `id_ujian` int(11) NOT NULL,
@@ -404,6 +441,7 @@ INSERT INTO `soal_ujian` (`id_soal`, `id_ujian`, `nomor_soal`, `jawaban`) VALUES
 -- Table structure for table `temp_users`
 --
 
+DROP TABLE IF EXISTS `temp_users`;
 CREATE TABLE `temp_users` (
   `email` varchar(35) NOT NULL,
   `code_otp` varchar(20) NOT NULL,
@@ -416,6 +454,7 @@ CREATE TABLE `temp_users` (
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,
@@ -457,11 +496,19 @@ INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `j
 (28, 'f3', 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', 3, 'akl', NULL),
 (29, 'g3', 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', 3, 'tbsm', NULL),
 (30, 'a3', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', 3, 'tkro', NULL),
-(31, 'Anto', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', 2, 'rpl', NULL);
+(31, 'Anto', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', 2, 'rpl', NULL),
+(32, 'Operator', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`id_absen`),
+  ADD KEY `id_murid` (`id_murid`);
 
 --
 -- Indexes for table `akses_ujian`
@@ -555,6 +602,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `absensi`
+--
+ALTER TABLE `absensi`
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
@@ -594,11 +647,17 @@ ALTER TABLE `soal_ujian`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`id_murid`) REFERENCES `users` (`id_user`);
 
 --
 -- Constraints for table `akses_ujian`
