@@ -49,7 +49,10 @@ if (!$_SESSION['sesiLogin']) {
                         color: #121e39;
                     }
                 </style>
-                <h1>Halaman Mr. <?= $users['nama'] ?></h1>
+                <?php if($users['jk'] == 'laki-laki'){
+                    $jk = "Mr.";
+                } else {$jk = "Mrs.";}?>
+                <h1>Halaman <?= $jk ?> <?= $users['nama'] ?></h1>
                 <img src="assets/img/guru_dashboard_left.svg">
             </div>
 
@@ -61,7 +64,7 @@ if (!$_SESSION['sesiLogin']) {
                         <span class="panah"><i class="fa-solid fa-angle-right"></i></span>
                     </div>
                 </a>
-                <a href="">
+                <a href="?page=raport_guru">
                     <div class="card">
                         <img src="assets/img/guru_right_nilai.svg">
                         <h4>Input nilai hasil ujian disini!</h4>

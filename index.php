@@ -27,6 +27,8 @@ $guru_page = 'page/guru/guru_dashboard.php';
     // ujian
     $input_ujian = 'page/guru/ujian/input_ujian.php';
     $input_jawaban = 'page/guru/ujian/input_jawaban.php';
+    // raport
+    $raport_page = 'page/guru/raport/raport.php';
 
 // Admin
 $admin_page = 'page/admin_page.php';
@@ -77,6 +79,9 @@ $page = $_GET['page'];
                 break;
             case 'input_jawaban':
                 include_once $input_jawaban;
+                break;
+            case 'raport_guru':
+                include_once $raport_page;
                 break;
 
         // Admin
