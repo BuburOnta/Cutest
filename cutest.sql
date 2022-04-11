@@ -3,14 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2022 at 05:51 AM
+-- Generation Time: Apr 11, 2022 at 06:53 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -71,7 +70,13 @@ INSERT INTO `akses_ujian` (`id_akses`, `id_ujian`, `kelas_jurusan`) VALUES
 (33, 4, 15),
 (37, 6, 22),
 (38, 6, 23),
-(39, 6, 24);
+(39, 6, 24),
+(40, 7, 22),
+(41, 7, 23),
+(42, 7, 24),
+(43, 8, 1),
+(44, 8, 2),
+(45, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -83,7 +88,7 @@ CREATE TABLE `daftar_ujian` (
   `id_ujian` int(11) NOT NULL,
   `id_guru` int(11) DEFAULT NULL,
   `judul` varchar(50) NOT NULL,
-  `keterangan` varchar(10) DEFAULT NULL,
+  `tipe_ujian` varchar(10) DEFAULT NULL,
   `file` varchar(50) NOT NULL,
   `token` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -92,11 +97,13 @@ CREATE TABLE `daftar_ujian` (
 -- Dumping data for table `daftar_ujian`
 --
 
-INSERT INTO `daftar_ujian` (`id_ujian`, `id_guru`, `judul`, `keterangan`, `file`, `token`) VALUES
+INSERT INTO `daftar_ujian` (`id_ujian`, `id_guru`, `judul`, `tipe_ujian`, `file`, `token`) VALUES
 (1, 221133, 'Matematika', NULL, '624a9b2230ba5.pdf', 'GDbPIU'),
 (3, 221133, 'TKRO', 'PAS', '624d05194c004.pdf', 'tCZNDr'),
 (4, 221133, 'TBSM', 'PAS', '624d073e7a3e8.pdf', '5hXK6y'),
-(6, 221133, 'AKL', 'UH', '624d34c0ad1ca.pdf', 'BIc9Ji');
+(6, 221133, 'AKL', 'UH', '624d34c0ad1ca.pdf', 'BIc9Ji'),
+(7, 221133, 'Akutansi', 'PAS', '624fb4b271817.pdf', 'fpMYqB'),
+(8, 321321, 'Repeel', 'PTS', '624fe1e24f7bb.pdf', '4qcUSq');
 
 -- --------------------------------------------------------
 
@@ -107,6 +114,7 @@ INSERT INTO `daftar_ujian` (`id_ujian`, `id_guru`, `judul`, `keterangan`, `file`
 CREATE TABLE `guru` (
   `NIP` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,
+  `jk` varchar(20) DEFAULT NULL,
   `email` varchar(35) NOT NULL,
   `password` text NOT NULL,
   `role` varchar(11) NOT NULL DEFAULT '2'
@@ -116,10 +124,10 @@ CREATE TABLE `guru` (
 -- Dumping data for table `guru`
 --
 
-INSERT INTO `guru` (`NIP`, `nama`, `email`, `password`, `role`) VALUES
-(123123, 'Sri Wahyuni', 'sri@gmail.com', '$2y$10$AQcZ1hB8IpciAOv2KEaETOsJWY627B9ffLBlJz9iOxCo/wjS2PKUa', '2'),
-(221133, 'Ahmad Bahlul', 'ahmad@gmail.com', '$2y$10$HuT0o1xKt4RHYIIDAJioH.53ZCl8lztlj2Kn.eeWTDPq3Tdi2.vw6', '2'),
-(321321, 'Sutanto', 'sutanto@gmail.com', '$2y$10$4hNoUv2Bv2gFEpredLl4DOXpxYcS44NTXlN5f9mNhxDqc.pv8RgG2', '2');
+INSERT INTO `guru` (`NIP`, `nama`, `jk`, `email`, `password`, `role`) VALUES
+(123123, 'Sri Wahyuni', 'perempuan', 'sri@gmail.com', '$2y$10$AQcZ1hB8IpciAOv2KEaETOsJWY627B9ffLBlJz9iOxCo/wjS2PKUa', '2'),
+(221133, 'Ahmad Bahlul', 'laki-laki', 'ahmad@gmail.com', '$2y$10$HuT0o1xKt4RHYIIDAJioH.53ZCl8lztlj2Kn.eeWTDPq3Tdi2.vw6', '2'),
+(321321, 'Sutanto', 'laki-laki', 'sutanto@gmail.com', '$2y$10$4hNoUv2Bv2gFEpredLl4DOXpxYcS44NTXlN5f9mNhxDqc.pv8RgG2', '2');
 
 -- --------------------------------------------------------
 
@@ -277,7 +285,14 @@ INSERT INTO `murid_ujian` (`id`, `id_ujian`, `kelas`, `jurusan`, `id_murid`, `ke
 (33, 4, 3, 'tbsm', 29, 'belum submit', NULL, NULL, NULL, NULL),
 (37, 6, 1, 'akl', 17, 'belum submit', NULL, NULL, NULL, NULL),
 (38, 6, 2, 'akl', 10, 'belum submit', '2022-06-04 13:37:18', NULL, NULL, NULL),
-(39, 6, 3, 'akl', 28, 'belum submit', NULL, NULL, NULL, NULL);
+(39, 6, 3, 'akl', 28, 'belum submit', NULL, NULL, NULL, NULL),
+(40, 7, 1, 'akl', 17, 'belum submit', NULL, NULL, NULL, NULL),
+(41, 7, 2, 'akl', 10, 'selesai', '2022-08-04 11:07:50', '2022-08-04 11:08:10', 100, 'A'),
+(42, 7, 3, 'akl', 28, 'belum submit', NULL, NULL, NULL, NULL),
+(43, 8, 1, 'rpl', 12, 'belum submit', NULL, NULL, NULL, NULL),
+(44, 8, 2, 'rpl', 4, 'belum submit', NULL, NULL, NULL, NULL),
+(45, 8, 2, 'rpl', 31, 'selesai', '2022-08-04 14:46:57', '2022-08-04 14:46:29', 27, 'D'),
+(46, 8, 3, 'rpl', 22, 'belum submit', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -356,7 +371,32 @@ INSERT INTO `soal_ujian` (`id_soal`, `id_ujian`, `nomor_soal`, `jawaban`) VALUES
 (37, 6, '7', 'b'),
 (38, 6, '8', 'b'),
 (39, 6, '9', 'b'),
-(40, 6, '10', 'b');
+(40, 6, '10', 'b'),
+(41, 7, '1', 'a'),
+(42, 7, '2', 'a'),
+(43, 7, '3', 'a'),
+(44, 7, '4', 'a'),
+(45, 7, '5', 'a'),
+(46, 7, '6', 'a'),
+(47, 7, '7', 'a'),
+(48, 7, '8', 'a'),
+(49, 7, '9', 'a'),
+(50, 7, '10', 'a'),
+(51, 8, '1', 'a'),
+(52, 8, '2', 'a'),
+(53, 8, '3', 'b'),
+(54, 8, '4', 'b'),
+(55, 8, '5', 'a'),
+(56, 8, '6', 'a'),
+(57, 8, '7', 'b'),
+(58, 8, '8', 'b'),
+(59, 8, '9', 'b'),
+(60, 8, '10', 'b'),
+(61, 8, '11', 'd'),
+(62, 8, '12', 'd'),
+(63, 8, '13', 'd'),
+(64, 8, '14', 'd'),
+(65, 8, '15', 'd');
 
 -- --------------------------------------------------------
 
@@ -393,7 +433,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `jurusan`, `code_otp`) VALUES
 (1, 'admin', 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL, NULL, NULL),
-(4, 'Raffi', 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', 2, 'rpl', NULL),
+(4, 'Raffi Ramadhan Tajudin', 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', 2, 'rpl', NULL),
 (5, 'Rama', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', 2, 'pplg', NULL),
 (6, 'seno', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', 2, 'mm', NULL),
 (7, 'magfiroh', 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', 2, 'dkv', NULL),
@@ -416,7 +456,8 @@ INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `j
 (27, 'e3', 'e3@gmail.com', '$2y$10$OEs1qguGSjG9RU1scfB2Ce5vkx8AUErGR8h9MA7Lk7DgtBZbbAHkW', '1', 3, 'aph', NULL),
 (28, 'f3', 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', 3, 'akl', NULL),
 (29, 'g3', 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', 3, 'tbsm', NULL),
-(30, 'a3', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', 3, 'tkro', NULL);
+(30, 'a3', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', 3, 'tkro', NULL),
+(31, 'Anto', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', 2, 'rpl', NULL);
 
 --
 -- Indexes for dumped tables
@@ -517,13 +558,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -541,19 +582,19 @@ ALTER TABLE `kelas_jurusan`
 -- AUTO_INCREMENT for table `murid_ujian`
 --
 ALTER TABLE `murid_ujian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
