@@ -1,0 +1,125 @@
+@import url(font.css);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #233B6E;
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+
+.container {
+    box-sizing: border-box;
+    width: 413.99px;
+    height: 323px;
+
+    background: #D3D6DB;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.card {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    background: #C4C4C4;
+    padding: 10px 0;
+    margin-top: 30px;
+
+    font-family: 'SF UI Display', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 45px;
+    text-align: center;
+    /* padding-left: 50px; */
+
+    /* identical to box height */
+
+    color: #233B6E;
+
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+    position: absolute;
+    top: -15px;
+    right: -100px;
+
+    width: 202.52px;
+    height: 108.39px;
+}
+
+form {
+    width: 343px;
+    margin-top: 35px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    position: relative;
+}
+form h3 {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: #233B6E;
+    text-align: left;
+
+    margin-bottom: 7px;
+}
+
+/* 
+select option {
+    appearance: none;
+    display: block;
+    padding: 20px;
+    background: inherit;
+    border-radius: 50%;
+    color: #000;
+}
+
+form img {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    z-index: 9;
+    width: 26px;
+}
+*/
+
+form button {
+    width: 121px;
+    height: 36px;
+
+    background: #C4C4C4;
+    border: 1px solid #646464;
+    box-sizing: border-box;
+    border-radius: 25px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000000;
+    cursor: pointer;
+}
+form button:hover {
+    background: #a9a7a7;
+}

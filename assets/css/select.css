@@ -1,0 +1,133 @@
+ @import url(font.css);
+ body {
+   /* overflow: hidden; */
+ }
+ .select-container {
+  /* padding: 32px; */
+  text-align: left;
+  color: #233b6e;
+
+  margin-bottom: 30px;
+}
+.select-box {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.select-box .options-container, .select-box .options-container2 {
+  background: #414b57;
+  color: #f5f6fa;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: auto;
+
+  order: 1;
+  position: absolute;
+  z-index: 99;
+  top: 80px;
+}
+
+.selected, .selected2 {
+  background: #c4c4c4;
+
+  border: 2px solid #344b6e;
+  box-sizing: border-box;
+  border-radius: 15px;
+  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  order: 0;
+}
+.selected img, .selected2 img {
+  margin-right: 10px;
+}
+
+.selected::after, .selected2::after {
+  content: "";
+  background: url("../img/arrow-down.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #233b6e;
+  border-radius: 50%;
+
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+
+  transition: all 0.4s;
+}
+
+/* SELECT BOX */
+.select-box .options-container.active, .select-box .options-container2.active , .select{
+  max-height: 240px;
+  opacity: 1;
+}
+.select-box .options-container.active + .selected::after, .select-box .options-container2.active  + .selected2::after {
+  transform: rotateX(180deg);
+  /* top: -6px; */
+}
+/* .select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #0d141f;
+  border-radius: 0 8px 8px 0;
+}
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #525861;
+  border-radius: 0 8px 8px 0;
+} */
+
+.select-box .option,
+.selected,
+.select-box .option2,
+.selected2 {
+  /* padding: 12px 24px; */
+  box-sizing: border-box;
+  height: 50px;
+  cursor: pointer;
+}
+.select-box .option, .select-box .option2 {
+  background: #c4c4c4;
+}
+
+.select-box .option:hover, .select-box .option2:hover {
+  background: #414b57;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio, .select-box .option2 .radio {
+  display: none;
+}
+
+.selected, .selected2 {
+  padding: 12px 20px;
+}
+.select {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0 10px;
+
+  display: block;
+  width: 100%;
+  /* background-color: #000; */
+  position: relative;
+}
+.select span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* box-shadow: 0 0 10px rgba(197, 197, 197, 0.5); */
+  /* background-color: rgb(197, 197, 197); */
+}

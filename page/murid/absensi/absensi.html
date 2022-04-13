@@ -1,0 +1,40 @@
+<html lang="id">
+<head>
+    <title>F</title>
+</head>
+<body>
+    <div id="error"></div>
+    <form method="POST" action="" id="form">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const user = document.getElementById("username")
+        const pass = document.getElementById("password")
+        const errorEl = document.getElementById("error")
+        const form = document.getElementById("form")
+
+        form.addEventListener("submit", (e) => {
+            const err = []
+            if(user.value === "" || user.value == null) {
+                err.push("Username cant empty")
+            }
+            if(pass.value === ""){
+                err.push("password cant empty")
+            }
+
+            if(err.length > 0) {
+                e.preventDefault();
+                errorEl.innerText = err.join(', ')
+            }
+            console.log(err[0]);
+        })
+    </script>
+</body>
+</html>

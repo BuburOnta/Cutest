@@ -1,0 +1,36 @@
+@keyframes slideDown {
+    0% {
+        top: -100%;
+        opacity: 0;
+        
+    }
+    100% {
+        top: 20px;
+        opacity: 0.7;
+    }
+}
+.error {
+    animation: slideDown 500ms;
+
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    word-wrap: break-word;
+    /* height: 150px; */
+    padding: 20px;
+
+    color: #ff0000;
+    background-color: #c5c5c5;
+    opacity: 0.7;
+    box-shadow: 0 0 10px rgba(197, 197, 197, 0.5);
+    border-radius: 10px;
+
+    z-index: 999;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    word-wrap: break-word;
+}

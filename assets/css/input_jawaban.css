@@ -1,0 +1,174 @@
+@import url(font.css);
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+/* CONTENT */
+div.container {
+  width: 1087px;
+  height: 490px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #233b6e;
+}
+
+div.container form.atas {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+div.container form.atas .group {
+  width: 267px;
+  height: 36px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #17617c;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 28px;
+
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  color: #17617c;
+}
+form.atas .group label {
+  width: 152px;
+  height: 100%;
+  border: 3.5px solid #17617c;
+  border-right: 0;
+  box-sizing: border-box;
+  border-radius: 10px 0px 0px 10px;
+}
+form.atas .group input {
+  width: 119px;
+  height: 100%;
+  border: 3.5px solid #17617c;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 0px 10px 10px 0px;
+  font-family: inherit;
+  text-align: inherit;
+}
+/* form.atas .group input:focus {
+    color: #233b6e;
+} */
+form.atas .group input:focus::placeholder {
+  color: #fff;
+}
+form.atas button {
+  width: 97px;
+  height: 36px;
+  margin-left: 12px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  font-family: inherit;
+  background: #17617c;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+
+  transition: linear 150ms;
+}
+form.atas button:hover {
+  background: #094257;
+}
+
+/* PEMBUNKUS */
+div.container form.bawah {
+  width: 1011px;
+  height: 360px;
+  /* width: 50%;
+  height: 100%; */
+  border: 2px solid #17617c;
+  overflow-x: scroll;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* padding-top: 20px; */
+}
+
+div.container div.bawah {
+  /* border: 2px solid black; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* margin-top: 20px; */
+  /* padding: 20px; */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Group input */
+div.container div.input_group {
+  /* background: #ddd; */
+  margin: 5px 0;
+  margin-left: 10px;
+  width: 150px;
+  /* height: calc(100% / 50px); */
+  height: 50px;
+  /* align-items: center; */
+  /* height: 100%; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+
+  /* Centering Nomor */
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Misahin nomor dengan input */
+div.container div.input_group div.right {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+/* INput */
+div.container div.input_group div.input {
+  /* display: flex;
+  flex-direction: column; */
+}
+
+/* CUSTOM RADIO */
+div.container div.input_group div.input input[type=radio] {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #C4C4C4;
+  border-radius: 50%;
+}
+div.container div.input_group div.input input[type=radio]:checked {
+  background: #17617c;
+}

@@ -1,0 +1,153 @@
+@import url(font.css);
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+/* CONTENT */
+div.container {
+  width: 1087px;
+  height: 490px;
+  background: #ffffff;
+  border-radius: 25px;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 5px solid #233B6E; */
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  margin-top: 20px;
+}
+
+div.container .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 35px;
+  color: #fff;
+
+  border: 2px solid #17617c;
+
+}
+
+
+/* RIGHT */
+div.container div.right-side {
+  position: relative;
+  box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    margin-left: 50px;
+
+    display: flex;
+    flex-direction: column;
+
+    /* overflow-x: auto; */
+    /* overflow-y: hidden; */
+}
+
+/* NOTE */
+.note {
+  position: relative;
+  top: 0;
+  margin-bottom: -10px;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  width: 100%;
+  box-sizing: border-box;
+  background: #C4C4C4;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px 10px;
+  z-index: 99;
+}
+
+/* PEMBUNKUS */
+div.container form.bawah {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: scroll;
+}
+div.container form.bawah div.bawah {
+  /* border: 2px solid black; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* margin-top: 20px; */
+  /* padding: 20px; */
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* Group input */
+div.container div.input_group {
+  margin: 5px 0;
+  margin-left: 10px;
+  width: 150px;
+  height: 50px;
+
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+
+  /* Centering Nomor */
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+}
+/* Misahin nomor dengan input */
+div.container div.input_group div.right {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+/* INput */
+div.container div.input_group div.input {
+  /* display: flex;
+  flex-direction: column; */
+}
+/* CUSTOM RADIO */
+div.container div.input_group div.input input[type=radio] {
+  appearance: none;
+  width: 19px;
+  height: 19px;
+  background: #C4C4C4;
+  border-radius: 50%;
+}
+div.container div.input_group div.input input[type=radio]:checked {
+  background: #17617c;
+}
+
+div.container button.submit_jawaban {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 9px 40px;
+  border: none; outline: none;
+  border-radius: 5px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: linear 100ms;
+}

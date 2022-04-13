@@ -1,0 +1,90 @@
+@import url(font.css);
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  /* margin: 50px; */
+  background-color: #233b6e;
+
+
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTAINER */
+.container {
+    width: 900px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* padding: 50px 13px; */
+
+    /* background: #415F9D; */
+    background: #415F9D;
+    border-radius: 10px;
+    padding: 30px 10px;
+}
+
+.left {
+    margin-left: 100px;
+    display: grid;
+    grid-template-columns: repeat(1, 180px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 25px 0;
+}
+.left a {
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+}
+.card {
+    /* height: 100px;
+    width: 181.86px; */
+    background: #EFF0F4;
+    border-radius: 10px;
+    position: relative;
+    padding: 20px 0;
+
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card:hover {
+    background: #e2e2e9;
+}
+.card span {
+    font-family: 'SF UI Display', sans-serif;
+    font-style: italic;
+    font-weight: 850;
+    font-size: 35px;
+    text-align: end;
+    letter-spacing: 0.05em;
+
+    width: 100%;
+    padding-right: 26px;
+
+    color: #233B6E;
+    background: #C4C4C4;
+    padding-top: 10px;
+    padding-bottom: 10px;  
+}
+.card img {
+    position: absolute;
+    left: -50%; transform: translateX(50%);
+}
+.card.dua span {
+    font-size: 30px;
+    font-weight: 800;
+    padding-right: 9px;
+}
+.card.dua img {
+    bottom: -5px;
+}

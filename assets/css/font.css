@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Kite+One&family=Inter:wght@300;400;500;600;700&family=Lora&family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap");
+@import url('http://fonts.cdnfonts.com/css/sf-ui-display');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+
+/* ROOT VAR */
+:root {
+    --darkBlue: #233B6E;
+    --blue: #415F9D;
+    --whiteContainer: #D3D6DB;
+    --whiteRibbon: #C4C4C4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
