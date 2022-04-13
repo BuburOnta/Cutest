@@ -1,12 +1,5 @@
-- fitur yang udah ada
-- Login
-- Register (blm fix)
+Bikin tampilan murid yang sudah absen di page operator
+Ubah success animation di input_jawaban
 
-// Murid
-- menampilkan ujian yang tersedia berdasarkan kelas dan jurusan
-- menampilkan soal dari ujian (otw ngerjain)
 
-// Guru
-- Menambah ujian dan akses murid berdasarkan kejur
-- Menambahkan jawaban yang benar
-- Query token custom (otw)
+Ubah validasi menjadi javascript
