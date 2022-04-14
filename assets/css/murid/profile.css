@@ -1,0 +1,111 @@
+@import url(../font.css);
+
+body {
+    background-color: var(--darkBlue);
+}
+
+.center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%)
+}
+/* Container */
+.container {
+    position: relative;
+    width: 900px;
+    height: 400px;
+    background: #415f9d;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+
+    display: flex;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+
+    /* identical to box height */
+    letter-spacing: 0.1em;
+
+    color: #FFFFFF;
+}
+.container input {
+    width: 100%;
+    border: none; outline: none; background-color: transparent;
+    border-bottom: 2px solid #fff;
+    color: inherit;
+    font-family: "Poppins";
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+.container .informasi {
+    margin-bottom: 20px;
+}
+
+/* Left */
+.left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid #fff;
+}
+.left .foto {
+    filter: invert(1);
+    margin-bottom: 37px;
+}
+.left label {
+    display: block;
+}
+.left .informasi:first-of-type {
+    /* padding-top: 70px; */
+}
+
+
+/* Right */
+.right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .informasi {
+ width: 307px;
+}
+
+
+.container .button {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.container .button button {
+    cursor: pointer;
+    width: 208.24px;
+    height: 38px;
+    border: 1px solid #C4C4C4;
+    background-color: #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+}
+.container .button button:hover {
+    border: 2px solid var(--blue);
+}
+.container .button .kembali {
+    background-color: transparent;
+}

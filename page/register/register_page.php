@@ -157,7 +157,10 @@ $kelas = [
 
             width: 25px;
             /*height: 25px;*/
-           
+        }
+        .left .eyeWrap .togglePassword {
+            z-index: 999;
+        }
     </style>
 
 </head>

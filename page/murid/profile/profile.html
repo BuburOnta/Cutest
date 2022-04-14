@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../../../assets/css/murid/profile.css">
+    <style>
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+        }
+    </style>
+</head>
+<iv>
+    <div class="logo">
+        <img src="../../../assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
+    </div>
+
+    <div class="center">
+        <div class="container">
+            <div class="left">
+                <img src="../../../assets/icon/profile.svg" alt="ss" class="foto">
+
+                <div class="informasi">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" id="nama" value="Raffi Ramadhan Tajudin">
+                </div>
+                <div class="informasi">
+                    <label for="kelas">Kelas</label>
+                    <input type="text" name="kelas" id="kelas" value="XI RPL 1">
+                </div>
+            </div>
+
+            <!-- <span class="midLine"></span> -->
+
+            <div class="right">
+                <div class="informasi">
+                    <label for="jurusan">Jurusan</label>
+                    <input type="text" name="jurusan" id="jurusan" value="Rekayasa Perangkat Lunak">
+                </div>
+                <div class="informasi">
+                    <label for="nis">NIS</label>
+                    <input type="text" name="nis" id="nis" value="1231243121">
+                </div>
+                <div class="informasi">
+                    <label for="nisn">NISN</label>
+                    <input type="text" name="nisn" id="nisn" value="5243732">
+                </div>
+                <div class="informasi">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" value="klsterbuka@gmail.com">
+                </div>
+                <div class="informasi">
+                    <label for="password">Password</label>
+                    <input type="text" name="password" id="password" value="XXXXXXXXX">
+                </div>
+            </div>
+
+            <div class="button">
+                <button class="ubahProfile" onclick="redirect('?page=ubahProfile')">Ubah</button>
+                <button class="kembali" onclick="redirect('?page=murid')">Kembali</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <svg>
+        <symbol id="profile">
+            <path
+                d="M47.5 0C21.2637 0 0 21.2637 0 47.5C0 73.7363 21.2637 95 47.5 95C73.7363 95 95 73.7363 95 47.5C95 21.2637 73.7363 0 47.5 0ZM47.5 23.75C54.8792 23.75 60.8594 29.732 60.8594 37.1094C60.8594 44.4867 54.8848 50.4688 47.5 50.4688C40.1227 50.4688 34.1406 44.4867 34.1406 37.1094C34.1406 29.732 40.1152 23.75 47.5 23.75ZM47.5 83.125C37.679 83.125 28.7783 79.1302 22.3213 72.6806C25.3271 64.9229 32.749 59.375 41.5625 59.375H53.4375C62.2584 59.375 69.6803 64.9191 72.6787 72.6806C66.2217 79.1357 57.3154 83.125 47.5 83.125Z"
+                fill="" />
+        </symbol>
+    </svg> -->
+    <script src="../../../assets/js/imgToSvg.js"></script>
+    <script src="../../../assets/js/redirect.js"></script>
+    </body>
+
+</html>

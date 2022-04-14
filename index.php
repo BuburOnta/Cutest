@@ -24,6 +24,8 @@ $dashboard_page = 'page/murid/dashboard_page.php';
     $raport = 'page/murid/raport/raport.php';
     // Absensi
     $absensi = 'page/murid/absensi/absensi.php';
+    // Profile
+    $profile = 'page/murid/profile/profile.php';
 
 // Guru
 $guru_page = 'page/guru/guru_dashboard.php';
@@ -37,6 +39,7 @@ $guru_page = 'page/guru/guru_dashboard.php';
 // OPERator
 $dashboardOP = 'page/operator/dashboardOperator.php';
 $absensi_operator = 'page/operator/absensi.php';
+$tampilAbsensi = 'page/operator/tampilAbsensi.php';
 
 // Admin
 $admin_page = 'page/admin_page.php';
@@ -80,6 +83,11 @@ $page = $_GET['page'];
             case 'absensi':
                 include_once $absensi;
                 break;
+            // PROFILE
+            case 'profile':
+                include_once $profile;
+                break;
+            
 
         // Guru
         case 'guru':
@@ -107,6 +115,9 @@ $page = $_GET['page'];
             break;
         case 'absensiOP':
             include_once $absensi_operator;
+            break;
+        case 'tampilAbsensiOP':
+            include_once $tampilAbsensi;
             break;
         
         // Register
