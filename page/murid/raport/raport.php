@@ -18,12 +18,8 @@ $daftarUjian = query("SELECT * FROM murid_ujian INNER JOIN daftar_ujian ON murid
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raport</title>
-    <link rel="stylesheet" href="assets/css/raport.css">
+    <link rel="stylesheet" href="assets/css/murid/raport.css">
     <style>
-        body {
-            background-color: #233b6e;
-            background-image: none;
-        }
         .logo {
             position: absolute;
             top: 20px;
@@ -49,6 +45,7 @@ $daftarUjian = query("SELECT * FROM murid_ujian INNER JOIN daftar_ujian ON murid
                     left: 25px;
                     top: 18px;
                     transform: rotate(180deg);
+                    z-index: 99;
                 }
                 div.container a.keluar:hover {
                     color: #ddd;

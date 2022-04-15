@@ -69,7 +69,7 @@ if (isset($_POST["errorJawaban"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ujian</title>
-    <link rel="stylesheet" href="assets/css/ujian_tampilan.css">
+    <link rel="stylesheet" href="assets/css/murid/ujian_tampilan.css">
     <link rel="stylesheet" href="assets/css/succesAnimation.css">
     <style>
         body {
@@ -79,7 +79,10 @@ if (isset($_POST["errorJawaban"])) {
 </head>
 
 <body>
-    <?php include_once $nav_ujian ?>
+    <?php //include_once $nav_ujian ?>
+    <div class="logo">
+        <img src="assets/img/cutest_logo_text.svg">
+    </div>
 
     <?php if (isset($_POST['success'])) : ?>
         <script>

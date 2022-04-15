@@ -1,31 +1,36 @@
 @keyframes slideDown {
     0% {
-        top: -100%;
+        /* top: -100%; */
+        right: -100%;
         opacity: 0;
         
     }
     100% {
-        top: 20px;
-        opacity: 0.7;
+        /* top: 20px; */
+        /* opacity: 0.7; */
+        right: 20px;
     }
 }
 .error {
     animation: slideDown 500ms;
 
     position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 50px;
+    right: 20px;
     width: 250px;
     word-wrap: break-word;
     /* height: 150px; */
     padding: 20px;
 
     color: #ff0000;
-    background-color: #c5c5c5;
-    opacity: 0.7;
-    box-shadow: 0 0 10px rgba(197, 197, 197, 0.5);
+    /* background-color: #c5c5c5; */
+    /* opacity: 0.7; */
+    /* box-shadow: 0 0 10px rgba(197, 197, 197, 0.5); */
     border-radius: 10px;
+
+    color: rgb(227, 227, 227);
+    background-color: rgba(255, 0, 0, 0.215);
+    border: 2px solid #ff0000;
 
     z-index: 999;
     text-align: center;

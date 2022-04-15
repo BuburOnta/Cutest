@@ -21,7 +21,7 @@ if (!$_SESSION['sesiLogin']) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Operator</title>
-    <link rel="stylesheet" href="assets/css/guru_dashboard.css">
+    <link rel="stylesheet" href="assets/css/operator/dashboard.css">
     <style>
         body {
             background-color: var(--blue);

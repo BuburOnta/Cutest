@@ -3,7 +3,7 @@ session_start();
 $user = query("SELECT * FROM users INNER JOIN jurusan ON users.jurusan=jurusan.id_jurusan INNER JOIN kelas ON users.kelas=kelas.id_kelas WHERE email='$_SESSION[sesiLogin]'")[0];
 $password = $user['password'];
 
-var_dump($_POST);
+// var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,6 +78,10 @@ var_dump($_POST);
     <script src="assets/js/imgToSvg.js"></script>
     <script src="assets/js/redirect.js"></script>
     <script>
+        let kembali = document.querySelector(".kembali")
+        kembali.addEventListener('click',(e)=>{
+            e.preventDefault()
+        })
         // Ubah profile
         const tombol = document.querySelector(".ubahProfile")
         const input = document.querySelectorAll("input.info")

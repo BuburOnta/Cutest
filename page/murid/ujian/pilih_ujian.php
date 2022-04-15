@@ -32,7 +32,7 @@ foreach ($ujian as $uji) {
 // NEXT
 if (isset($_POST['next'])) {
     if(!isset($_POST['id_ujian'])) {
-        $_POST['error'] = "Pilih salah satu ujian terlebih dahulu!!";
+        $_POST['error'] = "Harap pilih salah satu ujian.";
     } else {
         $_SESSION['id_ujian'] = $_POST['id_ujian'];
         $waktuMulai = date('Y-d-m / H:i:s');
@@ -50,7 +50,7 @@ if (isset($_POST['next'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Ujian</title>
-    <link rel="stylesheet" href="assets/css/pilih_ujian.css">
+    <link rel="stylesheet" href="assets/css/murid/pilih_ujian.css">
     <link rel="stylesheet" href="assets/css/select.css">
     <link rel="stylesheet" href="assets/css/error-slide-down.css">
 </head>

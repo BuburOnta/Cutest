@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 
 <head>
     <title></title>
-    <link rel="stylesheet" href="assets/css/tambahAbsensi.css">
+    <link rel="stylesheet" href="assets/css/operator/tambahAbsensi.css">
     <link rel="stylesheet" href="assets/css/succesAnimation.css">
 	<style>
         div.container a.keluar {

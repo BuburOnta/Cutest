@@ -23,7 +23,7 @@ if (!$_SESSION['sesiLogin']) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Guru</title>
-    <link rel="stylesheet" href="assets/css/guru_dashboard.css">
+    <link rel="stylesheet" href="assets/css/guru/guru_dashboard.css">
 </head>
 
 <body>

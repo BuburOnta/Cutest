@@ -44,7 +44,7 @@ if (isset($_POST['jumlah'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Jawaban</title>
-    <link rel="stylesheet" href="assets/css/input_jawaban.css">
+    <link rel="stylesheet" href="assets/css/guru/input_jawaban.css">
     <style>
         .note {
             position: absolute;
@@ -83,6 +83,32 @@ if (isset($_POST['jumlah'])) {
         button.submit_jawaban:hover {
             background: #094257;
         }
+        @keyframes animate {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        div.success-animation {
+            animation: animate 1s;
+            width: 250px;
+            padding: 20px;
+            color: #000;
+            background-color: rgba(0, 255, 0, 0.3);
+            border: 2px solid #00ff00;
+
+            text-align: center;
+            font-size: 12px;
+
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        div.success-animation h1 {
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -95,7 +121,10 @@ if (isset($_POST['jumlah'])) {
                 <span style='color:red;font-style:italic;'><?= $_POST['error'] ?></span>
             <?php endif; ?>
             <?php if (isset($_POST['success'])) : ?>
-                <span style='color:green;font-style:italic;'><?= $_POST['success'] ?></span>
+                <div class="success-animation">
+                    <h1>Jawaban berhasil diinput</h1>
+                    <span>mohon tunggu sebentar</span>
+                </div>
 
                 <script>
                     setTimeout(() => {

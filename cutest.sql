@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2022 at 09:19 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.24
+-- Waktu pembuatan: 15 Apr 2022 pada 19.41
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ USE `cutest`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
+-- Struktur dari tabel `absensi`
 --
 
 DROP TABLE IF EXISTS `absensi`;
@@ -34,14 +34,14 @@ CREATE TABLE `absensi` (
   `id_absen` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `tanggal` varchar(40) DEFAULT NULL,
-  `tanggal_exp` varchar(20) DEFAULT NULL,
-  `status` varchar(20) DEFAULT 'aktif'
+  `tanggal_exp` varchar(30) DEFAULT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akses_absensi`
+-- Struktur dari tabel `akses_absensi`
 --
 
 DROP TABLE IF EXISTS `akses_absensi`;
@@ -49,15 +49,15 @@ CREATE TABLE `akses_absensi` (
   `id_akses` int(11) NOT NULL,
   `id_absensi` int(11) DEFAULT NULL,
   `id_murid` int(11) DEFAULT NULL,
-  `waktu_absen` varchar(30) DEFAULT NULL,
-  `keterangan` varchar(10) DEFAULT NULL,
-  `alasan` varchar(50) DEFAULT NULL
+  `waktu_absen` varchar(20) DEFAULT NULL,
+  `keterangan` varchar(20) DEFAULT NULL,
+  `alasan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akses_ujian`
+-- Struktur dari tabel `akses_ujian`
 --
 
 DROP TABLE IF EXISTS `akses_ujian`;
@@ -70,7 +70,7 @@ CREATE TABLE `akses_ujian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daftar_ujian`
+-- Struktur dari tabel `daftar_ujian`
 --
 
 DROP TABLE IF EXISTS `daftar_ujian`;
@@ -86,7 +86,7 @@ CREATE TABLE `daftar_ujian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guru`
+-- Struktur dari tabel `guru`
 --
 
 DROP TABLE IF EXISTS `guru`;
@@ -100,7 +100,7 @@ CREATE TABLE `guru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `guru`
+-- Dumping data untuk tabel `guru`
 --
 
 INSERT INTO `guru` (`NIP`, `nama`, `jk`, `email`, `password`, `role`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `guru` (`NIP`, `nama`, `jk`, `email`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jurusan`
+-- Struktur dari tabel `jurusan`
 --
 
 DROP TABLE IF EXISTS `jurusan`;
@@ -121,7 +121,7 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jurusan`
+-- Dumping data untuk tabel `jurusan`
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
@@ -137,7 +137,7 @@ INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelas`
+-- Struktur dari tabel `kelas`
 --
 
 DROP TABLE IF EXISTS `kelas`;
@@ -147,7 +147,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelas`
+-- Dumping data untuk tabel `kelas`
 --
 
 INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
@@ -158,7 +158,7 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelas_jurusan`
+-- Struktur dari tabel `kelas_jurusan`
 --
 
 DROP TABLE IF EXISTS `kelas_jurusan`;
@@ -169,7 +169,7 @@ CREATE TABLE `kelas_jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelas_jurusan`
+-- Dumping data untuk tabel `kelas_jurusan`
 --
 
 INSERT INTO `kelas_jurusan` (`id`, `kelas`, `jurusan`) VALUES
@@ -201,7 +201,7 @@ INSERT INTO `kelas_jurusan` (`id`, `kelas`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `murid_ujian`
+-- Struktur dari tabel `murid_ujian`
 --
 
 DROP TABLE IF EXISTS `murid_ujian`;
@@ -212,8 +212,8 @@ CREATE TABLE `murid_ujian` (
   `jurusan` varchar(10) DEFAULT NULL,
   `id_murid` int(11) DEFAULT NULL,
   `keterangan` text NOT NULL DEFAULT 'belum submit',
-  `waktu_mulai` varchar(25) DEFAULT NULL,
-  `waktu_selesai` varchar(25) DEFAULT NULL,
+  `waktu_mulai` datetime DEFAULT NULL,
+  `waktu_selesai` datetime DEFAULT NULL,
   `nilai` int(10) DEFAULT NULL,
   `predikat` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Murid yang sudah mengerjakan ujian';
@@ -221,7 +221,7 @@ CREATE TABLE `murid_ujian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 DROP TABLE IF EXISTS `role`;
@@ -231,7 +231,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
@@ -243,7 +243,7 @@ INSERT INTO `role` (`id_role`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `soal_ujian`
+-- Struktur dari tabel `soal_ujian`
 --
 
 DROP TABLE IF EXISTS `soal_ujian`;
@@ -257,7 +257,7 @@ CREATE TABLE `soal_ujian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `temp_users`
+-- Struktur dari tabel `temp_users`
 --
 
 DROP TABLE IF EXISTS `temp_users`;
@@ -270,13 +270,15 @@ CREATE TABLE `temp_users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,
+  `nis` int(11) DEFAULT NULL,
+  `nisn` int(11) DEFAULT NULL,
   `email` varchar(35) NOT NULL,
   `password` text NOT NULL,
   `role` varchar(11) DEFAULT NULL,
@@ -286,57 +288,58 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `nama`, `email`, `password`, `role`, `kelas`, `jurusan`, `code_otp`) VALUES
-(1, 'admin', 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL, NULL, NULL),
-(4, 'Raffi Ramadhan Tajudin', 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', 2, 'rpl', NULL),
-(5, 'Rama', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', 2, 'pplg', NULL),
-(6, 'seno', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', 2, 'mm', NULL),
-(7, 'magfiroh', 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', 2, 'dkv', '390138'),
-(8, 'akilah', 'akilah@gmail.com', '$2y$10$fyzvCnlxVTNvZLt86a4e1.UJdjeTDsYw3JeD23lIZaxHtxKFuHKOu', '1', 2, 'aph', NULL),
-(9, 'royan', 'royan@gmail.com', '$2y$10$.aZcj/7yI3egmpU79vTs6e.9jCRohFbxJMKzp7c8YuLRODNm8FrjW', '1', 2, 'tbsm', NULL),
-(10, 'a2', 'a2@gmail.com', '$2y$10$GBkFwyH.CHbPfMCxxzSdeeo0RMKFEFN3lnPsmAdqkhbKmwAVak17a', '1', 2, 'akl', NULL),
-(11, 'b2', 'b2@gmail.com', '$2y$10$8rLBEHxfnInUcX2vDefvyOBRgkjWlcFLsedWtdDGu97EMd5tkwM7y', '1', 2, 'tkro', NULL),
-(12, 'a1', 'a1@gmail.com', '$2y$10$CPaAevMtykcu5Ofs6O.DZ.TN89chtrbUheY8PzcrnCQhHs/XbtfDi', '1', 1, 'rpl', NULL),
-(13, 'b1', 'b1@gmail.com', '$2y$10$gapkch7WCCnKZA.e.68rkOp9k83Qe57GJW4V2G/8DNs9On.mFlmBK', '1', 1, 'pplg', NULL),
-(14, 'c1', 'c1@gmail.com', '$2y$10$Ba7dMHrdfnU00.YzfNBOteh1oSB4H31n7rWo37.wgsH0R1CbgZDpa', '1', 1, 'mm', NULL),
-(15, 'd1', 'd1@gmail.com', '$2y$10$wiAuk7lDxlh.Uzx0r7Z7DOZxx1s6ChaOgTLjlQ4rWHelJQIXbAHMq', '1', 1, 'dkv', NULL),
-(16, 'e1', 'e1@gmail.com', '$2y$10$fxxiXMpHYoIIyJX5puA30.qWZcctkzf32oF3lYfDdEn35Vrh6Xv42', '1', 1, 'aph', NULL),
-(17, 'f1', 'f1@gmail.com', '$2y$10$taMKe4wBBOTleeaxAHqVJeTaWCb/YVG1/wzn2g7PoxarJVe8RAIIq', '1', 1, 'akl', NULL),
-(19, 'g1', 'g1@gmail.com', '$2y$10$Ca0P9pwCD8Spu7Fss3ecwOYSWx4DbJsqmm9GCico4YQR2DWpwRb2a', '1', 1, 'tbsm', NULL),
-(20, 'h1', 'h1@gmail.coh', '$2y$10$HcCGU2E..GTOhx023nRgZObPAVPCf71oofcxHdfTsJDAH8CuP7g6q', '1', 1, 'tkro', NULL),
-(22, 'a3', 'a3@gmail.com', '$2y$10$Q2GxHcRTH4UJIQRWjBzqde5u8h.pS2694os.yeD8ilpcB1nipJmOC', '1', 3, 'rpl', NULL),
-(23, 'b3', 'b3@gmail.com', '$2y$10$FxoT0RbnawRLxASJNF9ynuJSDFL946NDckew3asxW8xF6ksiymy9G', '1', 3, 'pplg', NULL),
-(25, 'c3', 'c3@gmail.com', '$2y$10$fnjVLrQvmBLTWJLy/mO/HuGj3w57wT98VpsqxNOhYzN95ujP22/sG', '1', 3, 'mm', NULL),
-(26, 'd3', 'd3@gmail.com', '$2y$10$1XtLEZixHdsYUQl3YWwfCu6xgCvaColq4/nWFNTzxmF9I6RUCNTny', '1', 3, 'dkv', NULL),
-(27, 'e3', 'e3@gmail.com', '$2y$10$OEs1qguGSjG9RU1scfB2Ce5vkx8AUErGR8h9MA7Lk7DgtBZbbAHkW', '1', 3, 'aph', NULL),
-(28, 'f3', 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', 3, 'akl', NULL),
-(29, 'g3', 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', 3, 'tbsm', NULL),
-(30, 'a3', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', 3, 'tkro', NULL),
-(31, 'Anto', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', 2, 'rpl', NULL),
-(32, 'Operator', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL, NULL, NULL),
-(33, 'maghfiroh', 'maghfiroh575@gmail.com', '$2y$10$oG4FtXO7r.DlL3t1tugx1O.HpaJdeewJp6HlGwc0FS6OBbDGBNRmO', '1', 2, 'rpl', NULL);
+INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `email`, `password`, `role`, `kelas`, `jurusan`, `code_otp`) VALUES
+(1, 'admin', NULL, NULL, 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL, NULL, NULL),
+(4, 'Raffi Ramadhan Tajudin', NULL, NULL, 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', 2, 'rpl', NULL),
+(5, 'Rama', NULL, NULL, 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', 2, 'pplg', NULL),
+(6, 'seno', NULL, NULL, 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', 2, 'mm', NULL),
+(7, 'magfiroh', NULL, NULL, 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', 2, 'dkv', NULL),
+(8, 'akilah', NULL, NULL, 'akilah@gmail.com', '$2y$10$fyzvCnlxVTNvZLt86a4e1.UJdjeTDsYw3JeD23lIZaxHtxKFuHKOu', '1', 2, 'aph', NULL),
+(9, 'royan', NULL, NULL, 'royan@gmail.com', '$2y$10$.aZcj/7yI3egmpU79vTs6e.9jCRohFbxJMKzp7c8YuLRODNm8FrjW', '1', 2, 'tbsm', NULL),
+(10, 'a2', NULL, NULL, 'a2@gmail.com', '$2y$10$GBkFwyH.CHbPfMCxxzSdeeo0RMKFEFN3lnPsmAdqkhbKmwAVak17a', '1', 2, 'akl', NULL),
+(11, 'b2', NULL, NULL, 'b2@gmail.com', '$2y$10$8rLBEHxfnInUcX2vDefvyOBRgkjWlcFLsedWtdDGu97EMd5tkwM7y', '1', 2, 'tkro', NULL),
+(12, 'a1', NULL, NULL, 'a1@gmail.com', '$2y$10$CPaAevMtykcu5Ofs6O.DZ.TN89chtrbUheY8PzcrnCQhHs/XbtfDi', '1', 1, 'rpl', NULL),
+(13, 'b1', NULL, NULL, 'b1@gmail.com', '$2y$10$gapkch7WCCnKZA.e.68rkOp9k83Qe57GJW4V2G/8DNs9On.mFlmBK', '1', 1, 'pplg', NULL),
+(14, 'c1', NULL, NULL, 'c1@gmail.com', '$2y$10$Ba7dMHrdfnU00.YzfNBOteh1oSB4H31n7rWo37.wgsH0R1CbgZDpa', '1', 1, 'mm', NULL),
+(15, 'd1', NULL, NULL, 'd1@gmail.com', '$2y$10$wiAuk7lDxlh.Uzx0r7Z7DOZxx1s6ChaOgTLjlQ4rWHelJQIXbAHMq', '1', 1, 'dkv', NULL),
+(16, 'e1', NULL, NULL, 'e1@gmail.com', '$2y$10$fxxiXMpHYoIIyJX5puA30.qWZcctkzf32oF3lYfDdEn35Vrh6Xv42', '1', 1, 'aph', NULL),
+(17, 'f1', NULL, NULL, 'f1@gmail.com', '$2y$10$taMKe4wBBOTleeaxAHqVJeTaWCb/YVG1/wzn2g7PoxarJVe8RAIIq', '1', 1, 'akl', NULL),
+(19, 'g1', NULL, NULL, 'g1@gmail.com', '$2y$10$Ca0P9pwCD8Spu7Fss3ecwOYSWx4DbJsqmm9GCico4YQR2DWpwRb2a', '1', 1, 'tbsm', NULL),
+(20, 'h1', NULL, NULL, 'h1@gmail.coh', '$2y$10$HcCGU2E..GTOhx023nRgZObPAVPCf71oofcxHdfTsJDAH8CuP7g6q', '1', 1, 'tkro', NULL),
+(22, 'a3', NULL, NULL, 'a3@gmail.com', '$2y$10$Q2GxHcRTH4UJIQRWjBzqde5u8h.pS2694os.yeD8ilpcB1nipJmOC', '1', 3, 'rpl', NULL),
+(23, 'b3', NULL, NULL, 'b3@gmail.com', '$2y$10$FxoT0RbnawRLxASJNF9ynuJSDFL946NDckew3asxW8xF6ksiymy9G', '1', 3, 'pplg', NULL),
+(25, 'c3', NULL, NULL, 'c3@gmail.com', '$2y$10$fnjVLrQvmBLTWJLy/mO/HuGj3w57wT98VpsqxNOhYzN95ujP22/sG', '1', 3, 'mm', NULL),
+(26, 'd3', NULL, NULL, 'd3@gmail.com', '$2y$10$1XtLEZixHdsYUQl3YWwfCu6xgCvaColq4/nWFNTzxmF9I6RUCNTny', '1', 3, 'dkv', NULL),
+(27, 'e3', NULL, NULL, 'e3@gmail.com', '$2y$10$OEs1qguGSjG9RU1scfB2Ce5vkx8AUErGR8h9MA7Lk7DgtBZbbAHkW', '1', 3, 'aph', NULL),
+(28, 'f3', NULL, NULL, 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', 3, 'akl', NULL),
+(29, 'g3', NULL, NULL, 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', 3, 'tbsm', NULL),
+(30, 'a3', NULL, NULL, 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', 3, 'tkro', NULL),
+(31, 'Anto', NULL, NULL, 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', 2, 'rpl', NULL),
+(32, 'Operator', NULL, NULL, 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `absensi`
+-- Indeks untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id_absen`);
 
 --
--- Indexes for table `akses_absensi`
+-- Indeks untuk tabel `akses_absensi`
 --
 ALTER TABLE `akses_absensi`
-  ADD PRIMARY KEY (`id_akses`);
+  ADD PRIMARY KEY (`id_akses`),
+  ADD KEY `id_absensi` (`id_absensi`),
+  ADD KEY `id_murid` (`id_murid`);
 
 --
--- Indexes for table `akses_ujian`
+-- Indeks untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
   ADD PRIMARY KEY (`id_akses`),
@@ -344,33 +347,33 @@ ALTER TABLE `akses_ujian`
   ADD KEY `kelas` (`kelas_jurusan`);
 
 --
--- Indexes for table `daftar_ujian`
+-- Indeks untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
   ADD PRIMARY KEY (`id_ujian`),
   ADD KEY `id_guru` (`id_guru`);
 
 --
--- Indexes for table `guru`
+-- Indeks untuk tabel `guru`
 --
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`NIP`),
   ADD KEY `role` (`role`);
 
 --
--- Indexes for table `jurusan`
+-- Indeks untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id_jurusan`);
 
 --
--- Indexes for table `kelas`
+-- Indeks untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id_kelas`);
 
 --
--- Indexes for table `kelas_jurusan`
+-- Indeks untuk tabel `kelas_jurusan`
 --
 ALTER TABLE `kelas_jurusan`
   ADD PRIMARY KEY (`id`),
@@ -378,7 +381,7 @@ ALTER TABLE `kelas_jurusan`
   ADD KEY `kelas` (`kelas`);
 
 --
--- Indexes for table `murid_ujian`
+-- Indeks untuk tabel `murid_ujian`
 --
 ALTER TABLE `murid_ujian`
   ADD PRIMARY KEY (`id`),
@@ -388,27 +391,27 @@ ALTER TABLE `murid_ujian`
   ADD KEY `jurusan` (`jurusan`);
 
 --
--- Indexes for table `role`
+-- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`),
   ADD KEY `role` (`role`);
 
 --
--- Indexes for table `soal_ujian`
+-- Indeks untuk tabel `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
   ADD PRIMARY KEY (`id_soal`),
   ADD KEY `id_ujian` (`id_ujian`);
 
 --
--- Indexes for table `temp_users`
+-- Indeks untuk tabel `temp_users`
 --
 ALTER TABLE `temp_users`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
@@ -417,95 +420,102 @@ ALTER TABLE `users`
   ADD KEY `users_ibfk_1` (`kelas`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `absensi`
+-- AUTO_INCREMENT untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `akses_absensi`
+-- AUTO_INCREMENT untuk tabel `akses_absensi`
 --
 ALTER TABLE `akses_absensi`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `akses_ujian`
+-- AUTO_INCREMENT untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `daftar_ujian`
+-- AUTO_INCREMENT untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kelas`
+-- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
   MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `kelas_jurusan`
+-- AUTO_INCREMENT untuk tabel `kelas_jurusan`
 --
 ALTER TABLE `kelas_jurusan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `murid_ujian`
+-- AUTO_INCREMENT untuk tabel `murid_ujian`
 --
 ALTER TABLE `murid_ujian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `soal_ujian`
+-- AUTO_INCREMENT untuk tabel `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `akses_ujian`
+-- Ketidakleluasaan untuk tabel `akses_absensi`
+--
+ALTER TABLE `akses_absensi`
+  ADD CONSTRAINT `akses_absensi_ibfk_1` FOREIGN KEY (`id_absensi`) REFERENCES `absensi` (`id_absen`),
+  ADD CONSTRAINT `akses_absensi_ibfk_2` FOREIGN KEY (`id_murid`) REFERENCES `users` (`id_user`);
+
+--
+-- Ketidakleluasaan untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
   ADD CONSTRAINT `akses_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`),
   ADD CONSTRAINT `akses_ujian_ibfk_2` FOREIGN KEY (`kelas_jurusan`) REFERENCES `kelas_jurusan` (`id`);
 
 --
--- Constraints for table `daftar_ujian`
+-- Ketidakleluasaan untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
   ADD CONSTRAINT `daftar_ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`NIP`);
 
 --
--- Constraints for table `guru`
+-- Ketidakleluasaan untuk tabel `guru`
 --
 ALTER TABLE `guru`
   ADD CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`role`) REFERENCES `role` (`id_role`);
 
 --
--- Constraints for table `kelas_jurusan`
+-- Ketidakleluasaan untuk tabel `kelas_jurusan`
 --
 ALTER TABLE `kelas_jurusan`
   ADD CONSTRAINT `kelas_jurusan_ibfk_1` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`),
   ADD CONSTRAINT `kelas_jurusan_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`);
 
 --
--- Constraints for table `murid_ujian`
+-- Ketidakleluasaan untuk tabel `murid_ujian`
 --
 ALTER TABLE `murid_ujian`
   ADD CONSTRAINT `murid_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`),
@@ -514,13 +524,13 @@ ALTER TABLE `murid_ujian`
   ADD CONSTRAINT `murid_ujian_ibfk_5` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`);
 
 --
--- Constraints for table `soal_ujian`
+-- Ketidakleluasaan untuk tabel `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
   ADD CONSTRAINT `soal_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`);
 
 --
--- Constraints for table `users`
+-- Ketidakleluasaan untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`),
