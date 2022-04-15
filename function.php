@@ -486,6 +486,30 @@ function absensiMurid($data){
 }
 
 
+// --- mr -> Update Profile
+function updateProfile($data){
+    global $con;
+    $id = $_SESSION['sesiId'];
+    $nama = htmlspecialchars($data['nama']);
+    $kelas = htmlspecialchars($data['kelas']);
+    $jurusan = htmlspecialchars($data['jurusan']);
+    $nis = htmlspecialchars($data['nis']);
+    $nisn = htmlspecialchars($data['nisn']);
+    $foto = upload('profile');
+    if(!$foto){
+        $foto = 'profile.svg';
+    }
+
+    // QUERY
+    $query = "UPDATE users SET nama='$nama', nis='$nis', nisn='$nisn', foto_profile='$foto' WHERE id_user='$id'";
+    if(!mysqli_query($con, $query)){
+        echo "<script>
+             alert('gagal query')
+        </script>";
+        return false;
+    }
+    return true;
+}
 
 
 
@@ -507,7 +531,7 @@ function tambah($data)
     $guru = query("SELECT * FROM guru WHERE email='$email' ")[0];
 
     // QUERY 1 -> Upload File terlebih dahulu
-    $files = upload(); // mengisi `files` dengan return dari func `upload`
+    $files = upload('ujian'); // mengisi `files` dengan return dari func `upload`
     if (!$files) {
         // $_POST['error'] = "Gagal mengupload file";
         return false;
@@ -554,8 +578,10 @@ function tambah($data)
 }
 
 // --- Guru -> Ujian --> Upload File
-function upload()
+function upload($tipe)
 {
+    $tipe = $tipe;
+
     $namaFile = $_FILES['files']['name'];
     $ukuranFile = $_FILES['files']['size']; // karna $_FILES menghasilkan array multi dimensi
     $error = $_FILES['files']['error'];
@@ -568,16 +594,26 @@ function upload()
     }
 
     // Kondisi 2 - Apakah file yang diupload berekstensi pdf / tidak
-    $validType = ['pdf'];
+    if($tipe == 'ujian'){
+        $validType = ['pdf'];
+    } else if($tipe == 'profile') {
+        $validType = ['png', 'jpg'];
+    }
     $ekstensiGambar = explode('.', $namaFile); // mengubah $namaFile menjadi array terpisah saat terdapat titik
     $ekstensiGambar = strtolower(end($ekstensiGambar)); // mengubah semua ke lowercase // mengambil array paling akhir
 
     // in_array($string, $array) = mengecek apakah ada string didalam array | menghasilkan nilai true / false
-    if (!in_array($ekstensiGambar, $validType)) {
-        $_POST['error'] = "Harap input file pdf";
-        return false;
+    if($tipe == 'ujian'){
+        if (!in_array($ekstensiGambar, $validType)) {
+            $_POST['error'] = "Harap input file pdf";
+            return false;
+        }
+    } else if($tipe == 'profile') {
+        if (!in_array($ekstensiGambar, $validType)) {
+            $_POST['error'] = "Harap input file png/jpeg";
+            return false;
+        }
     }
-
     // Kondisi 3 - Membatasi ukuran gambar
     /*     if( $ukuranFile > 2000000 ) {
         echo "
@@ -592,7 +628,11 @@ function upload()
     $namaFileBaru = uniqid();
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
-    move_uploaded_file($tmpName, 'assets/pdf/' . $namaFileBaru);
+    if($tipe == 'ujian'){
+        move_uploaded_file($tmpName, 'assets/pdf/' . $namaFileBaru);
+    } else if($tipe == 'profile'){
+        move_uploaded_file($tmpName, 'assets/profile/' . $namaFileBaru);
+    }
     return $namaFileBaru;
 }
 
@@ -715,9 +755,3 @@ function resetWaktu()
     }
 }
 
-
-function direct($data)
-{
-    $_SESSION[$data] = "$data";
-    return true;
-}

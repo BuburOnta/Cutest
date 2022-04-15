@@ -19,7 +19,6 @@ body {
     padding: 40px;
     box-sizing: border-box;
 
-    display: flex;
 
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -32,6 +31,10 @@ body {
 
     color: #FFFFFF;
 }
+.container form {
+    display: flex;
+    height: 100%;
+}
 .container input {
     width: 100%;
     border: none; outline: none; background-color: transparent;
@@ -41,7 +44,9 @@ body {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.05em;
+    /* box-shadow: 0px 15px 7px -10px rgba(255, 255, 255, 1); */
 }
+
 .container .informasi {
     margin-bottom: 20px;
 }
@@ -56,16 +61,52 @@ body {
     align-items: center;
     border-right: 2px solid #fff;
 }
-.left .foto {
-    filter: invert(1);
-    margin-bottom: 37px;
-}
 .left label {
     display: block;
 }
-.left .informasi:first-of-type {
-    /* padding-top: 70px; */
+
+/* FOTO */
+.left .fotos {
+    width: 150px;
+    /* height: 150px; */
+    /* overflow: hidden; */
+    /* height: 100px; */
+    /* margin-bottom: 37px; */
+    /* border-radius: 50%; */
+    position: relative;
 }
+.left .foto {
+    width: 100%;
+}
+.cover {
+    background: rgba(0, 0, 0, 0.472);
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 2.5px;
+
+    display: none;
+}
+.left .files {
+    width: 100%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    display: none;
+}
+.left .files span {
+    font-size: 13px;
+}
+.left .files i {
+    font-size: 29px;
+}
+
 
 
 /* Right */

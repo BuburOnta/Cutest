@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Apr 2022 pada 19.41
+-- Waktu pembuatan: 15 Apr 2022 pada 21.50
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.24
 
@@ -277,13 +277,14 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,
-  `nis` int(11) DEFAULT NULL,
-  `nisn` int(11) DEFAULT NULL,
+  `nis` varchar(15) DEFAULT NULL,
+  `nisn` varchar(15) DEFAULT NULL,
+  `kelas` int(11) DEFAULT NULL,
+  `jurusan` varchar(11) DEFAULT NULL,
+  `foto_profile` varchar(50) DEFAULT NULL,
   `email` varchar(35) NOT NULL,
   `password` text NOT NULL,
   `role` varchar(11) DEFAULT NULL,
-  `kelas` int(11) DEFAULT NULL,
-  `jurusan` varchar(11) DEFAULT NULL,
   `code_otp` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -291,34 +292,34 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `email`, `password`, `role`, `kelas`, `jurusan`, `code_otp`) VALUES
-(1, 'admin', NULL, NULL, 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL, NULL, NULL),
-(4, 'Raffi Ramadhan Tajudin', NULL, NULL, 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', 2, 'rpl', NULL),
-(5, 'Rama', NULL, NULL, 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', 2, 'pplg', NULL),
-(6, 'seno', NULL, NULL, 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', 2, 'mm', NULL),
-(7, 'magfiroh', NULL, NULL, 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', 2, 'dkv', NULL),
-(8, 'akilah', NULL, NULL, 'akilah@gmail.com', '$2y$10$fyzvCnlxVTNvZLt86a4e1.UJdjeTDsYw3JeD23lIZaxHtxKFuHKOu', '1', 2, 'aph', NULL),
-(9, 'royan', NULL, NULL, 'royan@gmail.com', '$2y$10$.aZcj/7yI3egmpU79vTs6e.9jCRohFbxJMKzp7c8YuLRODNm8FrjW', '1', 2, 'tbsm', NULL),
-(10, 'a2', NULL, NULL, 'a2@gmail.com', '$2y$10$GBkFwyH.CHbPfMCxxzSdeeo0RMKFEFN3lnPsmAdqkhbKmwAVak17a', '1', 2, 'akl', NULL),
-(11, 'b2', NULL, NULL, 'b2@gmail.com', '$2y$10$8rLBEHxfnInUcX2vDefvyOBRgkjWlcFLsedWtdDGu97EMd5tkwM7y', '1', 2, 'tkro', NULL),
-(12, 'a1', NULL, NULL, 'a1@gmail.com', '$2y$10$CPaAevMtykcu5Ofs6O.DZ.TN89chtrbUheY8PzcrnCQhHs/XbtfDi', '1', 1, 'rpl', NULL),
-(13, 'b1', NULL, NULL, 'b1@gmail.com', '$2y$10$gapkch7WCCnKZA.e.68rkOp9k83Qe57GJW4V2G/8DNs9On.mFlmBK', '1', 1, 'pplg', NULL),
-(14, 'c1', NULL, NULL, 'c1@gmail.com', '$2y$10$Ba7dMHrdfnU00.YzfNBOteh1oSB4H31n7rWo37.wgsH0R1CbgZDpa', '1', 1, 'mm', NULL),
-(15, 'd1', NULL, NULL, 'd1@gmail.com', '$2y$10$wiAuk7lDxlh.Uzx0r7Z7DOZxx1s6ChaOgTLjlQ4rWHelJQIXbAHMq', '1', 1, 'dkv', NULL),
-(16, 'e1', NULL, NULL, 'e1@gmail.com', '$2y$10$fxxiXMpHYoIIyJX5puA30.qWZcctkzf32oF3lYfDdEn35Vrh6Xv42', '1', 1, 'aph', NULL),
-(17, 'f1', NULL, NULL, 'f1@gmail.com', '$2y$10$taMKe4wBBOTleeaxAHqVJeTaWCb/YVG1/wzn2g7PoxarJVe8RAIIq', '1', 1, 'akl', NULL),
-(19, 'g1', NULL, NULL, 'g1@gmail.com', '$2y$10$Ca0P9pwCD8Spu7Fss3ecwOYSWx4DbJsqmm9GCico4YQR2DWpwRb2a', '1', 1, 'tbsm', NULL),
-(20, 'h1', NULL, NULL, 'h1@gmail.coh', '$2y$10$HcCGU2E..GTOhx023nRgZObPAVPCf71oofcxHdfTsJDAH8CuP7g6q', '1', 1, 'tkro', NULL),
-(22, 'a3', NULL, NULL, 'a3@gmail.com', '$2y$10$Q2GxHcRTH4UJIQRWjBzqde5u8h.pS2694os.yeD8ilpcB1nipJmOC', '1', 3, 'rpl', NULL),
-(23, 'b3', NULL, NULL, 'b3@gmail.com', '$2y$10$FxoT0RbnawRLxASJNF9ynuJSDFL946NDckew3asxW8xF6ksiymy9G', '1', 3, 'pplg', NULL),
-(25, 'c3', NULL, NULL, 'c3@gmail.com', '$2y$10$fnjVLrQvmBLTWJLy/mO/HuGj3w57wT98VpsqxNOhYzN95ujP22/sG', '1', 3, 'mm', NULL),
-(26, 'd3', NULL, NULL, 'd3@gmail.com', '$2y$10$1XtLEZixHdsYUQl3YWwfCu6xgCvaColq4/nWFNTzxmF9I6RUCNTny', '1', 3, 'dkv', NULL),
-(27, 'e3', NULL, NULL, 'e3@gmail.com', '$2y$10$OEs1qguGSjG9RU1scfB2Ce5vkx8AUErGR8h9MA7Lk7DgtBZbbAHkW', '1', 3, 'aph', NULL),
-(28, 'f3', NULL, NULL, 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', 3, 'akl', NULL),
-(29, 'g3', NULL, NULL, 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', 3, 'tbsm', NULL),
-(30, 'a3', NULL, NULL, 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', 3, 'tkro', NULL),
-(31, 'Anto', NULL, NULL, 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', 2, 'rpl', NULL),
-(32, 'Operator', NULL, NULL, 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL, NULL, NULL);
+INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `kelas`, `jurusan`, `foto_profile`, `email`, `password`, `role`, `code_otp`) VALUES
+(1, 'admin', NULL, NULL, NULL, NULL, 'NULL', 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL),
+(4, 'Raffi Ramadhan Tajudin', '', '', 2, 'rpl', '6259c722333d0.jpg', 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', NULL),
+(5, 'Rama', NULL, NULL, 2, 'pplg', 'NULL', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', NULL),
+(6, 'seno', NULL, NULL, 2, 'mm', 'NULL', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', NULL),
+(7, 'magfiroh', NULL, NULL, 2, 'dkv', 'NULL', 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', NULL),
+(8, 'akilah', NULL, NULL, 2, 'aph', 'NULL', 'akilah@gmail.com', '$2y$10$fyzvCnlxVTNvZLt86a4e1.UJdjeTDsYw3JeD23lIZaxHtxKFuHKOu', '1', NULL),
+(9, 'royan', NULL, NULL, 2, 'tbsm', 'NULL', 'royan@gmail.com', '$2y$10$.aZcj/7yI3egmpU79vTs6e.9jCRohFbxJMKzp7c8YuLRODNm8FrjW', '1', NULL),
+(10, 'a2', NULL, NULL, 2, 'akl', 'NULL', 'a2@gmail.com', '$2y$10$GBkFwyH.CHbPfMCxxzSdeeo0RMKFEFN3lnPsmAdqkhbKmwAVak17a', '1', NULL),
+(11, 'b2', NULL, NULL, 2, 'tkro', 'NULL', 'b2@gmail.com', '$2y$10$8rLBEHxfnInUcX2vDefvyOBRgkjWlcFLsedWtdDGu97EMd5tkwM7y', '1', NULL),
+(12, 'a1', NULL, NULL, 1, 'rpl', 'NULL', 'a1@gmail.com', '$2y$10$CPaAevMtykcu5Ofs6O.DZ.TN89chtrbUheY8PzcrnCQhHs/XbtfDi', '1', NULL),
+(13, 'b1', NULL, NULL, 1, 'pplg', 'NULL', 'b1@gmail.com', '$2y$10$gapkch7WCCnKZA.e.68rkOp9k83Qe57GJW4V2G/8DNs9On.mFlmBK', '1', NULL),
+(14, 'c1', NULL, NULL, 1, 'mm', 'NULL', 'c1@gmail.com', '$2y$10$Ba7dMHrdfnU00.YzfNBOteh1oSB4H31n7rWo37.wgsH0R1CbgZDpa', '1', NULL),
+(15, 'd1', NULL, NULL, 1, 'dkv', 'NULL', 'd1@gmail.com', '$2y$10$wiAuk7lDxlh.Uzx0r7Z7DOZxx1s6ChaOgTLjlQ4rWHelJQIXbAHMq', '1', NULL),
+(16, 'e1', NULL, NULL, 1, 'aph', 'NULL', 'e1@gmail.com', '$2y$10$fxxiXMpHYoIIyJX5puA30.qWZcctkzf32oF3lYfDdEn35Vrh6Xv42', '1', NULL),
+(17, 'f1', NULL, NULL, 1, 'akl', 'NULL', 'f1@gmail.com', '$2y$10$taMKe4wBBOTleeaxAHqVJeTaWCb/YVG1/wzn2g7PoxarJVe8RAIIq', '1', NULL),
+(19, 'g1', NULL, NULL, 1, 'tbsm', 'NULL', 'g1@gmail.com', '$2y$10$Ca0P9pwCD8Spu7Fss3ecwOYSWx4DbJsqmm9GCico4YQR2DWpwRb2a', '1', NULL),
+(20, 'h1', NULL, NULL, 1, 'tkro', 'NULL', 'h1@gmail.coh', '$2y$10$HcCGU2E..GTOhx023nRgZObPAVPCf71oofcxHdfTsJDAH8CuP7g6q', '1', NULL),
+(22, 'a3', NULL, NULL, 3, 'rpl', 'NULL', 'a3@gmail.com', '$2y$10$Q2GxHcRTH4UJIQRWjBzqde5u8h.pS2694os.yeD8ilpcB1nipJmOC', '1', NULL),
+(23, 'b3', NULL, NULL, 3, 'pplg', 'NULL', 'b3@gmail.com', '$2y$10$FxoT0RbnawRLxASJNF9ynuJSDFL946NDckew3asxW8xF6ksiymy9G', '1', NULL),
+(25, 'c3', NULL, NULL, 3, 'mm', 'NULL', 'c3@gmail.com', '$2y$10$fnjVLrQvmBLTWJLy/mO/HuGj3w57wT98VpsqxNOhYzN95ujP22/sG', '1', NULL),
+(26, 'd3', NULL, NULL, 3, 'dkv', 'NULL', 'd3@gmail.com', '$2y$10$1XtLEZixHdsYUQl3YWwfCu6xgCvaColq4/nWFNTzxmF9I6RUCNTny', '1', NULL),
+(27, 'e3', NULL, NULL, 3, 'aph', 'NULL', 'e3@gmail.com', '$2y$10$OEs1qguGSjG9RU1scfB2Ce5vkx8AUErGR8h9MA7Lk7DgtBZbbAHkW', '1', NULL),
+(28, 'f3', NULL, NULL, 3, 'akl', 'NULL', 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', NULL),
+(29, 'g3', NULL, NULL, 3, 'tbsm', 'NULL', 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', NULL),
+(30, 'a3', NULL, NULL, 3, 'tkro', 'NULL', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', NULL),
+(31, 'Anto', NULL, NULL, 2, 'rpl', 'NULL', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', NULL),
+(32, 'Operator', NULL, NULL, NULL, NULL, 'NULL', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL);
 
 --
 -- Indexes for dumped tables
