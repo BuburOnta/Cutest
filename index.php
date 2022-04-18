@@ -39,6 +39,7 @@ $guru_page = 'page/guru/guru_dashboard.php';
 // OPERator
 $dashboardOP = 'page/operator/dashboardOperator.php';
 $absensi_operator = 'page/operator/absensi.php';
+$pilihAbsensi = 'page/operator/pilihAbsensi.php';
 $tampilAbsensi = 'page/operator/tampilAbsensi.php';
 
 // Admin
@@ -115,6 +116,9 @@ $page = $_GET['page'];
             break;
         case 'absensiOP':
             include_once $absensi_operator;
+            break;
+        case 'pilihAbsensi':
+            include_once $pilihAbsensi;
             break;
         case 'tampilAbsensiOP':
             include_once $tampilAbsensi;

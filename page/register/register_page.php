@@ -158,7 +158,7 @@ $kelas = [
             width: 25px;
             /*height: 25px;*/
         }
-        .left .eyeWrap .togglePassword {
+        :is(.left .eyeWrap) #togglePassword, #togglePassword2 {
             z-index: 999;
         }
     </style>

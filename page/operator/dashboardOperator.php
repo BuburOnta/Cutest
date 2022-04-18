@@ -60,7 +60,7 @@ if (!$_SESSION['sesiLogin']) {
                         <span class="panah"><i class="fa-solid fa-angle-right"></i></span>
                     </div>
                 </a>
-                <a href="?page=tampilAbsensiOP">
+                <a href="?page=pilihAbsensi">
                     <div class="card">
                         <img src="assets/img/guru_right_nilai.svg">
                         <h4>Lihat murid absensi disini!</h4>

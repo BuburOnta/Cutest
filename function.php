@@ -702,7 +702,7 @@ function tambahAbsensi($data)
     $tanggalExp = $data['time'];    
     $expTime = strtotime($tanggalExp); // set cookie
 
-    if (!mysqli_query($con, "INSERT INTO absensi SET keterangan='$keterangan', tanggal='$tanggal', tanggal_exp='$tanggalExp' ")) {
+    if (!mysqli_query($con, "INSERT INTO absensi SET absensi='$keterangan', tanggal='$tanggal', tanggal_exp='$tanggalExp' ")) {
         return false;
     }
     $absensi = query("SELECT * FROM absensi WHERE tanggal='$tanggal' AND tanggal_exp='$tanggalExp' ")[0];
@@ -715,27 +715,6 @@ function tambahAbsensi($data)
 function resetWaktu()
 {
     global $con;
-    // // SET SESSION UNTUK EXPIRED ABSENSI
-    // if (isset($_COOKIE['id_absen'])) {
-    //     $_SESSION['id_absen'] = $_COOKIE['id_absen'];
-    // }
-    // if (isset($_SESSION['id_absen'])) {
-    //     // QUERY 1 - Mengambil data dari absensi
-    //     $query = query("SELECT * FROM absensi WHERE id_absen='$_SESSION[id_absen]'")[0];
-    //     $tanggalExp = $query['tanggal_exp'];
-    //     // Mengubah Menjadi time format
-    //     // echo '<br>';
-    //     $dbTime = strtotime($tanggalExp);
-    //     // echo '<br>';
-    //     $rightNow = time();
-    //     if ($dbTime < $rightNow) {
-    //         // $_POST['error'] = "";
-    //         mysqli_query($con, "UPDATE absensi SET status='tidak aktif' WHERE id_absen='$_SESSION[id_absen]'");
-    //         unset($_SESSION['id_absen']);
-    //     } else {
-    //         // echo "AJOG";
-    //     }
-    // }
 
     // RESET ABSENSI
     $listAbsen = query("SELECT * FROM absensi WHERE status='aktif'");
