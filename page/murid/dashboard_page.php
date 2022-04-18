@@ -12,7 +12,6 @@ if (!isset($_SESSION['sesiLogin'])) {
     // $_SESSION['rapor'] = "f";
 }
 $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
-echo $user['foto_profile'] != 'NULL'
 ?>
 
 <!DOCTYPE html>
