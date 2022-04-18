@@ -58,7 +58,7 @@ $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
             <i class="fa-solid fa-right-to-bracket"></i>
         </a>
         <div class="left">
-            <?php if($user['foto_profile'] != ''){ ?>
+            <?php if($user['foto_profile'] != '' && $user['foto_profile'] != "NULL"){ ?>
                 <img src="assets/profile/<?= $user['foto_profile'] ?>" class="profileIcon">
             <?php }else{ ?>
                 <img src="assets/icon/profile.svg ?>" class="profileIcon">

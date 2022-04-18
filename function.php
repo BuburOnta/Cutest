@@ -491,13 +491,17 @@ function updateProfile($data){
     global $con;
     $id = $_SESSION['sesiId'];
     $nama = htmlspecialchars($data['nama']);
-    $kelas = htmlspecialchars($data['kelas']);
-    $jurusan = htmlspecialchars($data['jurusan']);
+    // $kelas = htmlspecialchars($data['kelas']);
+    // $jurusan = htmlspecialchars($data['jurusan']);
     $nis = htmlspecialchars($data['nis']);
     $nisn = htmlspecialchars($data['nisn']);
     $foto = upload('profile');
     if(!$foto){
-        $foto = 'profile.svg';
+        if($data['hiddenFoto_profile'] != "" || $data['hiddenFoto_profile'] != "NULL"){
+            $foto = $data['hiddenFoto_profile'];
+        } else {
+            $foto = 'profile.svg';
+        }
     }
 
     // QUERY
@@ -597,7 +601,7 @@ function upload($tipe)
     if($tipe == 'ujian'){
         $validType = ['pdf'];
     } else if($tipe == 'profile') {
-        $validType = ['png', 'jpg'];
+        $validType = ['png', 'jpg', 'jpeg'];
     }
     $ekstensiGambar = explode('.', $namaFile); // mengubah $namaFile menjadi array terpisah saat terdapat titik
     $ekstensiGambar = strtolower(end($ekstensiGambar)); // mengubah semua ke lowercase // mengambil array paling akhir

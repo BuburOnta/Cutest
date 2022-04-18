@@ -4,6 +4,7 @@ $user = query("SELECT * FROM users INNER JOIN jurusan ON users.jurusan=jurusan.i
 $password = $user['password'];
 
 if(isset($_POST['submit'])){
+    // var_dump($_POST);
     if(updateProfile($_POST)>0){
         header("Location: ?page=profile");
     } else {
@@ -36,9 +37,14 @@ if(isset($_POST['submit'])){
     <div class="center">
         <div class="container">
             <form method="POST" action="" enctype="multipart/form-data">
+                <input type="hidden" name="hiddenFoto_profile" value="<?= $user['foto_profile'] ?>">
                 <div class="left">
                     <div class="fotos">
+                    <?php if($user['foto_profile'] != '' && $user['foto_profile'] != "NULL"){ ?>
                         <img src="assets/profile/<?php echo $user['foto_profile'] ?>" alt="" class="foto">
+                    <?php }else{ ?>
+                        <img src="assets/icon/profile.svg ?>" class="foto">
+                    <?php } ?>
                         <div class="cover"></div>
                         <label for="files" class="files"><i class="fa-solid fa-camera"></i><span>ganti foto</span></label>
                         <input type="file" accept="image/" onchange="loadFile(event)" name="files" id="files" style="display: none;">
