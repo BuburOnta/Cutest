@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
                                 <div class="option">
                                     <input type="radio" class="radio" id="<?= $absen['id_absen'] ?>" name="id_absen" value="<?= $absen['id_absen'] ?>" />
                                     <label for="<?= $absen['id_absen'] ?>" class="select">
-                                        <span><?= $absen['tanggal'] ?> | <?= $absen['keterangan'] ?></span>
+                                        <span><?= $absen['tanggal'] ?> | <?= $absen['absensi'] ?></span>
                                     </label>
                                 </div>
                             <?php }; ?>

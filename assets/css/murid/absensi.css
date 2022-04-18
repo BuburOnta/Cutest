@@ -9,6 +9,7 @@ body {
     height: 100vh;
     background-color: var(--darkBlue);
     color: #fff;
+    overflow: hidden;
 }
 
 .container {

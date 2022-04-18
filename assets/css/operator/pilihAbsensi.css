@@ -16,14 +16,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.error {
-    position: absolute;
-    color: red;
-    font-size: 11px;
-    font-style: italic;
-    top: -10px;
-    left: 0px;
+    overflow: hidden;
 }
 
 .container {
@@ -60,6 +53,7 @@ body {
 
 /* Form Container */
 .form_container {
+    position: relative;
     width: 50%;
     background-color: var(--whiteContainer);
     padding: 35px;

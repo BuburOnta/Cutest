@@ -12,7 +12,6 @@ if (!isset($_SESSION['sesiLogin'])) {
     // $_SESSION['rapor'] = "f";
 }
 $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
-
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +58,11 @@ $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
             <i class="fa-solid fa-right-to-bracket"></i>
         </a>
         <div class="left">
-            <img src="assets/img/profile_icon.png" class="profileIcon">
+            <?php if($user['foto_profile'] != ''){ ?>
+                <img src="assets/profile/<?= $user['foto_profile'] ?>" class="profileIcon">
+            <?php }else{ ?>
+                <img src="assets/icon/profile.svg ?>" class="profileIcon">
+            <?php } ?>
             <div class="profile">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" id="nama" disabled value="<?=$user['nama']?>">

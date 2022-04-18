@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Apr 2022 pada 21.50
+-- Waktu pembuatan: 18 Apr 2022 pada 16.53
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.24
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cutest`
 --
-CREATE DATABASE IF NOT EXISTS `cutest` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `cutest`;
 
 -- --------------------------------------------------------
 
@@ -29,10 +27,9 @@ USE `cutest`;
 -- Struktur dari tabel `absensi`
 --
 
-DROP TABLE IF EXISTS `absensi`;
 CREATE TABLE `absensi` (
   `id_absen` int(11) NOT NULL,
-  `keterangan` varchar(50) NOT NULL,
+  `absensi` varchar(50) NOT NULL,
   `tanggal` varchar(40) DEFAULT NULL,
   `tanggal_exp` varchar(30) DEFAULT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'aktif'
@@ -44,7 +41,6 @@ CREATE TABLE `absensi` (
 -- Struktur dari tabel `akses_absensi`
 --
 
-DROP TABLE IF EXISTS `akses_absensi`;
 CREATE TABLE `akses_absensi` (
   `id_akses` int(11) NOT NULL,
   `id_absensi` int(11) DEFAULT NULL,
@@ -60,7 +56,6 @@ CREATE TABLE `akses_absensi` (
 -- Struktur dari tabel `akses_ujian`
 --
 
-DROP TABLE IF EXISTS `akses_ujian`;
 CREATE TABLE `akses_ujian` (
   `id_akses` int(11) NOT NULL,
   `id_ujian` int(11) NOT NULL,
@@ -73,7 +68,6 @@ CREATE TABLE `akses_ujian` (
 -- Struktur dari tabel `daftar_ujian`
 --
 
-DROP TABLE IF EXISTS `daftar_ujian`;
 CREATE TABLE `daftar_ujian` (
   `id_ujian` int(11) NOT NULL,
   `id_guru` int(11) DEFAULT NULL,
@@ -89,7 +83,6 @@ CREATE TABLE `daftar_ujian` (
 -- Struktur dari tabel `guru`
 --
 
-DROP TABLE IF EXISTS `guru`;
 CREATE TABLE `guru` (
   `NIP` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,
@@ -114,7 +107,6 @@ INSERT INTO `guru` (`NIP`, `nama`, `jk`, `email`, `password`, `role`) VALUES
 -- Struktur dari tabel `jurusan`
 --
 
-DROP TABLE IF EXISTS `jurusan`;
 CREATE TABLE `jurusan` (
   `id_jurusan` varchar(10) NOT NULL,
   `jurusan` varchar(80) NOT NULL
@@ -140,7 +132,6 @@ INSERT INTO `jurusan` (`id_jurusan`, `jurusan`) VALUES
 -- Struktur dari tabel `kelas`
 --
 
-DROP TABLE IF EXISTS `kelas`;
 CREATE TABLE `kelas` (
   `id_kelas` int(11) NOT NULL,
   `kelas` varchar(10) DEFAULT NULL
@@ -161,7 +152,6 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
 -- Struktur dari tabel `kelas_jurusan`
 --
 
-DROP TABLE IF EXISTS `kelas_jurusan`;
 CREATE TABLE `kelas_jurusan` (
   `id` int(11) NOT NULL,
   `kelas` int(10) DEFAULT NULL,
@@ -204,7 +194,6 @@ INSERT INTO `kelas_jurusan` (`id`, `kelas`, `jurusan`) VALUES
 -- Struktur dari tabel `murid_ujian`
 --
 
-DROP TABLE IF EXISTS `murid_ujian`;
 CREATE TABLE `murid_ujian` (
   `id` int(11) NOT NULL,
   `id_ujian` int(11) DEFAULT NULL,
@@ -212,8 +201,8 @@ CREATE TABLE `murid_ujian` (
   `jurusan` varchar(10) DEFAULT NULL,
   `id_murid` int(11) DEFAULT NULL,
   `keterangan` text NOT NULL DEFAULT 'belum submit',
-  `waktu_mulai` datetime DEFAULT NULL,
-  `waktu_selesai` datetime DEFAULT NULL,
+  `waktu_mulai` varchar(30) DEFAULT NULL,
+  `waktu_selesai` varchar(30) DEFAULT NULL,
   `nilai` int(10) DEFAULT NULL,
   `predikat` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Murid yang sudah mengerjakan ujian';
@@ -224,7 +213,6 @@ CREATE TABLE `murid_ujian` (
 -- Struktur dari tabel `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id_role` varchar(11) NOT NULL,
   `role` varchar(10) NOT NULL
@@ -246,7 +234,6 @@ INSERT INTO `role` (`id_role`, `role`) VALUES
 -- Struktur dari tabel `soal_ujian`
 --
 
-DROP TABLE IF EXISTS `soal_ujian`;
 CREATE TABLE `soal_ujian` (
   `id_soal` int(11) NOT NULL,
   `id_ujian` int(11) NOT NULL,
@@ -260,7 +247,6 @@ CREATE TABLE `soal_ujian` (
 -- Struktur dari tabel `temp_users`
 --
 
-DROP TABLE IF EXISTS `temp_users`;
 CREATE TABLE `temp_users` (
   `email` varchar(35) NOT NULL,
   `code_otp` varchar(20) NOT NULL,
@@ -273,7 +259,6 @@ CREATE TABLE `temp_users` (
 -- Struktur dari tabel `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `nama` varchar(35) NOT NULL,

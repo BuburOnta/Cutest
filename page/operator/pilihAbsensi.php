@@ -4,7 +4,7 @@ session_start();
 $error = [];
 $listAbsensi = query("SELECT * FROM absensi");
 if (isset($_POST['submit'])) {
-    if(!isset($_POST['id_absen'])){
+    if (!isset($_POST['id_absen'])) {
         $_POST['error'] = "Pilih salah satu absensi";
     } else {
         $_SESSION['id_absen'] = $_POST['id_absen'];
@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="assets/css/select.css">
 
     <link rel="stylesheet" href="assets/css/operator/pilihAbsensi.css">
+    <link rel="stylesheet" href="assets/css/error-slide-down.css">
     <style>
         div.container a.keluar {
             font-size: 30px;
@@ -40,6 +41,9 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+    <?php if (isset($_POST['error'])) { ?>
+        <span class='error'><?= $_POST['error'] ?></span>
+    <?php } ?>
     <div class="container">
 
         <a href="?page=operator" class="keluar">
@@ -50,9 +54,7 @@ if (isset($_POST['submit'])) {
         <div class="form_container">
             <h3>Hari & tanggal</h3>
 
-            <?php if(isset($_POST['error'])){ ?>
-                 <span class='error'><?= $_POST['error'] ?></span>
-            <?php } ?>
+
 
             <form method="POST" action="" class="form_cari">
                 <input type="text" name="cari" id="cari" placeholder="Cari absen...">
@@ -62,21 +64,16 @@ if (isset($_POST['submit'])) {
             <form method="POST" action="" class="form_absensi">
                 <ul class="list__group">
                     <?php $no = 1; ?>
-                    <?php foreach ($listAbsensi as $absensi): ?>
-                    <label
-                        for="<?= $absensi['id_absen'] ?>"
-                        class="list">
-                        <?= $no ?>.
-                        <?= $absensi['absensi'] ?>
-                        /
-                        <?= $absensi['tanggal'] ?>
-                    </label>
-                    <input type="radio" name="id_absen"
-                        id="<?= $absensi['id_absen'] ?>"
-                        style="display: none;"
-                        value="<?= $absensi['id_absen'] ?>">
+                    <?php foreach ($listAbsensi as $absensi) : ?>
+                        <label for="<?= $absensi['id_absen'] ?>" class="list">
+                            <?= $no ?>.
+                            <?= $absensi['absensi'] ?>
+                            /
+                            <?= $absensi['tanggal'] ?>
+                        </label>
+                        <input type="radio" name="id_absen" id="<?= $absensi['id_absen'] ?>" style="display: none;" value="<?= $absensi['id_absen'] ?>">
 
-                    <?php $no++; ?>
+                        <?php $no++; ?>
                     <?php endforeach; ?>
                 </ul>
 
