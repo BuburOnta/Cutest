@@ -497,7 +497,11 @@ function updateProfile($data){
     $nisn = htmlspecialchars($data['nisn']);
     $foto = upload('profile');
     if(!$foto){
-        $foto = 'profile.svg';
+        if($data['hiddenFoto_profile'] != ""){
+            $foto = $data['hiddenFoto_profile'];
+        } else {
+            $foto = 'profile.svg';
+        }
     }
 
     // QUERY

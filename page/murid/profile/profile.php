@@ -4,6 +4,7 @@ $user = query("SELECT * FROM users INNER JOIN jurusan ON users.jurusan=jurusan.i
 $password = $user['password'];
 
 if(isset($_POST['submit'])){
+    // var_dump($_POST);
     if(updateProfile($_POST)>0){
         header("Location: ?page=profile");
     } else {
@@ -36,6 +37,7 @@ if(isset($_POST['submit'])){
     <div class="center">
         <div class="container">
             <form method="POST" action="" enctype="multipart/form-data">
+                <input type="hidden" name="hiddenFoto_profile" value="<?= $user['foto_profile'] ?>">
                 <div class="left">
                     <div class="fotos">
                         <img src="assets/profile/<?php echo $user['foto_profile'] ?>" alt="" class="foto">
