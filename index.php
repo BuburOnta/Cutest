@@ -1,7 +1,8 @@
 <?php
-// require "page/page.php";
 require "function.php";
 resetWaktu();
+
+
 echo "
 <style>
     @keyframes fadeIn {
@@ -65,10 +66,13 @@ $admin_page = 'page/admin_page.php';
 $nav = "page/template/nav_guru.php";
 $nav_ujian = 'page/template/nav_ujian.php';
 $logout = 'page/template/logout.php';
+$toast = 'page/template/Toast.php';
+$flasher = 'page/template/Flasher.php';
 
-
-
-
+// Calling All Needed
+require $toast;
+require $flasher;
+echo '<script src="assets/js/bootstrap.js"></script>';
 
 if( isset($_GET['page']) ){
 $page = $_GET['page'];
