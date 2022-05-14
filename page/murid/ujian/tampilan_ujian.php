@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['sesiLogin'])){
+if (!isset($_SESSION['sesiLogin'])) {
     header("Location: ?page=login");
 }
 
@@ -19,7 +19,6 @@ if (!$soal = query("SELECT * FROM soal_ujian WHERE id_ujian='$id_ujian' ORDER BY
 if (!$daftar = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian' ")[0]) {
     $_POST['error'] = "Gagal menampilkan soal ujian";
 } else {
-
 }
 // var_dump($daftar);
 
@@ -60,6 +59,12 @@ if (isset($_POST["errorJawaban"])) {
     $errorJawaban = [];
 }
 
+// var_dump($daftar);
+// $daftar['file'] = '627fae101a948';
+//* SOAL UJIAN
+$path = $baseurl.'/assets/converted-pdf/'.$daftar['file'];
+$soalUjian = array_values(array_diff(scandir($path), array('.', '..')));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,22 +84,22 @@ if (isset($_POST["errorJawaban"])) {
 </head>
 
 <body>
-    <?php //include_once $nav_ujian ?>
+    <?php //include_once $nav_ujian 
+    ?>
     <div class="logo">
         <img src="assets/img/cutest_logo_text.svg">
     </div>
 
     <?php if (isset($_POST['success'])) : ?>
         <script>
-            setTimeout(() => {
-            }, 2000);
+            setTimeout(() => {}, 2000);
         </script>
-        
+
         <div class="centering">
-        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-        </svg>
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
         </div>
 
         <script>
@@ -105,9 +110,13 @@ if (isset($_POST["errorJawaban"])) {
     <?php endif; ?>
 
     <div class="container">
-        <!-- <div class="center"> -->
         <div class="left">
-            <iframe src="assets/pdf/<?= $daftar['file'] ?>" frameborder="0" width="100%" height="100%" style="zoom:1.5;"></iframe>
+            <div class="soal-ujian">
+                <img src="assets/converted-pdf/<?= $daftar['file'] ?>/<?= $daftar['file'] ?>.jpg" alt="">
+                <?php for ($i = 1; $i < count($soalUjian); $i++) { ?>
+                    <img src="assets/converted-pdf/<?= $daftar['file'] ?>/<?= $daftar['file'] . '-' . $i ?>.jpg" alt="">
+                <?php } ?>
+            </div>
         </div>
 
         <div class="right-side">
@@ -117,12 +126,13 @@ if (isset($_POST["errorJawaban"])) {
                 <input type="hidden" name="jumlahSoal" value="<?= $group ?>">
 
                 <div class="bawah">
-                    <?php $no = 1; $o = 0;?>
+                    <?php $no = 1;
+                    $o = 0; ?>
                     <?php for ($i = 1; $i <= $group; $i++) : ?>
                         <div class="input_group">
 
                             <!-- Menandai Label dari Jawaban Yang Kosong -->
-                            <?php if (in_array("f".$i, $errorJawaban)) { ?>
+                            <?php if (in_array("f" . $i, $errorJawaban)) { ?>
                                 <label for="jawaban<?= $no ?>" style=color:red;><?= $i ?>*</label>
                             <?php } else { ?>
                                 <label for="jawaban<?= $no ?>"><?= $no ?></label>
@@ -146,7 +156,8 @@ if (isset($_POST["errorJawaban"])) {
                                 </div>
                             </div>
                         </div>
-                        <?php $no++;$o++; ?>
+                        <?php $no++;
+                        $o++; ?>
                     <?php endfor; ?>
                 </div>
                 <button type="submit" name="submitJawaban" class="submit_jawaban">submit</button>

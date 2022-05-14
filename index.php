@@ -68,6 +68,7 @@ $nav_ujian = 'page/template/nav_ujian.php';
 $logout = 'page/template/logout.php';
 $toast = 'page/template/Toast.php';
 $flasher = 'page/template/Flasher.php';
+$baseurl = 'F:\xampp\htdocs\cutest';
 
 // Calling All Needed
 require $toast;

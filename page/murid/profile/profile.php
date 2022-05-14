@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
     if(updateProfile($_POST)>0){
         header("Location: ?page=profile");
     } else {
-
+        setToast("Gagal <strong>memperbarui</strong> profile", "danger");
     }
 }
 ?>
@@ -29,10 +29,12 @@ if(isset($_POST['submit'])){
         }
     </style>
 </head>
-<iv>
+<div>
     <div class="logo">
         <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
     </div>
+
+    <?php toast() ?>
 
     <div class="center">
         <div class="container">

@@ -5,6 +5,9 @@ date_default_timezone_set('Asia/Jakarta');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+use \ConvertApi\ConvertApi;
+
+require_once('assets/convert-api/lib/ConvertApi/autoload.php');
 
 // Include library PHPMailer
 include('assets/PHPMailer/src/Exception.php');
@@ -171,6 +174,17 @@ function resetAI(){
     }
 }
 
+// -- PF -> PDF to IMAGE
+function pdfToJpg($file) {
+    global $baseurl;
+    ConvertApi::setApiSecret('xqcrnozrqcdpwA9f');
+    $result = ConvertApi::convert('jpg', [
+            'File' => $baseurl.'/assets/pdf/'.$file.'.pdf',
+        ], 'pdf'
+    );
+    mkdir($baseurl.'/assets/converted-pdf/'.$file);
+    return $result->saveFiles($baseurl.'/assets/converted-pdf/'.$file) ? true : false;
+  }
 
 
 
@@ -541,7 +555,11 @@ function tambah($data)
         // $_POST['error'] = "Gagal mengupload file";
         return false;
     }
-    // $files = "TEST.pdf";
+    $files = explode('.', $files);
+    $files = $files[0];
+
+    //* converting pdf to jpg
+    pdfToJpg($files);
 
     // QUERY 2 -> Memasukan topik ke tabel daftar_ujian hanya dengan judul
     if (!mysqli_query($con, "INSERT INTO daftar_ujian SET id_guru='$guru[NIP]', judul='$judul', tipe_ujian='$tipeUjian', file='$files', token='$token' ")) {
@@ -631,6 +649,7 @@ function upload($tipe)
     // Kondisi 4 - Kondisi sebelumnya berhasil maka upload file ke tempat tujuan
     // generate nama baru
     $namaFileBaru = uniqid();
+    // $_SESSION['soal-ujian'] = $namaFileBaru;
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
     if($tipe == 'ujian'){

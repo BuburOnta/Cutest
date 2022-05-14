@@ -49,9 +49,23 @@ body {
     font-size: 12px;
 }
 .left .profileIcon {
-    width: 150px;
+    width: 100%;
+    /* aspect-ratio: 1; */
+    /* max-height: 150px; */
+    /* border-radius: 50%; */
+}
+.left .profile-icon-container {
+    max-width: 150px;
+    max-height: 150px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 12px 3px rgba(0,0,0,0.3);
     margin-bottom: 47px;
 }
+
 .left .profile {
     width: 290px;
     color: #fff;

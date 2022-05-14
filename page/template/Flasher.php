@@ -144,6 +144,7 @@ function flash()
         height: 39px;
         padding: 12px 18px;
         margin-bottom: 7px;
+        text-align: left;
     }
 
     .alert .btn-close {
@@ -151,7 +152,6 @@ function flash()
         height: max-content;
         /* top: -5px; */
         right: 0;
-        
     }
     </style>
     ';

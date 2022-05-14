@@ -151,6 +151,7 @@ $kelas = [
             right: 10px;
             /* width: 25px;
             height: 25px; */
+            color: #415F9D;
             font-size: 50px;
             cursor: pointer;
             z-index: 99;

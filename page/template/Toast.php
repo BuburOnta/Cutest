@@ -6,14 +6,13 @@ function setToast($pesan, $tipe)
         "tipe" => $tipe
     ];
 }
-
 function toast()
 {
     if (isset($_SESSION['flash'])) {
         echo "
         <div class='toast'>
             <div class='toast-header'>
-                <img src='assets/icon/logo.svg' class='rounded me-2 logo' alt='...' style='margin-right:4px;'>
+                <img src='assets/icon/logo.svg' class='rounded me-2 toast-logo' alt='...' style='margin-right:4px;'>
                 <strong class='me-auto'>Cutest</strong>
                 <button type='button' class='btn-close' data-bs-dismiss='toast' aria-label='Close'></button>
             </div>
@@ -91,6 +90,7 @@ function toast()
         position: fixed;
         bottom: 50px;
         animation: toastIn 1s ease-in-out forwards;
+        z-index: 999;
     }
 
     @keyframes toastIn {
@@ -117,7 +117,7 @@ function toast()
         }
     }
 
-    .logo {
+    .toast-logo {
         filter: invert(21%) sepia(8%) saturate(5111%) hue-rotate(184deg) brightness(100%) contrast(95%);
     }
 </style>
@@ -146,6 +146,10 @@ function toast()
         border: 0;
         border-radius: 0.25rem;
         opacity: 0.5;
+        cursor: pointer;
+
+        position: absolute;
+        right: 12px;
     }
 
     .btn-close:hover {

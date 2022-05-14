@@ -33,6 +33,7 @@ foreach ($ujian as $uji) {
 if (isset($_POST['next'])) {
     if(!isset($_POST['id_ujian'])) {
         $_POST['error'] = "Harap pilih salah satu ujian.";
+        setFlash("Pilih salah satu ujian.", "danger");
     } else {
         $_SESSION['id_ujian'] = $_POST['id_ujian'];
         $waktuMulai = date('Y-d-m / H:i:s');
@@ -60,11 +61,11 @@ if (isset($_POST['next'])) {
         <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
     </div>
 
-    <?php if (isset($_POST['error'])) { ?>
+    <!-- <?php if (isset($_POST['error'])) { ?>
     <div class="error">
         <span><?= $_POST['error'] ?></span>
     </div>
-    <?php } ?>
+    <?php } ?> -->
 
     <div class="container">
         <div class="card">
@@ -91,6 +92,8 @@ if (isset($_POST['next'])) {
 
         <form method="POST" action="">
             <h3>Kategori ujian</h3>
+            <?php flash() ?>
+
             <!-- SELECT DROPDOWN -->
             <div class="select-container">
                 <div class="select-box">
