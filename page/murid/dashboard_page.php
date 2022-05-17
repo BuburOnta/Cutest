@@ -67,7 +67,9 @@ $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
                 <img src="assets/profile/<?= $user['foto_profile'] ?>" class="profileIcon">
                 </div>
             <?php } else { ?>
-                <img src="assets/icon/profile.svg ?>" class="profileIcon">
+                <div class="profile-icon-container">
+                <img src="assets/icon/profile.svg ?>" class="profileIcon unProfile">
+                </div>
             <?php } ?>
             <div class="profile">
                 <label for="nama">Nama</label>

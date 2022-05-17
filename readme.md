@@ -1,0 +1,1 @@
+change the $baseurl in index.php
