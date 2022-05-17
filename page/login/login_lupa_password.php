@@ -5,10 +5,8 @@ session_start();
 if (isset($_POST['lupa_pass'])) {
 
     if (lupaPass($_POST) > 0) {
-        echo "<script>alert('Berhasil')</script>";
         header("Location: ?page=login_verification");
     } else {
-        // echo "<script>alert('gagal')</script>";
         echo mysqli_error($con);
     }
 }
@@ -34,9 +32,16 @@ if (isset($_POST['lupa_pass'])) {
                 <div class="regist-group email" style="margin-bottom: 13px;">
                     <label for="email">Lupa Password</label><br>
                     <!-- Menampilkan pesan error -->
-                    <?php if (isset($_POST['error'])) : ?>
-                        <p style="color: red;font-style:italic;font-size:15px;margin:5px 0 -5px 0;"><?= $_POST['error'] ?></p>
-                    <?php endif; ?>
+                    <style>
+                        .alert {
+                            margin-top: 5px;
+                            margin-bottom: 0 !important;
+                        }
+                        #email {
+                            margin-top: 7px;
+                        }
+                    </style>
+                    <?php flash() ?>
                     <input type="email" name="email" id="email" placeholder="email anda..." autofocus>
                 </div>
 

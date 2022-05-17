@@ -340,6 +340,7 @@ function lupaPass($data)
     $result = mysqli_query($con, "SELECT email FROM users WHERE email='$email' ");
     if (!mysqli_fetch_assoc($result)) {
         $_POST['error'] = "Email tidak ditemukan!";
+        setFlash("Email tidak ditemukan!", "danger");
         return false;
     }
 
@@ -354,7 +355,7 @@ function lupaPass($data)
     $mail->SMTPAuth = true;
     $mail->Username = USERNAME_EMAIL;
     $mail->Password = PASSWORD_EMAIL;
-    $mail->setFrom('Cutest');
+    $mail->setFrom(USERNAME_EMAIL, 'Cutest');
     $mail->addAddress($email);
     $mail->Subject = 'Kode OTP Lupa Password Cutest.';
     $mail->Body = 'Kode lupa password anda: ' . $code_otp;
@@ -362,6 +363,7 @@ function lupaPass($data)
     if (!$mail->send()) {
         // echo 'Mailer Error: ' . $mail->ErrorInfo;
         $_POST['error'] = "Gagal mengirim kode otp.";
+        setFlash("Gagal mengirim kode otp!", "danger");
         return false;
     }
 
@@ -388,6 +390,7 @@ function verification_login($data)
         return mysqli_affected_rows($con);
     } else {
         $_POST['error'] = "Kode verifikasi salah!";
+        setFlash("Kode verifikasi salah!", "danger");
         return false;
     }
 }
@@ -402,10 +405,11 @@ function ubahPassword($data)
 
     if ($password !== $confirm_password) {
         $_POST['error'] = "Konfirmasi password tidak sesuai";
+        setFlash("Konfirmasi password tidak sesuai.", "danger");
         return false;
     }
     $password = password_hash($password, PASSWORD_DEFAULT);
-    mysqli_query($con, "UPDATE users SET password='$password', password_debug='$confirm_password' WHERE email='$email' ");
+    mysqli_query($con, "UPDATE users SET password='$password' WHERE email='$email' ");
     $_SESSION['email'] = '';
     return mysqli_affected_rows($con);
 }

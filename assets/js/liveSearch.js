@@ -11,6 +11,7 @@ function liveSearch(keywords, containers, targetFile) {
       if (xhr.readyState == 4 && xhr.status == 200) {
           if(keyword.value.length > 3 || keyword.value.length == 0){
                 container.innerHTML = xhr.responseText;
+                console.log(keyword)
           }
       }
     };

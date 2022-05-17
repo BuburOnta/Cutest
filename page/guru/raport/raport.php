@@ -214,7 +214,8 @@ if(isset($_POST['search'])) {
                         <button type="submit" name="search">Cari</button>
                     </form>
                 </div>
-                <table cellspacing='0'>
+                <!-- <div id="table-reports"> -->
+                <table cellspacing='0' id="table-raport">
                     <thead>
                         <th>No</th>
                         <th>Mata Pelajaran</th>
@@ -237,6 +238,7 @@ if(isset($_POST['search'])) {
                         }
                     </style>
                     <?php //}?>
+                    <div id="tableValue">
                     <?php $no = 1; ?>
                     <?php foreach ($daftarUjian as $ujian) { ?>
                     <tbody>
@@ -261,10 +263,16 @@ if(isset($_POST['search'])) {
                     </tbody>
                     <?php $no++;
                     } ?>
+                    </div>
                 </table>
+                <!-- </div> -->
             </div>
         </div>
     </div>
+    <script src="assets/js/liveSearch.js"></script>
+    <script>
+        liveSearch('nama','#tableValue', 'raportGuru.php')
+    </script>
 </body>
 
 </html>
