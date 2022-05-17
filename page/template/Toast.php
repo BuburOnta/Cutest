@@ -1,5 +1,5 @@
 <?php
-function setToast($pesan, $tipe)
+function setToast($pesan, $tipe = "dark")
 {
     $_SESSION['flash'] = [
         "pesan" => $pesan,
@@ -119,6 +119,36 @@ function toast()
 
     .toast-logo {
         filter: invert(21%) sepia(8%) saturate(5111%) hue-rotate(184deg) brightness(100%) contrast(95%);
+    }
+</style>
+<style>
+    /* TEXT */
+    .text-primary {
+        color: #0d6efd;
+    }
+    .text-secondary {
+        color: #6c757d;
+    }
+    .text-success {
+        color: #198754;
+    }
+    .text-info {
+        color: #0dcaf0;
+    }
+    .text-warning {
+        color: #ffc107;
+    }
+    .text-danger {
+        color: #dc3545;
+    }
+    .text-light {
+        color: #f8f9fa;
+    }
+    .text-dark {
+        color: #212529;
+    }
+    .text-white {
+        color: #fff;
     }
 </style>
     ';

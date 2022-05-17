@@ -35,6 +35,9 @@ if (isset($_POST['verification'])) {
     }
 }
 
+if (in_array('verifCode', $error)) {
+    setFlash("Kode verifikasi tidak boleh kosong", "danger");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,13 +60,8 @@ if (isset($_POST['verification'])) {
                     <label for="verifCode">Kode verifikasi</label><? //= $error['verifCode'] 
                                                                     ?><br>
                     <!-- Menampilkan pesan error -->
-                    <?php if (isset($_POST['error'])) : ?>
-                        <p style="color: red;font-style:italic;font-size:15px;margin:4px 0 -7px 0;"><?= $_POST['error'] ?></p>
-                    <?php endif; ?>
+                    <?php flash() ?>
                     <input type="text" name="verifCode" id="verifCode" placeholder="Periksa email anda" autofocus>
-                    <?php if (in_array('verifCode', $error)) : ?>
-                        <span class="error">Kode verifikasi tidak boleh kosong</span>
-                    <?php endif; ?>
                 </div>
 
                 <!-- Submit -->

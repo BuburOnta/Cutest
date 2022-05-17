@@ -78,11 +78,7 @@ if (isset($_POST['submit'])) {
         <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
     </div>
 
-    <?php if (isset($_POST['error'])) { ?>
-        <div class="error">
-            <span><?= $_POST['error'] ?></span>
-        </div>
-    <?php } ?>
+    <?php toast(); ?>
 
    <?php if (isset($_POST['success'])) : ?>
         <script>
@@ -188,9 +184,9 @@ if (isset($_POST['submit'])) {
         const alertIcon1 = document.querySelector(".alertIcon.satu")
         const alertIcon2 = document.querySelector(".alertIcon.dua")
         const form = document.getElementById("form")
-        const error = [];
         // VALIDASI FORM
         form.addEventListener("submit", (e) => {
+            const error = [];
             if (selected.innerText == "Pilih absensi") {
                 error.push("satu")
                 alertIcon1.classList.add("activeAlertIcon")
@@ -244,6 +240,15 @@ if (isset($_POST['submit'])) {
                 }
             });
         });
+
+        // Query check apakah ada absensi tersedia
+        const btnSubmit = document.querySelector("button[type=submit]")
+        if (selected.innerText == "Saat ini tidak ada absensi") {
+            btnSubmit.style.display = "none"
+            alasan.style.marginBottom = "10px"
+        } else {
+            btnSubmit.style.display = "unset"
+        }
     </script>
 </body>
 

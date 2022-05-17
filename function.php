@@ -494,6 +494,7 @@ function absensiMurid($data){
     // CEK Apakah sudah absen
     if(count(query("SELECT * FROM akses_absensi WHERE id_absensi='$idAbsensi' AND id_murid='$idMurid' "))){
         $_POST['error'] = "Anda sudah melakukan absensi";
+        setToast("Anda sudah melakukan absensi.");
         return false;
     }
     // --- Query

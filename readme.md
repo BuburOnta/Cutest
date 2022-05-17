@@ -1,1 +1,1 @@
-change the $baseurl in index.php
+change the $baseurl in config.php

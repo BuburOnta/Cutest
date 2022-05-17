@@ -25,10 +25,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    // var_dump($_POST);
-    // $tgl = $_POST['tanggal'];
-    // $tanggal = hari();
-    // $tanggal .= ", " . bulan($tgl);
+    
 }
 
 ?>
@@ -81,32 +78,71 @@ if (isset($_POST['submit'])) {
            		<i class="fa-solid fa-right-to-bracket"></i>
         	</a>
             <h1 class="h1">Absensi</h1>
-            <form method="POST" action="">
+            <form method="POST" action="" id="form">
                 <div class="input__group">
-                    <?php if (in_array('keterangan', $error)) { ?>
-                        <span class='error'>Masukkan format keterangan yang valid</span>
-                    <?php } ?>
                     <label for="keterangan">Keterangan</label>
                     <input type="text" name="keterangan" id="keterangan" placeholder="Ulangan harian... Penilaian tengah semester...">
+                    <i class="fa-solid fa-circle-exclamation alertIcon satu"></i>
                 </div>
 
 
                 <div class="input__group">
-                    <?php if (in_array('tanggal', $error)) { ?>
-                        <span class='error'>Masukkan format tanggal yang valid</span>
-                    <?php } ?>
                     <label for="tanggal">Tanggal</label>
                     <input type="date" name="tanggal" id="tanggal">
+                    <i class="fa-solid fa-circle-exclamation alertIcon dua"></i>
                 </div>
 
                 <div class="input__group">
                     <label for="time">Time</label>
                     <input type="time" name="time" id="time" placeholder="">
+                    <i class="fa-solid fa-circle-exclamation alertIcon tiga"></i>
                 </div>
 
                 <button type="submit" name="submit">Submit</button>
             </form>
     </div>
+
+    <script>
+        // VALIDASI FORM
+        const form = document.getElementById("form")
+        const keterangan = document.getElementById("keterangan")
+        const tanggal = document.getElementById("tanggal")
+        const time = document.getElementById("time")
+        // console.log(keterangan.value)
+        // console.log(tanggal)
+        // console.log(time)
+
+        form.addEventListener("submit", (e) => {
+            const error = [];
+            if (keterangan.value == "") {
+                error.push("satu")
+                keterangan.nextElementSibling.classList.add("activeAlertIcon")
+            } else {
+                error.shift()
+                keterangan.nextElementSibling.classList.remove("activeAlertIcon")
+            }
+
+            if (tanggal.value == "") {
+                error.push("dua")
+                tanggal.nextElementSibling.classList.add("activeAlertIcon")
+            } else{
+                error.pop()
+                tanggal.nextElementSibling.classList.remove("activeAlertIcon")
+            }
+            
+            if (time.value == "") {
+                error.push("tiga")
+                time.nextElementSibling.classList.add("activeAlertIcon")
+            } else{
+                error.pop()
+                time.nextElementSibling.classList.remove("activeAlertIcon")
+            }
+
+            if (error.length > 0) {
+                e.preventDefault()
+            }
+        })
+    </script>
 </body>
 
 </html>
