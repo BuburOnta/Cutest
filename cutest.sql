@@ -98,7 +98,7 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`NIP`, `nama`, `jk`, `email`, `password`, `role`) VALUES
 (123123, 'Sri Wahyuni', 'perempuan', 'sri@gmail.com', '$2y$10$AQcZ1hB8IpciAOv2KEaETOsJWY627B9ffLBlJz9iOxCo/wjS2PKUa', '2'),
-(221133, 'Ahmad Bahlul', 'laki-laki', 'ahmad@gmail.com', '$2y$10$HuT0o1xKt4RHYIIDAJioH.53ZCl8lztlj2Kn.eeWTDPq3Tdi2.vw6', '2'),
+(221133, 'Ahmad Badrul, 'laki-laki', 'ahmad@gmail.com', '$2y$10$HuT0o1xKt4RHYIIDAJioH.53ZCl8lztlj2Kn.eeWTDPq3Tdi2.vw6', '2'),
 (321321, 'Sutanto', 'laki-laki', 'sutanto@gmail.com', '$2y$10$4hNoUv2Bv2gFEpredLl4DOXpxYcS44NTXlN5f9mNhxDqc.pv8RgG2', '2');
 
 -- --------------------------------------------------------
