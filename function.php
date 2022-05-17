@@ -390,7 +390,7 @@ function ubahPassword($data)
         return false;
     }
     $password = password_hash($password, PASSWORD_DEFAULT);
-    mysqli_query($con, "UPDATE users SET password='$password', password_debug='$confirm_password' WHERE email='$email' ");
+    mysqli_query($con, "UPDATE users SET password='$password' WHERE email='$email' ");
     $_SESSION['email'] = '';
     return mysqli_affected_rows($con);
 }
