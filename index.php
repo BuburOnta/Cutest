@@ -2,7 +2,6 @@
 require "config.php";
 require "function.php";
 resetWaktu();
-echo "dev";
 
 
 echo "

@@ -29,11 +29,13 @@ body {
 .alertIcon {
     position: absolute;
     top: 30px;
-    right: 15px;
+    right: 35px;
     font-size: 1.5em;
     color: red;
     /* display: none; */
     opacity: 0;
+    /* visibility: 0; */
+    /* display: none; */
     transition: 300ms;
 }
 .activeAlertIcon {
