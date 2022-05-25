@@ -23,52 +23,60 @@ $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/css/murid/dashboard.css">
+    <link rel="stylesheet" href="assets/css/logo.css">
     <style>
-            div.container a.keluar {
-                font-size: 30px;
-                color: #fff;
-                position: absolute;
-                left: 30px;
-                top: 20px;
-                transform: rotate(180deg);
-            }
+        div.container a.keluar {
+            font-size: 30px;
+            color: #fff;
+            position: absolute;
+            left: 30px;
+            top: 20px;
+            transform: rotate(180deg);
+        }
 
-            div.container a.keluar:hover {
-                color: #121e39;
-            }
+        div.container a.keluar:hover {
+            color: #121e39;
+        }
 
-            span.note {
-                position: absolute;
-                bottom: 10px;
-                color: red;
-                font-family: "Inter","Poppins", sans-serif;                
-                font-size: 12px;
-                font-weight: 600;
-                background-color: #E2E2E9;
-                border-radius: 10px;
-                padding: 4px 12px;
-            }
+        span.note {
+            position: absolute;
+            bottom: 10px;
+            color: red;
+            font-family: "Inter", "Poppins", sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: #E2E2E9;
+            border-radius: 10px;
+            padding: 4px 12px;
+        }
     </style>
 </head>
 
 <body>
-<div class="container">
+    <div class="logo">
+        <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
+    </div>
+    <div class="container">
         <span class="note">Note: harap input absen terlebih dahulu jika tersedia.</span>
         <a href="?page=logout" class="keluar">
             <i class="fa-solid fa-right-to-bracket"></i>
         </a>
         <div class="left">
-            <?php if($user['foto_profile'] != '' && $user['foto_profile'] != "NULL"){ ?>
+            <?php if ($user['foto_profile'] != '' && $user['foto_profile'] != "NULL") { ?>
+                <div class="profile-icon-container">
                 <img src="assets/profile/<?= $user['foto_profile'] ?>" class="profileIcon">
-            <?php }else{ ?>
-                <img src="assets/icon/profile.svg ?>" class="profileIcon">
+                </div>
+            <?php } else { ?>
+                <div class="profile-icon-container">
+                <img src="assets/icon/profile.svg ?>" class="profileIcon unProfile">
+                </div>
             <?php } ?>
             <div class="profile">
                 <label for="nama">Nama</label>
-                <input type="text" name="nama" id="nama" disabled value="<?=$user['nama']?>">
+                <input type="text" name="nama" id="nama" disabled value="<?= $user['nama'] ?>">
             </div>
             <!-- <form method="POST" action="" redirect()"> -->
-                <button onclick="redirect('?page=profile')">Edit profile</button>
+            <button onclick="redirect('?page=profile')">Edit profile</button>
             <!-- </form> -->
         </div>
 

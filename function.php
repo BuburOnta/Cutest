@@ -1,9 +1,13 @@
 <?php
+// session_start();
 // Set Default TimeZone
 date_default_timezone_set('Asia/Jakarta');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+use \ConvertApi\ConvertApi;
+
+require_once('assets/convert-api/lib/ConvertApi/autoload.php');
 
 // Include library PHPMailer
 include('assets/PHPMailer/src/Exception.php');
@@ -170,6 +174,17 @@ function resetAI(){
     }
 }
 
+// -- PF -> PDF to IMAGE
+function pdfToJpg($file) {
+    global $baseurl;
+    ConvertApi::setApiSecret('xqcrnozrqcdpwA9f');
+    $result = ConvertApi::convert('jpg', [
+            'File' => $baseurl.'/assets/pdf/'.$file.'.pdf',
+        ], 'pdf'
+    );
+    mkdir($baseurl.'/assets/converted-pdf/'.$file);
+    return $result->saveFiles($baseurl.'/assets/converted-pdf/'.$file) ? true : false;
+  }
 
 
 
@@ -325,6 +340,7 @@ function lupaPass($data)
     $result = mysqli_query($con, "SELECT email FROM users WHERE email='$email' ");
     if (!mysqli_fetch_assoc($result)) {
         $_POST['error'] = "Email tidak ditemukan!";
+        setFlash("Email tidak ditemukan!", "danger");
         return false;
     }
 
@@ -339,7 +355,7 @@ function lupaPass($data)
     $mail->SMTPAuth = true;
     $mail->Username = USERNAME_EMAIL;
     $mail->Password = PASSWORD_EMAIL;
-    $mail->setFrom('Cutest');
+    $mail->setFrom(USERNAME_EMAIL, 'Cutest');
     $mail->addAddress($email);
     $mail->Subject = 'Kode OTP Lupa Password Cutest.';
     $mail->Body = 'Kode lupa password anda: ' . $code_otp;
@@ -347,6 +363,7 @@ function lupaPass($data)
     if (!$mail->send()) {
         // echo 'Mailer Error: ' . $mail->ErrorInfo;
         $_POST['error'] = "Gagal mengirim kode otp.";
+        setFlash("Gagal mengirim kode otp!", "danger");
         return false;
     }
 
@@ -373,6 +390,7 @@ function verification_login($data)
         return mysqli_affected_rows($con);
     } else {
         $_POST['error'] = "Kode verifikasi salah!";
+        setFlash("Kode verifikasi salah!", "danger");
         return false;
     }
 }
@@ -387,6 +405,7 @@ function ubahPassword($data)
 
     if ($password !== $confirm_password) {
         $_POST['error'] = "Konfirmasi password tidak sesuai";
+        setFlash("Konfirmasi password tidak sesuai.", "danger");
         return false;
     }
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -475,6 +494,7 @@ function absensiMurid($data){
     // CEK Apakah sudah absen
     if(count(query("SELECT * FROM akses_absensi WHERE id_absensi='$idAbsensi' AND id_murid='$idMurid' "))){
         $_POST['error'] = "Anda sudah melakukan absensi";
+        setToast("Anda sudah melakukan absensi.");
         return false;
     }
     // --- Query
@@ -540,7 +560,11 @@ function tambah($data)
         // $_POST['error'] = "Gagal mengupload file";
         return false;
     }
-    // $files = "TEST.pdf";
+    $files = explode('.', $files);
+    $files = $files[0];
+
+    //* converting pdf to jpg
+    pdfToJpg($files);
 
     // QUERY 2 -> Memasukan topik ke tabel daftar_ujian hanya dengan judul
     if (!mysqli_query($con, "INSERT INTO daftar_ujian SET id_guru='$guru[NIP]', judul='$judul', tipe_ujian='$tipeUjian', file='$files', token='$token' ")) {
@@ -630,6 +654,7 @@ function upload($tipe)
     // Kondisi 4 - Kondisi sebelumnya berhasil maka upload file ke tempat tujuan
     // generate nama baru
     $namaFileBaru = uniqid();
+    // $_SESSION['soal-ujian'] = $namaFileBaru;
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
     if($tipe == 'ujian'){

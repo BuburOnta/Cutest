@@ -30,6 +30,7 @@ if (isset($_POST['login'])) {
             // var_dump($user);
         } else {
             $_POST['error'] = "error page";
+            // setFlash('Invalid Username / Password', 'danger');
         }
 
         switch ($user) {
@@ -43,6 +44,7 @@ if (isset($_POST['login'])) {
         }
     } else {
         echo mysqli_error($con);
+        setFlash('Invalid Username / Password', 'danger');
     }
 }
 
@@ -80,10 +82,9 @@ if (isset($_POST['login'])) {
         <div class="left">
             <form action="" method="post">
                 <img src="assets/img/qtest_logo_login.svg">
+                <?php flash(); ?>
+
                 <!-- Menampilkan pesan error -->
-                <?php if (isset($_POST['error'])) : ?>
-                    <p style="color: red;font-style:italic;font-size:15px;"><?= $_POST['error'] ?></p>
-                <?php endif; ?>
                 <input type="email" name="email" id="email" placeholder="Masukkan email">
                 <div class="input__group">
                     <input type="password" name="password" id="password" placeholder="Masukkan password">

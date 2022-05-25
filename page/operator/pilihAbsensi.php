@@ -6,6 +6,7 @@ $listAbsensi = query("SELECT * FROM absensi");
 if (isset($_POST['submit'])) {
     if (!isset($_POST['id_absen'])) {
         $_POST['error'] = "Pilih salah satu absensi";
+        setToast("Pilih salah satu absensi");
     } else {
         $_SESSION['id_absen'] = $_POST['id_absen'];
         header("Location: ?page=tampilAbsensiOP");
@@ -41,9 +42,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <?php if (isset($_POST['error'])) { ?>
-        <span class='error'><?= $_POST['error'] ?></span>
-    <?php } ?>
+    <?php toast() ?>
     <div class="container">
 
         <a href="?page=operator" class="keluar">

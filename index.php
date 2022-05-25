@@ -1,7 +1,9 @@
 <?php
-// require "page/page.php";
+require "config.php";
 require "function.php";
 resetWaktu();
+
+
 echo "
 <style>
     @keyframes fadeIn {
@@ -65,10 +67,14 @@ $admin_page = 'page/admin_page.php';
 $nav = "page/template/nav_guru.php";
 $nav_ujian = 'page/template/nav_ujian.php';
 $logout = 'page/template/logout.php';
+$toast = 'page/template/Toast.php';
+$flasher = 'page/template/Flasher.php';
+$error404 = "page/template/404.php";
 
-
-
-
+// Calling All Needed
+require $toast;
+require $flasher;
+echo '<script src="assets/js/bootstrap.js"></script>';
 
 if( isset($_GET['page']) ){
 $page = $_GET['page'];
@@ -165,6 +171,9 @@ $page = $_GET['page'];
         case 'logout':
             include_once $logout;
             break;
+        case 'not-found':
+            include_once $error404;
+            break;
 
         // RANDOM
         case 'random':
@@ -175,7 +184,7 @@ $page = $_GET['page'];
             break;
 
         default:
-            include_once $dashboard_page; // jika isi page tidak diisi
+            include_once $error404; // jika isi page tidak diisi
             break;
     }
 } else {

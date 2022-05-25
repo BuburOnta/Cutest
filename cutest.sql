@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Apr 2022 pada 16.53
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.4.24
+-- Waktu pembuatan: 17 Bulan Mei 2022 pada 03.54
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -279,9 +279,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `kelas`, `jurusan`, `foto_profile`, `email`, `password`, `role`, `code_otp`) VALUES
 (1, 'admin', NULL, NULL, NULL, NULL, 'NULL', 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL),
-(4, 'Raffi Ramadhan Tajudin', '', '', 2, 'rpl', '6259c722333d0.jpg', 'klsterbuka@gmail.com', '$2y$10$F0jvggW2d5XSUvyehWvEBunc7yL3.M.NcMO26i1PdGNnVIjActyi.', '1', NULL),
 (5, 'Rama', NULL, NULL, 2, 'pplg', 'NULL', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', NULL),
-(6, 'seno', NULL, NULL, 2, 'mm', 'NULL', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', NULL),
+(6, 'Seno Ajidarma Putra', '089638007896', '88881029', 2, 'mm', '6282fce438363.jpeg', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', NULL),
 (7, 'magfiroh', NULL, NULL, 2, 'dkv', 'NULL', 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', NULL),
 (8, 'akilah', NULL, NULL, 2, 'aph', 'NULL', 'akilah@gmail.com', '$2y$10$fyzvCnlxVTNvZLt86a4e1.UJdjeTDsYw3JeD23lIZaxHtxKFuHKOu', '1', NULL),
 (9, 'royan', NULL, NULL, 2, 'tbsm', 'NULL', 'royan@gmail.com', '$2y$10$.aZcj/7yI3egmpU79vTs6e.9jCRohFbxJMKzp7c8YuLRODNm8FrjW', '1', NULL),
@@ -304,7 +303,8 @@ INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `kelas`, `jurusan`, `foto
 (29, 'g3', NULL, NULL, 3, 'tbsm', 'NULL', 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', NULL),
 (30, 'a3', NULL, NULL, 3, 'tkro', 'NULL', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', NULL),
 (31, 'Anto', NULL, NULL, 2, 'rpl', 'NULL', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', NULL),
-(32, 'Operator', NULL, NULL, NULL, NULL, 'NULL', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL);
+(32, 'Operator', NULL, NULL, NULL, NULL, 'NULL', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL),
+(34, 'Raffi Ramadhan Tajudin', '', '', 2, 'rpl', '625e38d20562f.jpg', 'klsterbuka@gmail.com', '$2y$10$SNdsceGrTgoI2U3f6cKmvO3h2zQ7tOK60SG16KWW6fx/sEJOe5.Ky', '1', NULL);
 
 --
 -- Indexes for dumped tables
@@ -461,7 +461,7 @@ ALTER TABLE `soal_ujian`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

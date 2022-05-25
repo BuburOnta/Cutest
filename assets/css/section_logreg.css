@@ -75,7 +75,7 @@ body {
     border: 3px solid #415F9D;
 }
 /* BUTTON */
-.card button {
+.card button[type=submit] {
     width: 100%;
     padding: 10px 0;
     margin-bottom: 17px;
@@ -98,6 +98,6 @@ body {
 
     transition: 250ms;
 }
-.card button:hover {
+.card button[type=submit]:hover {
     background: #2c416b;
 }

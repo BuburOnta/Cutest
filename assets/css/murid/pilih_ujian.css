@@ -24,7 +24,9 @@ body {
 .container {
     box-sizing: border-box;
     width: 413.99px;
-    height: 323px;
+    min-height: 323px;
+    /* padding: 10px 0; */
+    padding-bottom: 10px;
 
     background: #D3D6DB;
     border-radius: 10px;
@@ -104,7 +106,7 @@ form img {
 }
 */
 
-form button {
+form button[type=submit] {
     width: 121px;
     height: 36px;
 
@@ -121,6 +123,6 @@ form button {
     color: #000000;
     cursor: pointer;
 }
-form button:hover {
+form button[type=submit]:hover {
     background: #a9a7a7;
 }

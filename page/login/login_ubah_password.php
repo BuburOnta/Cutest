@@ -26,10 +26,16 @@ if (isset($_POST['verification'])) {
             header("Location: ?page=login");
         } else {
             echo mysqli_error($con);
+            // setToast('EROR', 'danger');
+            // flash();
         }
     }
+
 }
 
+if (in_array('password', $error)) {
+    setFlash("Password tidak boleh kosong", "danger");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,12 +69,7 @@ if (isset($_POST['verification'])) {
                 <div class="regist-group username">
                     <label for="verifCode">Ubah password</label>
                     <!-- Menampilkan pesan error -->
-                    <?php if (isset($_POST['error'])) : ?>
-                        <p style="color: red;font-style:italic;font-size:15px;margin:4px 0 -7px 0;"><?= $_POST['error'] ?></p>
-                    <?php endif; ?>
-                    <?php if (in_array('password', $error)) : ?>
-                        <span class="error">Password tidak boleh kosong</span>
-                    <?php endif; ?>
+                    <?php flash() ?>
                     <input type="password" name="password" id="password" placeholder="Masukkan password" class="satu">
                     <input type="password" name="confirm_password" id="confirm_password" placeholder="Konfirmasi password">
                 
