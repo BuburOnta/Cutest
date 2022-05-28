@@ -1,67 +1,110 @@
 @import url(../font.css);
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
-  background-color: #233b6e;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    background-color: #233b6e;
 }
 
 /* CONTAINER */
-div.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+div.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
 }
-div.container div.center {
-  width: 536px;
-  /* height: 463px; */
-  padding: 80px 10px;
+div.container {
+    width: 80%;
+    background-color: #415f9d;
+    color: #fff;
+    padding: 10px;
+    /* height: 463px; */
+    /* padding: 80px 10px;
   background: #6dc2ff;
   background: #415F9D;
   border-radius: 10px;
 
-  position: relative;
-
+  
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+    position: relative;
 }
 
 div.container h1 {
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+}
+div.container h1::after {
+  content: "";
+  height: 2px;
+  width: 450px;
+  background-color: #f3f6fb;
   position: absolute;
-  top: 30px;
-
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  color: #ffffff;
-  text-align: center;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-div.content table {
-  background: #ffffff;
-  border: 3px solid #1181fe;
-  border: 3px solid #383838;
-  box-sizing: border-box;
-  border-radius: 10px;
-
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 9px;
-  color: #8a8a8a;
+table.data {
+  padding: 10px 0;
 }
-div.content table th,
-div.content table td {
-    border-right: 1px solid #383838;
-    border-left: 1px solid #383838;
-    border-bottom: 1px solid #383838;
-    padding: 10px;
+table.data th {
+  background-color: hsl(221, 52%, 18%);
+  color: #fff;
+}
+table.data td {
+  border:1px solid #000;
+}
+
+table.data,
+.dataTables_info,
+.paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    color: #d0d0d0 !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_info input,
+.dataTables_wrapper .dataTables_processing input,
+.dataTables_wrapper .dataTables_paginate input {
+    color: #fff;
+}
+
+
+
+div.container a.keluar {
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    left: 25px;
+    top: 5px;
+    transform: rotate(180deg);
+    z-index: 99;
+}
+
+div.container a.keluar:hover {
+    color: #ddd;
 }

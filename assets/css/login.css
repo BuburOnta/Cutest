@@ -194,11 +194,21 @@ body {
     color: #FFFFFF;
 }
 .right a {
-    text-decoration: none;
     color: #fff;
-    border-bottom: 1px solid #fff;
-    transition: 150ms;
+    text-decoration: none;
+    position: absolute;
 }
-.right a:hover {
-    border-bottom: 2px solid #444;
-}
+.right a::after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transform: scaleX(1);
+    transition: 0.5s ease-in-out;
+  }
+  .right a:hover::after{
+    transform: scaleX(0);
+  }
