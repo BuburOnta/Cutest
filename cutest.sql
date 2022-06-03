@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Bulan Mei 2022 pada 03.54
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.28
+-- Waktu pembuatan: 28 Bulan Mei 2022 pada 21.18
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -279,14 +279,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `kelas`, `jurusan`, `foto_profile`, `email`, `password`, `role`, `code_otp`) VALUES
 (1, 'admin', NULL, NULL, NULL, NULL, 'NULL', 'admin@admin', '$2y$10$NJnxvG0pA65.Vrwviqo3o.fv6NNkLwQpJyXlCBLu7GudZCPESAEmC', '3', NULL),
-(5, 'Rama', NULL, NULL, 2, 'pplg', 'NULL', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', NULL),
-(6, 'Seno Ajidarma Putra', '089638007896', '88881029', 2, 'mm', '6282fce438363.jpeg', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', NULL),
+(4, 'Raffi Ramadhan Tajudin', '123', '', 2, 'rpl', '628dffdc6b1ec.png', 'klsterbuka@gmail.com', '$2y$10$QFSXRWZSGLnQYfv1Unvghu.GqI5p4LcRzIJxXFWlYdyEcWdFbPETm', '1', ''),
+(5, 'Rama', '', '', 2, 'pplg', '628384e8009f9.png', 'rama@gmail.com', '$2y$10$BWunKYsZLms3G.LuigIjxOr2kN0X1SWNzPAHw5yxLyq.nq/r5VVEe', '1', NULL),
+(6, 'seno', NULL, NULL, 2, 'mm', 'NULL', 'seno@gmail.com', '$2y$10$Ae8IogOA00nRgV2s78wAYOuga.6s9wzcrSbT2hpldKYtV9E7Z1Knq', '1', NULL),
 (7, 'magfiroh', NULL, NULL, 2, 'dkv', 'NULL', 'magfiroh@gmail.com', '$2y$10$ldMBtFkXEwH7eDCTDoifCeP3htSnZ92PWIH/tXpISyZUBPHluzg9K', '1', NULL),
 (8, 'akilah', NULL, NULL, 2, 'aph', 'NULL', 'akilah@gmail.com', '$2y$10$fyzvCnlxVTNvZLt86a4e1.UJdjeTDsYw3JeD23lIZaxHtxKFuHKOu', '1', NULL),
 (9, 'royan', NULL, NULL, 2, 'tbsm', 'NULL', 'royan@gmail.com', '$2y$10$.aZcj/7yI3egmpU79vTs6e.9jCRohFbxJMKzp7c8YuLRODNm8FrjW', '1', NULL),
 (10, 'a2', NULL, NULL, 2, 'akl', 'NULL', 'a2@gmail.com', '$2y$10$GBkFwyH.CHbPfMCxxzSdeeo0RMKFEFN3lnPsmAdqkhbKmwAVak17a', '1', NULL),
 (11, 'b2', NULL, NULL, 2, 'tkro', 'NULL', 'b2@gmail.com', '$2y$10$8rLBEHxfnInUcX2vDefvyOBRgkjWlcFLsedWtdDGu97EMd5tkwM7y', '1', NULL),
-(12, 'a1', NULL, NULL, 1, 'rpl', 'NULL', 'a1@gmail.com', '$2y$10$CPaAevMtykcu5Ofs6O.DZ.TN89chtrbUheY8PzcrnCQhHs/XbtfDi', '1', NULL),
+(12, 'lorem ipsum', '', '', 1, 'rpl', 'NULL', 'a1@gmail.com', '$2y$10$CPaAevMtykcu5Ofs6O.DZ.TN89chtrbUheY8PzcrnCQhHs/XbtfDi', '1', NULL),
 (13, 'b1', NULL, NULL, 1, 'pplg', 'NULL', 'b1@gmail.com', '$2y$10$gapkch7WCCnKZA.e.68rkOp9k83Qe57GJW4V2G/8DNs9On.mFlmBK', '1', NULL),
 (14, 'c1', NULL, NULL, 1, 'mm', 'NULL', 'c1@gmail.com', '$2y$10$Ba7dMHrdfnU00.YzfNBOteh1oSB4H31n7rWo37.wgsH0R1CbgZDpa', '1', NULL),
 (15, 'd1', NULL, NULL, 1, 'dkv', 'NULL', 'd1@gmail.com', '$2y$10$wiAuk7lDxlh.Uzx0r7Z7DOZxx1s6ChaOgTLjlQ4rWHelJQIXbAHMq', '1', NULL),
@@ -296,15 +297,14 @@ INSERT INTO `users` (`id_user`, `nama`, `nis`, `nisn`, `kelas`, `jurusan`, `foto
 (20, 'h1', NULL, NULL, 1, 'tkro', 'NULL', 'h1@gmail.coh', '$2y$10$HcCGU2E..GTOhx023nRgZObPAVPCf71oofcxHdfTsJDAH8CuP7g6q', '1', NULL),
 (22, 'a3', NULL, NULL, 3, 'rpl', 'NULL', 'a3@gmail.com', '$2y$10$Q2GxHcRTH4UJIQRWjBzqde5u8h.pS2694os.yeD8ilpcB1nipJmOC', '1', NULL),
 (23, 'b3', NULL, NULL, 3, 'pplg', 'NULL', 'b3@gmail.com', '$2y$10$FxoT0RbnawRLxASJNF9ynuJSDFL946NDckew3asxW8xF6ksiymy9G', '1', NULL),
-(25, 'c3', NULL, NULL, 3, 'mm', 'NULL', 'c3@gmail.com', '$2y$10$fnjVLrQvmBLTWJLy/mO/HuGj3w57wT98VpsqxNOhYzN95ujP22/sG', '1', NULL),
+(25, 'c3', '', '', 3, 'mm', '628dffb76ea28.png', 'c3@gmail.com', '$2y$10$fnjVLrQvmBLTWJLy/mO/HuGj3w57wT98VpsqxNOhYzN95ujP22/sG', '1', NULL),
 (26, 'd3', NULL, NULL, 3, 'dkv', 'NULL', 'd3@gmail.com', '$2y$10$1XtLEZixHdsYUQl3YWwfCu6xgCvaColq4/nWFNTzxmF9I6RUCNTny', '1', NULL),
 (27, 'e3', NULL, NULL, 3, 'aph', 'NULL', 'e3@gmail.com', '$2y$10$OEs1qguGSjG9RU1scfB2Ce5vkx8AUErGR8h9MA7Lk7DgtBZbbAHkW', '1', NULL),
 (28, 'f3', NULL, NULL, 3, 'akl', 'NULL', 'f3@gmail.com', '$2y$10$1bPN6io6W0UBTcXFo106TOTNzIBM/ZIcJboLAItBHT8M5avMLWE/O', '1', NULL),
 (29, 'g3', NULL, NULL, 3, 'tbsm', 'NULL', 'g3@gmail.com', '$2y$10$BYMcC15.VQtkVMjkt5BVZORfAweiYQdnQa6tAKmSGbC8C4uBA2n/2', '1', NULL),
 (30, 'a3', NULL, NULL, 3, 'tkro', 'NULL', 'h3@gmail.com', '$2y$10$TAt1XBqHORbvU8/xnPaWLOFsEy3T6w3Ke/XMPqgHIBNMlA9kr5L46', '1', NULL),
 (31, 'Anto', NULL, NULL, 2, 'rpl', 'NULL', 'anto@gmail.com', '$2y$10$jnaBamm4TZkmj4OPp7z/sepx2B0YrHy0fE8QYbcOboHFrtYT3nm96', '1', NULL),
-(32, 'Operator', NULL, NULL, NULL, NULL, 'NULL', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL),
-(34, 'Raffi Ramadhan Tajudin', '', '', 2, 'rpl', '625e38d20562f.jpg', 'klsterbuka@gmail.com', '$2y$10$SNdsceGrTgoI2U3f6cKmvO3h2zQ7tOK60SG16KWW6fx/sEJOe5.Ky', '1', NULL);
+(32, 'Operator', NULL, NULL, NULL, NULL, 'NULL', 'operator@operator', '$2y$10$vH7bTXHaL6BXe8QGUJqeveI35PuRWfiFJZKzfM5M/cpATB9xfpyaq', '4', NULL);
 
 --
 -- Indexes for dumped tables
@@ -413,25 +413,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `akses_absensi`
 --
 ALTER TABLE `akses_absensi`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
@@ -449,19 +449,19 @@ ALTER TABLE `kelas_jurusan`
 -- AUTO_INCREMENT untuk tabel `murid_ujian`
 --
 ALTER TABLE `murid_ujian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT untuk tabel `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -471,21 +471,21 @@ ALTER TABLE `users`
 -- Ketidakleluasaan untuk tabel `akses_absensi`
 --
 ALTER TABLE `akses_absensi`
-  ADD CONSTRAINT `akses_absensi_ibfk_1` FOREIGN KEY (`id_absensi`) REFERENCES `absensi` (`id_absen`),
-  ADD CONSTRAINT `akses_absensi_ibfk_2` FOREIGN KEY (`id_murid`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `akses_absensi_ibfk_1` FOREIGN KEY (`id_absensi`) REFERENCES `absensi` (`id_absen`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `akses_absensi_ibfk_2` FOREIGN KEY (`id_murid`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `akses_ujian`
 --
 ALTER TABLE `akses_ujian`
-  ADD CONSTRAINT `akses_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`),
-  ADD CONSTRAINT `akses_ujian_ibfk_2` FOREIGN KEY (`kelas_jurusan`) REFERENCES `kelas_jurusan` (`id`);
+  ADD CONSTRAINT `akses_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `akses_ujian_ibfk_2` FOREIGN KEY (`kelas_jurusan`) REFERENCES `kelas_jurusan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `daftar_ujian`
 --
 ALTER TABLE `daftar_ujian`
-  ADD CONSTRAINT `daftar_ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`NIP`);
+  ADD CONSTRAINT `daftar_ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`NIP`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `guru`
@@ -504,24 +504,24 @@ ALTER TABLE `kelas_jurusan`
 -- Ketidakleluasaan untuk tabel `murid_ujian`
 --
 ALTER TABLE `murid_ujian`
-  ADD CONSTRAINT `murid_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`),
-  ADD CONSTRAINT `murid_ujian_ibfk_2` FOREIGN KEY (`id_murid`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `murid_ujian_ibfk_4` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`),
-  ADD CONSTRAINT `murid_ujian_ibfk_5` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`);
+  ADD CONSTRAINT `murid_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `murid_ujian_ibfk_2` FOREIGN KEY (`id_murid`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `murid_ujian_ibfk_4` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `murid_ujian_ibfk_5` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `soal_ujian`
 --
 ALTER TABLE `soal_ujian`
-  ADD CONSTRAINT `soal_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`);
+  ADD CONSTRAINT `soal_ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `daftar_ujian` (`id_ujian`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`),
-  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role`) REFERENCES `role` (`id_role`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`jurusan`) REFERENCES `jurusan` (`id_jurusan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
