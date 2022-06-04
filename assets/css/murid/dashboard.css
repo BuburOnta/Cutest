@@ -126,6 +126,15 @@ body {
     display: block;
     box-sizing: border-box;
 }
+.right a:nth-child(1) {
+    order: 2;
+}
+.right a:nth-child(2) {
+    order: 1;
+}
+.right a:nth-child(3) {
+    order: 3;
+}
 .card {
     /* height: 100px;
     width: 181.86px; */

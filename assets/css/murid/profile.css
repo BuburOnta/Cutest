@@ -69,6 +69,7 @@ body {
 .left .fotos {
     width: 150px;
     max-height: 150px;
+    min-height: 150px;
     overflow: hidden;
     /* height: 100px; */
     /* margin-bottom: 37px; */

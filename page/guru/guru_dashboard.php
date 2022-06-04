@@ -67,17 +67,17 @@ if (!$_SESSION['sesiLogin']) {
                 <a href="?page=raport_guru">
                     <div class="card">
                         <img src="assets/img/guru_right_nilai.svg" class="raport">
-                        <h4>Input nilai hasil ujian disini!</h4>
+                        <h4>Periksa nilai hasil ujian disini!</h4>
                         <span class="panah"><i class="fa-solid fa-angle-right"></i></span>
                     </div>
                 </a>
-                <!-- <a href="">
+                <a href="?page=ubah_ujian">
                     <div class="card">
                         <img src="assets/img/guru_right_presensi.svg">
-                        <h4>Rekap laporan presensi disini!</h4>
+                        <h4>Atur ujian disini!</h4>
                         <span class="panah"><i class="fa-solid fa-angle-right"></i></span>
                     </div>
-                </a> -->
+                </a>
             </div>
     </div>
 </body>

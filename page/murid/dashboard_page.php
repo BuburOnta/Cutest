@@ -57,7 +57,7 @@ $user = query("SELECT * FROM users WHERE email='$_SESSION[sesiLogin]'")[0];
         <img src="assets/img/cutest_logo_text.svg" onclick="window.location.href = '?page=murid';">
     </div>
     <div class="container">
-        <span class="note">Note: harap input absen terlebih dahulu jika tersedia.</span>
+        <span class="note">Note: harap input presensi terlebih dahulu jika tersedia.</span>
         <a href="?page=logout" class="keluar">
             <i class="fa-solid fa-right-to-bracket"></i>
         </a>
