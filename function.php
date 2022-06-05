@@ -420,6 +420,7 @@ function ubahPassword($data)
 // --- mr -> Submit Jawaban Ulangan
 function submitJawaban($data)
 {
+    $_SESSION['id_ujian'] = 19;
     global $con;
     $id_ujian = $_SESSION['id_ujian'];
     $no = 1;
@@ -540,6 +541,7 @@ function updateProfile($data){
 
 // --- Guru -> Ujian
 // ---Tambah Ujian---
+
 function tambah($data)
 {
     global $con;
@@ -604,6 +606,7 @@ function tambah($data)
     $_SESSION['id_ujian'] = $id_ujian;
     return mysqli_affected_rows($con);
 }
+
 
 // --- Guru -> Ujian --> Upload File
 function upload($tipe)

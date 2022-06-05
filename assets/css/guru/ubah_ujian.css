@@ -1,0 +1,414 @@
+@import url(../font.css);
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  overflow: auto !important;
+}
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  filter: brightness(0) saturate(100%) invert(37%) sepia(12%) saturate(2432%) hue-rotate(182deg) brightness(92%) contrast(87%);
+}
+
+
+
+
+/* CONTENT */
+div.container {
+  width: 1087px;
+  /* height: 590px; */
+  background: #ffffff;
+  border-radius: 25px;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  /* border: 5px solid #233B6E; */
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+div.container .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 35px;
+  color: #fff;
+
+  border: 2px solid #17617c;
+}
+
+div.container div.left_top {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #C4C4C4;
+    /* text-align: center; */
+    margin-bottom: 10px;
+    font-size: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+div.container div.left_top :is(div.file, div.judul) {
+    width: 50%;
+}
+div.container div.left_top div.judul {
+    /* width: 50%; */
+}
+
+
+/* SOAL UJIAN */
+.left .soal-ujian, .right-side {
+    height: 490px !important;
+}
+.left .soal-ujian {
+    width: 100%;
+    height: 490px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    scrollbar-width: thin;
+    /* border: 2px solid #333; */
+}
+
+/* RIGHT */
+div.container div.right-side {
+  position: relative;
+  box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    margin-left: 50px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+div.container .note {
+  position: relative;
+  top: 0;
+  margin-bottom: -10px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #C4C4C4;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px 10px;
+  z-index: 99;
+}
+
+/* FORM */
+div.container div.jawaban {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: scroll;
+}
+div.container div.jawaban div.bawah {
+  /* border: 2px solid black; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* margin-top: 20px; */
+  /* padding: 20px; */
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* Group input */
+div.container div.input_group {
+  margin: 5px 0;
+  margin-left: 10px;
+  width: 150px;
+  height: 50px;
+
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+
+  /* Centering Nomor */
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+}
+/* Misahin nomor dengan input */
+div.container div.input_group div.right {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+/* CUSTOM RADIO */
+div.container div.input_group div.input input[type=radio] {
+  appearance: none;
+  width: 19px;
+  height: 19px;
+  background: #C4C4C4;
+  border-radius: 50%;
+}
+div.container div.input_group div.input input[type=radio]:checked {
+  background: #17617c;
+}
+.jawaban-benar {
+    background: #17617c !important;
+}
+
+div.container button.submit_jawaban {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 9px 40px;
+  border: none; outline: none;
+  border-radius: 5px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: linear 100ms;
+
+
+}
+
+
+/* SECOND CONTAINER */
+div.container-2 {
+    width: 1087px;
+    height: 490px;
+    background: #ffffff;
+    border-radius: 25px;
+    box-sizing: border-box;
+  
+    margin: auto;
+    /* margin-top: 80px; */
+    margin-bottom: 40px;
+}
+div.container-2 .wrapper {
+    position: relative;
+    display: flex;
+    height: 100%;
+}
+div.container-2 label.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    background: #233B6E;
+    position: relative;
+    border-radius: 25px 0 0 25px;
+
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 35px;
+    color: #fff;
+    cursor: pointer;
+}
+div.container-2 .left a.keluar {
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    transform: rotate(180deg);
+}
+div.container-2 .left img:first-child {
+    margin-bottom: 35px;
+}
+div.container-2 .left img:nth-child(2) {
+    margin-bottom: 10px;
+}
+div.container-2 .note {
+    position: absolute;
+    bottom: 15px;
+    padding: 0 14px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #FF0000;
+}
+div.container-2 .right {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
+
+    width: 50%;
+    border: 5px solid #233B6E;
+    border-radius: 0 25px 25px 0;
+}
+div.right_left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+div.right_left .judul {
+    margin-bottom: 20px;
+}
+div.right_left .form_group {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+div.right_left .form_group label {
+    margin-left: 35px;
+}
+div.right_left .form_group [type=text]{
+    align-self: center;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.1em;
+    color: #4e4e4e;
+
+    box-sizing: border-box;
+    width: 80%;
+    height: 39px;
+    padding: 12px 18px;
+    margin-top: 5px;
+    margin-bottom: -5px;
+
+    background: #FAFAFA;
+    border: 1px solid #D5D5D5;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: 130ms;
+}
+div.right_left div.form_group input:focus {
+    border: 3px solid #415F9D;
+}
+
+div.right_right {
+    width: 50%;
+    height: calc(100% - 50%);
+    /* overflow: auto; */
+    text-align: center;
+}
+div.right_right .select_all {
+    text-align: left;
+    margin-left: 43px;
+    display: flex;
+    align-items: center;
+}
+div.right_right .select_all #select_all{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+div.right_right .select_all #select_all::after{
+    font-size: 12px;
+}
+
+/* CHECKBOX */
+div.container-2 .right div.checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+div.form_group div.input {
+    width: 70px;
+    height: 50px;
+    /* padding: 5px; */
+    margin: 5px -3px;
+    position: relative;
+    /* background: #DEDDDD; */
+    /* border: 1px solid #B7B3B3; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div.container-2 .right [type=checkbox]{
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    background: #DEDDDD;
+    border: 1px solid #B7B3B3;
+    box-sizing: border-box;
+    border-radius: 2px;
+    transition: 1   50ms;
+    position: relative;
+}
+div.container-2 .right [type=checkbox]::after {
+    margin: 0;
+    font-family: "FontAwesome";
+    font-weight: 900;
+    content: "\f00c";
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    display: none;
+    position: absolute;
+    top: 50%;left: 50%;
+    transform: translate(-50%,-50%);
+}
+div.container-2 .right input[type=checkbox]:hover {
+    background-color: #a5a5a5;
+}
+div.container-2 .right input[type=checkbox]:hover {
+    background-color: #a5a5a5;
+}
+div.container-2 .right input[type=checkbox]:checked {
+    background-color: #415F9D;
+}
+div.container-2 .right input[type=checkbox]:checked::after {
+    display: unset;
+}
+/* END CHECKBOX */
+
+.button-wrap {
+    text-align: center;
+    margin: 20px auto;
+}
+button.ubah_ujian {
+    padding: 9px 40px;
+    border: none; outline: none;
+    border-radius: 5px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: linear 100ms;
+}
+
+button.ubah_ujian:hover {
+    background: #4a67a1;
+    color: #fff;
+}
+
+/* SELECT CSS ALTERNATE */
+.select-container {
+    margin-bottom: 0;
+    width: 80%;
+    position: relative;
+}
+
+.select-box .options-container {
+    top: 60px;
+}

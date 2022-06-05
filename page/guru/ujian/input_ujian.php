@@ -11,6 +11,10 @@ $error = [];
 $values = [];
 $errorKeys = ['judul', 'tipeUjian'];
 if (isset($_POST['submit'])) {
+    // var_dump($_POST);
+    // echo '<hr>'; 
+    // var_dump($_FILES);
+    // die;
     // VIRTUAL KEY tipeUjian
     if (!isset($_POST['tipeUjian'])) {
         $_POST['tipeUjian'] = "";
@@ -35,7 +39,6 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-
 $tipeUjian = [
     ["tipeUjian" => "UH", "keterangan" => "Ulangan Harian"],
     ["tipeUjian" => "UP", "keterangan" => "Ujian Praktek"],

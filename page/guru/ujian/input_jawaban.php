@@ -10,6 +10,7 @@ if (isset($_POST['submitJawaban'])) {
     // var_dump($_POST);
     if (tambahJawaban($_POST) > 0) {
         $_POST['success'] = 'Jawaban berhasil diinput';
+        unset($_SESSION['id_ujian']);
         // header("Location: ?page=murid")
     } else {
         // echo "<script>alert('gagal')</script>";

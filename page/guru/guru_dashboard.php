@@ -71,7 +71,7 @@ if (!$_SESSION['sesiLogin']) {
                         <span class="panah"><i class="fa-solid fa-angle-right"></i></span>
                     </div>
                 </a>
-                <a href="?page=ubah_ujian">
+                <a href="?page=pilih_ubah_ujian">
                     <div class="card">
                         <img src="assets/img/guru_right_presensi.svg">
                         <h4>Atur ujian disini!</h4>

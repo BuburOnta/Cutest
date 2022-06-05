@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+// unset($_SESSION['id_ujian']);
+var_dump($_SESSION);
 if (!isset($_SESSION['sesiLogin']) && $_SESSION['role'] !== "guru") {
     header("Location: ?page=login");
 }
@@ -10,14 +11,12 @@ $guru = query("SELECT * FROM guru WHERE email='$_SESSION[sesiLogin]'")[0];
 $listUjian = query("SELECT * FROM daftar_ujian WHERE id_guru='$guru[NIP]' ");
 
 if (isset($_POST['submit'])) {
-    var_dump($_POST);
-    // if (!isset($_POST['id_absen'])) {
-    //     $_POST['error'] = "Pilih salah satu absensi";
-    //     setToast("Pilih salah satu absensi");
-    // } else {
-    //     $_SESSION['id_absen'] = $_POST['id_absen'];
-    //     header("Location: ?page=tampilAbsensiOP");
-    // }
+    // var_dump($_POST);
+    if (!isset($_POST['id_ujian'])) {
+        setToast("Pilih salah satu absensi");
+    } else {
+        header("Location: ?page=ubah_ujian&iu={$_POST['id_ujian']}");
+    }
 }
 
 
@@ -91,7 +90,7 @@ if(isset($_GET['iu']) && isset($_GET['delete']) && isset($_SESSION['sesiLogin'])
                             /
                             <?= $ujian['tipe_ujian'] ?>
                         </label>
-                        <a href="?page=ubah_ujian&iu=<?= $ujian['id_ujian'] ?>&delete" class="list-delete">
+                        <a href="?page=ubah_ujian&iu=<?= $ujian['id_ujian'] ?>&delete" class="list-delete" onclick="return confirm('hapus?')">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                         </li>

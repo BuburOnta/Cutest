@@ -52,7 +52,8 @@ $guru_page = 'page/guru/guru_dashboard.php';
     // raport
     $raport_page = 'page/guru/raport/raport.php';
     // editUjian
-    $ubah_ujian = 'page/guru/edit/pilih_ujian.php';
+    $pilih_ubah_ujian = 'page/guru/edit/pilih_ujian.php';
+    $ubah_ujian = 'page/guru/edit/ubah_ujian.php';
 
 
 // OPERator
@@ -128,6 +129,9 @@ $page = $_GET['page'];
                 include_once $raport_page;
                 break;
             // -> Edit Ujian
+            case 'pilih_ubah_ujian':
+                include_once $pilih_ubah_ujian;
+                break;
             case 'ubah_ujian':
                 include_once $ubah_ujian;
                 break;
