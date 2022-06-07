@@ -538,3 +538,44 @@ div.success-animation h1 {
 #keluar:hover {
     color: #17617C;
 }
+
+div.peringatan {
+    z-index: 99;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 50%;
+    box-sizing: border-box;
+    background: #d60606;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 10px;
+}
+div.peringatan span {
+    position: relative;
+}
+div.peringatan button.peringatan-close {
+    all: unset;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: -20px;
+
+    font-weight: 600;
+}
+.animate-close-peringatan {
+    animation: close-peringatan 1s forwards;
+}
+@keyframes close-peringatan {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}

@@ -27,3 +27,10 @@ function toggle(source) {
   }
 }
 
+
+//! Close Peringatan
+const closePeringatan = document.querySelector(".peringatan-close")
+console.log(closePeringatan.parentElement.parentElement)
+closePeringatan.addEventListener("click", () => {
+    closePeringatan.parentElement.parentElement.classList.add("animate-close-peringatan")
+})

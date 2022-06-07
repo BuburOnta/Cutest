@@ -152,6 +152,12 @@ $tipeUjian = [
         <a href="?page=pilih_ubah_ujian" id="keluar">
             <i class="fa-solid fa-right-to-bracket"></i>
         </a>
+
+        <div class="peringatan">
+            
+            <span>Melakukan perubahan akan mereset semua hasil ujian murid. <button class="peringatan-close">X</button></span>
+        </div>
+
         <div class="left">
 
             <div class="soal-ujian">

@@ -420,7 +420,6 @@ function ubahPassword($data)
 // --- mr -> Submit Jawaban Ulangan
 function submitJawaban($data)
 {
-    $_SESSION['id_ujian'] = 19;
     global $con;
     $id_ujian = $_SESSION['id_ujian'];
     $no = 1;
@@ -428,6 +427,7 @@ function submitJawaban($data)
 
     // QUERY 1 -> Memanggil soal_ujian
     $result = query("SELECT * FROM soal_ujian WHERE id_ujian='$id_ujian'");
+    // var_dump($result);die;
 
     // --- Mengecek semua jawaban terisi atau tidak
 
