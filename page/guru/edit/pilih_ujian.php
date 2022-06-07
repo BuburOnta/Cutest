@@ -1,7 +1,7 @@
 <?php
 session_start();
 // unset($_SESSION['id_ujian']);
-var_dump($_SESSION);
+// var_dump($_SESSION);
 if (!isset($_SESSION['sesiLogin']) && $_SESSION['role'] !== "guru") {
     header("Location: ?page=login");
 }

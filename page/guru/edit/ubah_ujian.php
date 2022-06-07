@@ -33,13 +33,21 @@ if (!$aksesUjian = query("SELECT * FROM akses_ujian
     $_POST['error'] = "Gagal menampilkan soal ujian";
 } else {
 }
-// var_dump($aksesUjian);
 
 //TODO TINGGAL BIKIN BACKEND BUAT UBAH UJIANNYA
 
 //! JALANKAN SAAT BUTTON UBAH DITEKAN
 if (isset($_POST['ubah_ujian'])) {
-    var_dump($_POST);
+    // var_dump($_POST);
+    // echo '<hr>';
+    // var_dump($_FILES);
+    // var_dump($_POST);
+    if( ubahUjian($_POST) > 0){
+        // setToast("SUKSEZ");
+    } else {
+    //     // setToast(mysqli_error($con));
+        echo mysqli_errno($con);
+    }
 }
 
 //* CEK ERROR
@@ -82,6 +90,12 @@ $kelas = [
     ["judul" => "XI AKL"],
     ["judul" => "XII AKL"],
 ];
+$tipeUjian = [
+    ["tipeUjian" => "UH", "keterangan" => "Ulangan Harian"],
+    ["tipeUjian" => "UP", "keterangan" => "Ujian Praktek"],
+    ["tipeUjian" => "PTS", "keterangan" => "Penilaian Tengah Semester"],
+    ["tipeUjian" => "PAS", "keterangan" => "Penilaian Akhir Semester"]
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,6 +105,7 @@ $kelas = [
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ujian</title>
+    <link rel="stylesheet" href="assets/css/select.css">
     <link rel="stylesheet" href="assets/css/guru/ubah_ujian.css">
     <link rel="stylesheet" href="assets/css/succesAnimation.css">
     <style>
@@ -101,6 +116,7 @@ $kelas = [
 </head>
 
 <body>
+    <?php toast() ?>
     <?php //include_once $nav_ujian
     ?>
     <div class="logo">
@@ -164,26 +180,26 @@ $kelas = [
                             <div class="right">
                                 <div class="input">
                                     <input type="radio" <?= "name=jawaban" . $no ?>
-                                    <?= "id=jawaban" . $no ?>
+                                    <?= "id=jawaban" . $no ?> class="jawaban-a"
                                     value="a">
                                 </div>
                                 <div class="input">
                                     <!-- <span>B</span> -->
                                     <input type="radio"
                                         name="jawaban<?= $no ?>"
-                                        id="jawaban<?= $no ?>"
+                                        id="jawaban<?= $no ?>" class="jawaban-b"
                                         value="b">
                                 </div>
                                 <div class="input">
                                     <!-- <span>C</span> -->
                                     <input type="radio" <?= "name=jawaban" . $no ?>
-                                    <?= "id=jawaban" . $no ?>
+                                    <?= "id=jawaban" . $no ?> class="jawaban-c"
                                     value="c">
                                 </div>
                                 <div class="input">
                                     <!-- <span>D</span> -->
                                     <input type="radio" <?= "name=jawaban" . $no ?>
-                                    <?= "id=jawaban" . $no ?>
+                                    <?= "id=jawaban" . $no ?> class="jawaban-d"
                                     value="d">
                                 </div>
                             </div>
@@ -204,69 +220,135 @@ $kelas = [
     <!-- //! CONTAINER 2 -->
     <div class="container-2">
         <div class="wrapper">
-        <label class="left" for="files">
-            <a href="?page=guru" class="keluar">
-                <i class="fa-solid fa-right-to-bracket"></i>
-            </a>
-            <img src="assets/img/input_ujian_paper.svg">
-            <img src="assets/img/input_ujian_plus.svg" id="plus">
-            <span class="tambah">Tambah soal</span>
-            <span class="note">Note: File soal harus berbentuk PDF!</span>
-        </label>
-        <input type="file" name="files" id="files" style="display: none;">
+            <label class="left" for="files">
+                <a href="?page=guru" class="keluar">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
+                <img src="assets/img/input_ujian_paper.svg">
+                <img src="assets/img/input_ujian_plus.svg" id="plus">
+                <span class="tambah">Tambah soal</span>
+                <span class="note">Note: File soal harus berbentuk PDF!</span>
+            </label>
+            <input type="file" name="files" id="files" style="display: none;">
 
 
-        <div class="right">
-            <div class="right_left">
-                <div class="form_group judul">
-                    <label for="judul">Judul Ujian</label>
-                    <input type="text" name="judul" id="judul"
-                        value="<?= $daftar['judul'] ?>">
+            <div class="right">
+                <div class="right_left">
+                    <div class="form_group judul">
+                        <label for="judul">Judul Ujian</label>
+                        <input type="text" name="judul" id="judul"
+                            value="<?= $daftar['judul'] ?>">
+                        <!-- SELECT DROPDOWN -->
+                    </div>
+                    <div class="select-container">
+                        <div class="select-box">
+                            <div class="options-container">
+                                <?php foreach ($tipeUjian as $tipe) { ?>
+                                <div class="option">
+                                    <!-- <input type="hidden" name="id_ujian" value="//$tipe[0]['id_ujian'] "> -->
+                                    <input type="radio" class="radio"
+                                        id="<?=$tipe['tipeUjian']?>"
+                                        name="tipeUjian"
+                                        value="<?= $tipe['tipeUjian'] ?>" />
+                                    <label
+                                        for="<?=$tipe['tipeUjian']?>"
+                                        class="select"><span><?= $tipe['keterangan'] ?></span></label>
+                                </div>
+                                <?php }; ?>
+                            </div>
+
+                            <label class="selected">
+                                <img src="assets/img/ujian_vector.svg">
+                                <span>Tipe Ujian</span>
+                            </label>
+                        </div>
+                        <!-- end select -->
+                    </div>
+                </div>
+
+
+                <div class="right_right">
+                    <h3>Kelas Dan jurusan</h3>
+                    <div class="select_all">
+                        <input type="checkbox" id="select_all" onclick="toggle(this)">
+                        <label for="select_all">Select All</label>
+                    </div>
+                    <!-- <div>P</div> -->
+                    <div class="form_group checkbox">
+                        <?php $no = 1; foreach ($kelas as $kls): ?>
+                        <div class="input"><?= $kls['judul'] ?><input
+                                type="checkbox" name="kelas[]" id="kelas"
+                                class="kj<?= $no ?>"
+                                value="<?= $no ?>"></div>
+                        <?php $no++; endforeach; ?>
+                    </div>
                 </div>
             </div>
-
-
-            <div class="right_right">
-                <h3>Kelas Dan jurusan</h3>
-                <div class="select_all">
-                    <input type="checkbox" id="select_all" onclick="toggle(this)">
-                    <label for="select_all">Select All</label>
-                </div>
-                <!-- <div>P</div> -->
-                <div class="form_group checkbox">
-                    <?php $no = 1; foreach ($kelas as $kls): ?>
-                    <div class="input"><?= $kls['judul'] ?><input
-                            type="checkbox" name="kelas[]" id="kelas"
-                            class="kj<?= $no ?>"
-                            value="<?= $no ?>"></div>
-                    <?php $no++; endforeach; ?>
-                </div>
-            </div>
-        </div>
 
         </div>
         </form>
     </div>
 
-
+    
+    <script src="assets/js/select2.js"></script>
     <script>
-        //! Memberikan Warna pada jawaban yang benar 
-        const obj = <?php echo json_encode($soal) ?> ;
-
-        let no = 1
-        for (let i = 0; i < obj.length; i++) {
-            const soals = obj[i]
-            const soalU = document.querySelector('#jawaban' + no)
-
-            if (soals.jawaban == soalU.value) {
-                // console.log("ASUUU")
-                soalU.classList.add("jawaban-benar")
-                // console.log(soalU)
-            } else {
-                soalU.classList.remove("jawaban-benar")
+        const ujian = <?php echo json_encode($daftar) ?>;
+        const selectInput = document.getElementsByName("tipeUjian")
+        selectInput.forEach((select) => {
+            if(ujian.tipe_ujian == select.id) {
+                select.checked = true
             }
-            no++
+        })
+        switch (ujian.tipe_ujian) {
+            case "UH":
+                ujian.tipe_ujian = "Ulangan Harian"
+                break;
+            case "UP":
+                ujian.tipe_ujian = "Ujian Praktek"
+                break;
+            case "PTS":
+                ujian.tipe_ujian = "Penilaian Tengah Semester"
+                break;
+            case "PAT":
+                ujian.tipe_ujian = "Penilaian Akhir Semester"
+                break;
+        
+            default:
+                ujian.tipe_ujian
+            break;
         }
+        // console.log(ujian)
+        selected.innerText = ujian.tipe_ujian
+
+
+        //! Memberikan Warna pada jawaban yang benar 
+        const soalUjians = <?php echo json_encode($soal) ?> ;
+//TODO TAMPILIN JAWABAN UJIANNYA?
+//TODO UBAH UJIAN DOANG
+        let no = 1;
+        for (let i = 0; i < soalUjians.length; i++) {
+            
+        }
+
+        // let no = 1
+        // for (let i = 0; i < obj.length; i++) {
+        //     const soals = obj[i]
+        //     const soalU = document.querySelector('#jawaban' + no)
+        //     // console.log(soalU)
+        //     // console.log(soalU)
+        //     let soalsPair = "jawaban" + soals.nomor_soal
+        //     // console.log(soalsPair)
+
+        //     if (soalsPair == soalU.id) {
+        //         if(soals.jawaban == soalU.value){
+        //         soalU.checked = true
+        //         soalU.value = soals.jawaban
+        //         }
+        //     } else {
+        //         // soalU.classList.checked = false
+        //     }
+        //     no++
+        // }
 
         //! Memberikan Centang pada Kelas Dan Jurusan
         const kejur = <?php echo json_encode($aksesUjian) ?> ;
@@ -281,14 +363,24 @@ $kelas = [
 
         //! Mengubah nama file
         const fileName = kejur[0]
-        console.log(fileName)
+        // console.log(fileName)    
         const fil = document.getElementById("files");
         const teks = document.querySelector(".tambah");
         const plus = document.getElementById("plus");
 
         teks.innerHTML = fileName.judul;
+        // console.log(fil.files)
         teks.style.textDecoration = "underline";
+        // console.log(teks.style.textDecoration)
         plus.style.display = 'none';
+
+        //! Input Files Effect
+        fil.addEventListener("change", function(e) {
+            let newText = fil.value.replace("C:\\fakepath\\", "");
+            teks.innerHTML = newText;
+            teks.style.textDecoration = "underline";
+            plus.style.display = 'none';
+        });
     </script>
 </body>
 

@@ -167,7 +167,7 @@ div.container div.input_group div.input input[type=radio] {
   border-radius: 50%;
 }
 div.container div.input_group div.input input[type=radio]:checked {
-  background: #17617c;
+  background: #17617c !important;
 }
 .jawaban-benar {
     background: #17617c !important;

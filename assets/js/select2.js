@@ -1,3 +1,4 @@
+
 const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
 
@@ -15,6 +16,7 @@ optionsList.forEach(o => {
     selected.innerHTML = o.querySelector("label").innerHTML;
     optionsContainer.classList.remove("active");
     window.test = o.querySelector(".radio").value;
+    // console.log(o.querySelector(".radio").value)
     // console.log(o.querySelector(".radio").value);
     // document.location.href = "?page=input_jawaban&id="+o.querySelector(".radio").value;
   });
