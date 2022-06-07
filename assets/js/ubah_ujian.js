@@ -1,4 +1,4 @@
-console.log(soalUjians)
+// console.log(soalUjians)
 let no = 1;
 for (let i = 0; i < soalUjians.length; i++) {
     const jawabanByIds = document.querySelectorAll(".jawaban"+no)
@@ -10,10 +10,20 @@ for (let i = 0; i < soalUjians.length; i++) {
             const jawabanById = jawabanByIds[z];
             // console.log(jawabanById)
             if(soalUjian.jawaban == jawabanById.value) {
-                console.log(jawabanById)
+                // console.log(jawabanById)
                 jawabanById.checked = true
             }
         }
     no++
 }
 //TODO BACKEND JAWABAN
+
+//! Checkbox Effect
+function toggle(source) {
+  var checkboxes = document.querySelectorAll('#kelas');
+  for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i] != source)
+          checkboxes[i].checked = source.checked;
+  }
+}
+

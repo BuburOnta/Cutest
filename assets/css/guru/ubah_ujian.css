@@ -27,6 +27,7 @@ div.container {
   border-radius: 25px;
   box-sizing: border-box;
   /* overflow: hidden; */
+  position: relative;
 
   margin: auto;
   margin-top: 80px;
@@ -263,7 +264,7 @@ background: #094257;
 
 
 
-/* SECOND CONTAINER */
+/*! SECOND CONTAINER */
 div.container-2 {
     width: 1087px;
     height: 490px;
@@ -323,6 +324,7 @@ div.container-2 .note {
     font-size: 12px;
     color: #FF0000;
 }
+/** RIGHT */
 div.container-2 .right {
     display: flex;
     /* flex-direction: column; */
@@ -342,6 +344,7 @@ div.right_left {
 div.right_left .judul {
     margin-bottom: 20px;
 }
+
 div.right_left .form_group {
     display: flex;
     flex-direction: column;
@@ -349,6 +352,12 @@ div.right_left .form_group {
 }
 div.right_left .form_group label {
     margin-left: 35px;
+}
+.selected span {
+    width: 150px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 div.right_left .form_group [type=text]{
     align-self: center;
@@ -484,4 +493,48 @@ button.ubah_ujian:hover {
 
 .select-box .options-container {
     top: 60px;
+}
+
+/* ! Succes Animation */
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+div.success-animation {
+    animation: animate 1s;
+    width: 250px;
+    padding: 20px;
+    color: #000;
+    background-color: rgba(0, 255, 0, 0.3);
+    border: 2px solid #00ff00;
+
+    text-align: center;
+    font-size: 12px;
+
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99;
+}
+div.success-animation h1 {
+    font-size: 14px;
+}
+
+/* ! KELUAR CSS */
+#keluar {
+    position: absolute;
+    top: 0;
+    left: -30px;
+    color: #17617C;
+    z-index: 999;
+    transform: rotate(180deg);
+
+    font-size: 25px;
+}
+#keluar:hover {
+    color: #17617C;
 }

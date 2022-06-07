@@ -43,8 +43,8 @@ if (isset($_POST['ubah_ujian'])) {
     // var_dump($_FILES);
     // die;
     if( ubahUjian($_POST) > 0){
-        // setToast("SUKSEZ");
         // header("Location: ?page=ubah_ujian&iu=".$id_ujian);
+        $_POST['success'] = true;
     } else {
         echo mysqli_errno($con);
     }
@@ -129,32 +129,29 @@ $tipeUjian = [
 
 <body>
     <?php toast() ?>
-    <?php //include_once $nav_ujian
-    ?>
-    <div class="logo">
-        <img src="assets/img/cutest_logo_text.svg">
-    </div>
+    <?php include_once $nav ?>
 
     <?php if (isset($_POST['success'])) : ?>
-    <script>
-        setTimeout(() => {}, 2000);
-    </script>
+        <div class="success-animation">
+            <h1>Data Ujian berhasil diubah</h1>
+            <span>mohon tunggu sebentar</span>
+        </div>
 
-    <div class="centering">
-        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-        </svg>
-    </div>
-
-    <script>
-        setTimeout(() => {
-            window.location.href = "?page=murid";
-        }, 4000);
-    </script>
+        <script>
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const iu = urlParams.get("iu")
+            console.log(iu)
+            setTimeout(() => {
+                window.location.href = "?page=ubah_ujian&iu="+iu
+            }, 3000);
+        </script>
     <?php endif; ?>
 
     <div class="container">
+        <a href="?page=pilih_ubah_ujian" id="keluar">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </a>
         <div class="left">
 
             <div class="soal-ujian">

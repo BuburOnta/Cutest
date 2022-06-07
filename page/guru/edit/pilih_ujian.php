@@ -24,8 +24,9 @@ if (isset($_POST['submit'])) {
 if(isset($_GET['iu']) && isset($_GET['delete']) && isset($_SESSION['sesiLogin']) ) {
     $idUjian = $_GET['iu'];
     if(!mysqli_query($con, "DELETE FROM daftar_ujian WHERE id_ujian='$idUjian' AND id_guru='$guru[NIP]'")){
+        setToast("Gagal menghapus ujian");
     }
-    echo "<script>alert('PE'); window.location.href = '?page=ubah_ujian' </script>";
+    header("Location: ?page=pilih_ubah_ujian");
 }
 
 ?>
@@ -90,7 +91,7 @@ if(isset($_GET['iu']) && isset($_GET['delete']) && isset($_SESSION['sesiLogin'])
                             /
                             <?= $ujian['tipe_ujian'] ?>
                         </label>
-                        <a href="?page=ubah_ujian&iu=<?= $ujian['id_ujian'] ?>&delete" class="list-delete" onclick="return confirm('hapus?')">
+                        <a href="?page=pilih_ubah_ujian&iu=<?= $ujian['id_ujian'] ?>&delete" class="list-delete" onclick="return confirm('hapus?')">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                         </li>
