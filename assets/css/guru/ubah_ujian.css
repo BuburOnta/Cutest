@@ -190,6 +190,79 @@ div.container button.submit_jawaban {
 }
 
 
+/* ! JUMLAH SOAL */
+div.container form.form-jumlah-soal {
+    display: flex;
+    align-items: center;
+    margin-top: 22px;
+}
+div.container form.form-jumlah-soal .group {
+width: 267px;
+height: 36px;
+box-sizing: border-box;
+border-radius: 10px;
+color: #17617c;
+
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+line-height: 28px;
+
+font-family: "Inter", sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 13px;
+color: #17617c;
+}
+form.form-jumlah-soal .group label {
+width: 152px;
+height: 100%;
+border: 3.5px solid #17617c;
+border-right: 0;
+box-sizing: border-box;
+border-radius: 10px 0px 0px 10px;
+}
+form.form-jumlah-soal .group input {
+width: 119px;
+height: 100%;
+border: 3.5px solid #17617c;
+outline: none;
+box-sizing: border-box;
+border-radius: 0px 10px 10px 0px;
+font-family: inherit;
+text-align: inherit;
+}
+/* form.form-jumlah-soal .group input:focus {
+    color: #233b6e;
+} */
+form.form-jumlah-soal .group input:focus::placeholder {
+color: #fff;
+}
+form.form-jumlah-soal button {
+width: 97px;
+height: 36px;
+margin-left: 12px;
+outline: none;
+border: none;
+cursor: pointer;
+
+font-family: inherit;
+background: #17617c;
+border-radius: 10px;
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+color: #ffffff;
+
+transition: linear 150ms;
+}
+form.form-jumlah-soal button:hover {
+background: #094257;
+}
+
+
+
 /* SECOND CONTAINER */
 div.container-2 {
     width: 1087px;

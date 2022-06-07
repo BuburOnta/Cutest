@@ -624,71 +624,67 @@ function ubahUjian($data)
     $guru = query("SELECT * FROM guru WHERE email='$email' ")[0];
     $daftar = query("SELECT * FROM daftar_ujian WHERE id_ujian='$id_ujian' AND id_guru='$guru[NIP]'")[0];
 
-    // QUERY 1 -> Upload File terlebih dahulu
-    $files = upload('ujian'); // mengisi `files` dengan return dari func `upload`
-    if (!$files) {
-        // $_POST['error'] = "Gagal mengupload file";
-        // setToast("ERROR FILE");
-        $files = $daftar['file'];
-    } else {
-        $files = explode('.', $files);
-        $files = $files[0];
-        //* converting pdf to jpg
-        pdfToJpg($files);
-    }
+    // // QUERY 1 -> Upload File terlebih dahulu
+    // $files = upload('ujian'); // mengisi `files` dengan return dari func `upload`
+    // if (!$files) {
+    //     // $_POST['error'] = "Gagal mengupload file";
+    //     // setToast("ERROR FILE");
+    //     $files = $daftar['file'];
+    // } else {
+    //     $files = explode('.', $files);
+    //     $files = $files[0];
+    //     //* converting pdf to jpg
+    //     pdfToJpg($files);
+    // }
+    // // echo $files;
+    // // die;
 
 
-    // QUERY 2 -> Mengubah daftar_ujian
-    if (!mysqli_query($con, "UPDATE daftar_ujian SET judul='$judul', tipe_ujian='$tipeUjian', file='$files', token='$token' WHERE id_ujian='$id_ujian' ")) {
-        $_POST['error'] = "Gagal mengubah daftar_ujian";
-        setToast("GAGAL mengubah daftar_ujian");
-        return false;
-    }
+    // // QUERY 2 -> Mengubah daftar_ujian
+    // if (!mysqli_query($con, "UPDATE daftar_ujian SET judul='$judul', tipe_ujian='$tipeUjian', file='$files', token='$token' WHERE id_ujian='$id_ujian' ")) {
+    //     $_POST['error'] = "Gagal mengubah daftar_ujian";
+    //     setToast("GAGAL mengubah daftar_ujian");
+    //     return false;
+    // }
 
-    // QUERY 3 ->  Mengambil akses ujian
+    // // QUERY 3 ->  Mengambil akses ujian
+    // // $aksesUjian = query("SELECT * FROM akses_ujian WHERE id_ujian='$id_ujian' ");
     // $aksesUjian = query("SELECT * FROM akses_ujian WHERE id_ujian='$id_ujian' ");
-    $aksesUjian = query("SELECT * FROM akses_ujian WHERE id_ujian='$id_ujian' ");
     
-    // -> Pengulangan untuk array `kelas`
-    mysqli_query($con, "DELETE FROM akses_ujian WHERE id_ujian='$id_ujian'");
-    foreach($kelas as $value) {
-        // var_dump($value);
-        // QUERY 4 -> Sorting akses ujian berdasarkan `kelas` dengan `id_ujian` yang sudah diambil
-        if (!mysqli_query($con, "INSERT INTO akses_ujian SET kelas_jurusan='$value', id_ujian='$id_ujian'")) {
-            $_POST['error'] = "Gagal mengatur akses ujian";
-            setToast("GAGAL mengubah akses_ujian");
-            return false;
-        }
+    // // -> Pengulangan untuk array `kelas`
+    // mysqli_query($con, "DELETE FROM akses_ujian WHERE id_ujian='$id_ujian'");
+    // foreach($kelas as $value) {
+    //     // var_dump($value);
+    //     // QUERY 4 -> Sorting akses ujian berdasarkan `kelas` dengan `id_ujian` yang sudah diambil
+    //     if (!mysqli_query($con, "INSERT INTO akses_ujian SET kelas_jurusan='$value', id_ujian='$id_ujian'")) {
+    //         $_POST['error'] = "Gagal mengatur akses ujian";
+    //         setToast("GAGAL mengubah akses_ujian");
+    //         return false;
+    //     }
+    // }
 
-        // CARA KEDUA?
-            // foreach ($kelas as $value) {
-            //     if($aksesUji['kelas_jurusan'] == $value){
-            //         var_dump($aksesUji['id_akses']);
-            //         var_dump($value);
-            //         echo '<br>';
-            //         // mysqli_query($con, "UPDATE akses_ujian SET kelas_jurusan=")
-            //     }
-            // }
-        }
+    // // QUERY 5 -> Mengambil kelas_jurusan dari tabel akses_ujian
+    // $result = query("SELECT * FROM `akses_ujian` INNER JOIN kelas_jurusan ON akses_ujian.kelas_jurusan=kelas_jurusan.id WHERE akses_ujian.id_ujian='$id_ujian' ");
+    // // -> Pengulangan untuk mengambil kelas dan jurusan dari relasi tabel kelas_jurusan dengan kelas, jurusan
+    // mysqli_query($con, "DELETE FROM murid_ujian WHERE id_ujian='$id_ujian'");
+    // foreach ($result as $res) {
+    //     // var_dump($res);
+    //     // QUERY 5 -> Mengambil semua data users berdasarkan kelas dan jurusan diatas
+    //     $result1 = query("SELECT * FROM users WHERE kelas='$res[kelas]' AND jurusan='$res[jurusan]' ");
+    //     // --- Memasukkan data ke database
+    //     foreach ($result1 as $res) {
+    //     //     // var_dump($res);
+    //         if (!mysqli_query($con, "INSERT INTO murid_ujian SET kelas='$res[kelas]', jurusan='$res[jurusan]', id_murid='$res[id_user]', id_ujian='$id_ujian' ")) {
+    //             $_POST['error'] = "Gagal mengatur murid ujian";
+    //             setToast("GAGAL mengubah murid_ujian");
+    //             return false;
+    //         }
+    //     }
+    // }
 
-    // QUERY 5 -> Mengambil kelas_jurusan dari tabel akses_ujian
-    $result = query("SELECT * FROM `akses_ujian` INNER JOIN kelas_jurusan ON akses_ujian.kelas_jurusan=kelas_jurusan.id WHERE akses_ujian.id_ujian='$id_ujian' ");
-    // -> Pengulangan untuk mengambil kelas dan jurusan dari relasi tabel kelas_jurusan dengan kelas, jurusan
-    mysqli_query($con, "DELETE FROM murid_ujian WHERE id_ujian='$id_ujian'");
-    foreach ($result as $res) {
-        // var_dump($res);
-        // QUERY 5 -> Mengambil semua data users berdasarkan kelas dan jurusan diatas
-        $result1 = query("SELECT * FROM users WHERE kelas='$res[kelas]' AND jurusan='$res[jurusan]' ");
-        // --- Memasukkan data ke database
-        foreach ($result1 as $res) {
-        //     // var_dump($res);
-            if (!mysqli_query($con, "INSERT INTO murid_ujian SET kelas='$res[kelas]', jurusan='$res[jurusan]', id_murid='$res[id_user]', id_ujian='$id_ujian' ")) {
-                $_POST['error'] = "Gagal mengatur murid ujian";
-                setToast("GAGAL mengubah murid_ujian");
-                return false;
-            }
-        }
-    }
+
+    //* Mengubah Kunci Jawaban
+    ubahJawaban($data);
 
     // $_SESSION['id_ujian'] = $id_ujian;
     return mysqli_affected_rows($con);
@@ -754,6 +750,44 @@ function upload($tipe)
     }
     return $namaFileBaru;
 }
+
+
+//! --- Guru -> Ubah Ujian --> Ubah jawaban
+function ubahJawaban($data){
+    global $con;
+    $jumlahSoal = $data['jumlahSoal'];
+    $id_ujian = $_GET['iu'];
+
+    //*** Menghapus jawaban berdasarkan ID_UJIAN
+    mysqli_query($con, "DELETE FROM soal_ujian WHERE id_ujian='$id_ujian' ");
+
+    //* Pengulangan untuk memanggil semua input name jawaban dengan 1 indeks i
+    for($i = 1; 1 <= $jumlahSoal; $i++) {
+        //** Jika ada salah satu jawaban yang kosong maka mengembalikan nilai false
+        if(!isset($data['jawaban'.$i])) {
+            $_POST['jumlah'] = true;
+            $_POST['jumlahSoal'] = $jumlahSoal;
+            $_POST['error'] = "Jawaban tidak boleh kosong";
+            return false;
+        }
+
+        $jawaban = $data['jawaban'.$i];
+
+        //*** RESET AUTO INCREMENT
+        $result = mysqli_query($con, "SELECT * FROM soal_ujian");
+        if(mysqli_num_rows($result) == 0){
+            mysqli_query($con, "ALTER TABLE soal_ujian AUTO_INCREMENT=1");
+        }
+
+        //*** Insert Jawaban Ke Database
+        if( !mysqli_query($con, "INSERT INTO soal_ujian SET id_ujian='$id_ujian', nomor_soal='$i', jawaban='$jawaban' ")){
+            $_POST['error'] = "Gagal input ujian";
+            return false;
+        }
+    }
+    return true;
+}
+
 
 // --- Guru -> Ujian --> Input Jawaban
 function tambahJawaban($data)

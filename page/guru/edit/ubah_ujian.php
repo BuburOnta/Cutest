@@ -41,11 +41,11 @@ if (isset($_POST['ubah_ujian'])) {
     // var_dump($_POST);
     // echo '<hr>';
     // var_dump($_FILES);
-    // var_dump($_POST);
+    // die;
     if( ubahUjian($_POST) > 0){
         // setToast("SUKSEZ");
+        // header("Location: ?page=ubah_ujian&iu=".$id_ujian);
     } else {
-    //     // setToast(mysqli_error($con));
         echo mysqli_errno($con);
     }
 }
@@ -57,6 +57,18 @@ if (isset($_POST["errorJawaban"])) {
     }
 } else {
     $errorJawaban = [];
+}
+
+//! CEK INPUT JUMLAH SOAL DARI USER
+if (isset($_POST['jumlah'])) {
+    $jumlahSoal = $_POST['jumlahSoal'];
+    if ($jumlahSoal < 5) {
+        $_POST['error'] = "Minimal 5 soal!";
+    } else if ($jumlahSoal > 50) {
+        $_POST['error'] = "Maksimal 50 soal!";
+    } else {
+        $group = $jumlahSoal;
+    }
 }
 
 //* SOAL UJIAN
@@ -157,6 +169,14 @@ $tipeUjian = [
 
         <div class="right-side">
             <span class="note">Urutan pilihan: A | B | C | D</span>
+            <form method="POST" action="" class="form-jumlah-soal">
+                <div class="group">
+                    <label for="jumlahSoal">Jumlah soal</label>
+                    <input type="text" name="jumlahSoal" id="jumlahSoal" placeholder="---------" <?php if ($group > 0) {echo "value=" . $group;} ?>>
+                </div>
+                <button type="submit" name="jumlah">pilih</button>
+            </form>
+
             <div class="jawaban">
                 <form method="POST" action="" enctype="multipart/form-data">
                     <input type="hidden" name="jumlahSoal"
@@ -180,26 +200,26 @@ $tipeUjian = [
                             <div class="right">
                                 <div class="input">
                                     <input type="radio" <?= "name=jawaban" . $no ?>
-                                    <?= "id=jawaban" . $no ?> class="jawaban-a"
+                                    <?= "id=jawaban" . $no ?> class="jawaban-a jawaban<?= $no ?>"
                                     value="a">
                                 </div>
                                 <div class="input">
                                     <!-- <span>B</span> -->
                                     <input type="radio"
                                         name="jawaban<?= $no ?>"
-                                        id="jawaban<?= $no ?>" class="jawaban-b"
+                                        id="jawaban<?= $no ?>" class="jawaban-b jawaban<?= $no ?>"
                                         value="b">
                                 </div>
                                 <div class="input">
                                     <!-- <span>C</span> -->
                                     <input type="radio" <?= "name=jawaban" . $no ?>
-                                    <?= "id=jawaban" . $no ?> class="jawaban-c"
+                                    <?= "id=jawaban" . $no ?> class="jawaban-c jawaban<?= $no ?>"
                                     value="c">
                                 </div>
                                 <div class="input">
                                     <!-- <span>D</span> -->
                                     <input type="radio" <?= "name=jawaban" . $no ?>
-                                    <?= "id=jawaban" . $no ?> class="jawaban-d"
+                                    <?= "id=jawaban" . $no ?> class="jawaban-d jawaban<?= $no ?>"
                                     value="d">
                                 </div>
                             </div>
@@ -303,19 +323,19 @@ $tipeUjian = [
             case "UH":
                 ujian.tipe_ujian = "Ulangan Harian"
                 break;
-            case "UP":
-                ujian.tipe_ujian = "Ujian Praktek"
-                break;
-            case "PTS":
-                ujian.tipe_ujian = "Penilaian Tengah Semester"
-                break;
+                case "UP":
+                    ujian.tipe_ujian = "Ujian Praktek"
+                    break;
+                    case "PTS":
+                        ujian.tipe_ujian = "Penilaian Tengah Semester"
+                        break;
             case "PAT":
                 ujian.tipe_ujian = "Penilaian Akhir Semester"
                 break;
-        
-            default:
-                ujian.tipe_ujian
-            break;
+                
+                default:
+                    ujian.tipe_ujian
+                    break;
         }
         // console.log(ujian)
         selected.innerText = ujian.tipe_ujian
@@ -323,12 +343,7 @@ $tipeUjian = [
 
         //! Memberikan Warna pada jawaban yang benar 
         const soalUjians = <?php echo json_encode($soal) ?> ;
-//TODO TAMPILIN JAWABAN UJIANNYA?
-//TODO UBAH UJIAN DOANG
-        let no = 1;
-        for (let i = 0; i < soalUjians.length; i++) {
-            
-        }
+        
 
         // let no = 1
         // for (let i = 0; i < obj.length; i++) {
@@ -338,22 +353,22 @@ $tipeUjian = [
         //     // console.log(soalU)
         //     let soalsPair = "jawaban" + soals.nomor_soal
         //     // console.log(soalsPair)
-
+        
         //     if (soalsPair == soalU.id) {
         //         if(soals.jawaban == soalU.value){
-        //         soalU.checked = true
-        //         soalU.value = soals.jawaban
-        //         }
-        //     } else {
-        //         // soalU.classList.checked = false
-        //     }
-        //     no++
-        // }
-
-        //! Memberikan Centang pada Kelas Dan Jurusan
-        const kejur = <?php echo json_encode($aksesUjian) ?> ;
-        const kejurs = document.getElementsByName("kelas[]")
-        kejur.forEach((kj) => {
+            //         soalU.checked = true
+            //         soalU.value = soals.jawaban
+            //         }
+            //     } else {
+                //         // soalU.classList.checked = false
+                //     }
+                //     no++
+                // }
+                
+                //! Memberikan Centang pada Kelas Dan Jurusan
+                const kejur = <?php echo json_encode($aksesUjian) ?> ;
+                const kejurs = document.getElementsByName("kelas[]")
+                kejur.forEach((kj) => {
             kejurs.forEach((kjs) => {
                 if (kj.kelas_jurusan == kjs.value) {
                     kjs.checked = true
@@ -367,13 +382,13 @@ $tipeUjian = [
         const fil = document.getElementById("files");
         const teks = document.querySelector(".tambah");
         const plus = document.getElementById("plus");
-
+        
         teks.innerHTML = fileName.judul;
         // console.log(fil.files)
         teks.style.textDecoration = "underline";
         // console.log(teks.style.textDecoration)
         plus.style.display = 'none';
-
+        
         //! Input Files Effect
         fil.addEventListener("change", function(e) {
             let newText = fil.value.replace("C:\\fakepath\\", "");
@@ -382,6 +397,7 @@ $tipeUjian = [
             plus.style.display = 'none';
         });
     </script>
+<script src="assets/js/ubah_ujian.js"></script>
 </body>
 
 </html>

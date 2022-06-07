@@ -1,3 +1,3 @@
 <?php 
 
-$baseurl = 'C:\xampp\htdocs\cutest';
+$baseurl = 'F:\xampp\htdocs\cutest';
