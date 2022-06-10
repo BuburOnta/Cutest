@@ -13,7 +13,7 @@ $listUjian = query("SELECT * FROM daftar_ujian WHERE id_guru='$guru[NIP]' ");
 if (isset($_POST['submit'])) {
     // var_dump($_POST);
     if (!isset($_POST['id_ujian'])) {
-        setToast("Pilih salah satu absensi");
+        setToast("Pilih salah satu ujian");
     } else {
         header("Location: ?page=ubah_ujian&iu={$_POST['id_ujian']}");
     }

@@ -20,22 +20,21 @@ $listAbsensi = query($query);
 $kelas = query("SELECT * FROM kelas");
 $jurusan = query("SELECT * FROM jurusan");
 $keterangan = [
-    ["id_keterangan"=>"Hadir","keterangan"=>"Hadir"],
-    ["id_keterangan"=>"Sakit","keterangan"=>"Sakit"],
-    ["id_keterangan"=>"Izin","keterangan"=>"Izin"]
+    ["id_keterangan" => "Hadir", "keterangan" => "Hadir"],
+    ["id_keterangan" => "Sakit", "keterangan" => "Sakit"],
+    ["id_keterangan" => "Izin", "keterangan" => "Izin"]
 ];
 
 // Sorting
 $error = [];
 $values = [];
-$errorKeys = ['kelas','jurusan', 'keterangan'];
+$errorKeys = ['kelas', 'jurusan', 'keterangan'];
 
 // --- Filter
 if (isset($_POST['filter'])) {
     $kelasF = $_POST['kelas'];
     $jurusanF = $_POST['jurusan'];
     $keteranganF = $_POST['keterangan'];
-    var_dump($keteranganF);
 
     if (!empty(trim($kelasF)) && !empty(trim($jurusanF)) && !empty(trim($keteranganF))) { // 3 Sorting
         $query = "SELECT * FROM akses_absensi INNER JOIN absensi ON akses_absensi.id_absensi=absensi.id_absen INNER JOIN users ON akses_absensi.id_murid=users.id_user INNER JOIN kelas ON users.kelas=kelas.id_kelas INNER JOIN jurusan ON users.jurusan=jurusan.id_jurusan WHERE akses_absensi.id_absensi='$idAbsensi' AND kelas.id_kelas='$kelasF' AND jurusan.id_jurusan='$jurusanF' AND akses_absensi.keterangan='$keteranganF' ";
@@ -81,81 +80,26 @@ if (isset($_POST['search'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raport</title>
-    <link rel="stylesheet" href="assets/css/guru/raport.css">
     <link rel="stylesheet" href="assets/css/operator/tampilAbsensi.css">
-    <style>
-        div.container div.center {
-            width: 900px;
-            max-height: 450px;
-            overflow: auto;
-            /* padding: 0 20px; */
-            padding: 30px 10px;
-            padding-top: 0;
-            overflow-x: hidden;
-            /* flex-direction: column; */
-            /* align-items: center; */
-            /* justify-content: flex-start; */
-        }
-
-        div.center a.keluar {
-            font-size: 30px;
-            color: #fff;
-            position: absolute;
-            left: 20px;
-            top: 15px;
-            transform: rotate(180deg);
-            z-index: 99;
-        }
-
-        div.center a.keluar:hover {
-            color: #ddd;
-        }
-
-        div.content {
-            position: relative;
-            width: 700px;
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        div.ajakx table{
-            width: 100% !important;
-        }
-
-        .sorter {
-            top: 25px;
-            color: #333;
-        }
-
-        .sorter button,
-        .searchNama button {
-            padding: 0 5px;
-        }
-
-        .searchNama {
-            color: #333;
-            margin: 5px 0;
-        }
-
-        .searchNama input,
-        .sorter input {
-            border-radius: 5px;
-            border: none;
-            padding: 1px 0;
-            padding-left: 10px;
-            font-size: 12px;
-            /* outline: none; */
-            font-family: "Poppins", sans-serif;
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="assets/css/guru/raport.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="center">
-            <a href="?page=murid" class="keluar">
-                <i class="fa-solid fa-right-to-bracket"></i>
+    <nav class="head">
+        <div class="left">
+            <img src="assets/img/cutest_logo_text.svg">
+        </div>
+        <div class="right">
+            <span><?= $users['email'] ?></span>
+            <img src="assets/img/profile_icon.png">
+        </div>
+    </nav>
+
+    <div class="center">
+        <div class="container">
+            <a href="?page=pilihAbsensi" class="keluar">
+                Kembali
             </a>
 
             <div class="content">
@@ -164,31 +108,28 @@ if (isset($_POST['search'])) {
                         <span>Filter By : </span>
                         <select name="kelas" id="kelas">
                             <option value="" hidden selected>Kelas</option>
-                            <?php foreach ($kelas as $kel): ?>
-                            <option
-                                value="<?=$kel['id_kelas']?>">
-                                <?= $kel['kelas'] ?>
-                            </option>
+                            <?php foreach ($kelas as $kel) : ?>
+                                <option value="<?= $kel['id_kelas'] ?>">
+                                    <?= $kel['kelas'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
 
                         <select name="jurusan" id="jurusan">
                             <option value="" hidden selected>Jurusan</option>
-                            <?php foreach ($jurusan as $jur): ?>
-                            <option
-                                value="<?= $jur['id_jurusan'] ?>">
-                                <?= $jur['id_jurusan'] ?>
-                            </option>
+                            <?php foreach ($jurusan as $jur) : ?>
+                                <option value="<?= $jur['id_jurusan'] ?>">
+                                    <?= $jur['id_jurusan'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
 
                         <select name="keterangan" id="keterangan">
                             <option value="" hidden selected>Keterangan</option>
-                            <?php foreach ($keterangan as $ket): ?>
-                            <option
-                                value="<?= $ket['id_keterangan'] ?>">
-                                <?= $ket['keterangan'] ?>
-                            </option>
+                            <?php foreach ($keterangan as $ket) : ?>
+                                <option value="<?= $ket['id_keterangan'] ?>">
+                                    <?= $ket['keterangan'] ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
 
@@ -196,15 +137,8 @@ if (isset($_POST['search'])) {
                     </form>
                 </div>
 
-                <div class="searchNama">
-                    <form method="POST" action="">
-                        <label for="nama">Nama</label>
-                        <input type="text" name="nama" id="nama" placeholder="Cari peserta">
-                        <button type="submit" name="search">Cari</button>
-                    </form>
-                </div>
                 <div class="ajakx">
-                    <table cellspacing='0'>
+                    <table cellspacing='0' id="table-raport" class="table table-striped table-bordered data">
                         <thead>
                             <th>No</th>
                             <th>Nama</th>
@@ -222,36 +156,39 @@ if (isset($_POST['search'])) {
                         </style>
                         <?php $no = 1; ?>
                         <?php foreach ($listAbsensi as $absen) { ?>
-                        <?php if ($absen['alasan'] == "NULL") {
-    $absen['alasan'] = "-";
-} ?>
-                        <tbody>
-                            <td><?= $no ?>
-                            </td>
-                            <td><?= $absen['nama'] ?>
-                            </td>
-                            <td><?= $absen['kelas'] ?>
-                            </td>
-                            <td><?= $absen['jurusan'] ?>
-                            </td>
-                            <td><?= $absen['keterangan'] ?>
-                            </td>
-                            <td><?= $absen['alasan'] ?>
-                            </td>
-                            <td><?= $absen['waktu_absen'] ?>
-                            </td>
-                        </tbody>
+                            <?php if ($absen['alasan'] == "NULL") {
+                                $absen['alasan'] = "-";
+                            } ?>
+                            <tbody>
+                                <td><?= $no ?>
+                                </td>
+                                <td><?= $absen['nama'] ?>
+                                </td>
+                                <td><?= $absen['kelas'] ?>
+                                </td>
+                                <td><?= $absen['jurusan'] ?>
+                                </td>
+                                <td><?= $absen['keterangan'] ?>
+                                </td>
+                                <td><?= $absen['alasan'] ?>
+                                </td>
+                                <td><?= $absen['waktu_absen'] ?>
+                                </td>
+                            </tbody>
                         <?php $no++;
-                    } ?>
+                        } ?>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="assets/js/liveSearch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script>
-        liveSearch('nama','.ajakx', 'tampilanAbsensiOP.php')
+        $(document).ready(function() {
+            $('.data').DataTable();
+        });
     </script>
 </body>
 
